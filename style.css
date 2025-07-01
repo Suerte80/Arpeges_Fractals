@@ -210,8 +210,9 @@ body {
 .articles {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 1rem;
   margin: 1rem;
 }
 
@@ -229,12 +230,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
-  /* SUPPRIMÉ : width: 20%; */
-  width: 100%; /* Laisse le grid gérer la largeur */
-
+  width: 250px; /* Laisse le grid gérer la largeur */
+  height: 350px;
   padding: 1rem;
+  
   border-radius: 15px;
   border: 1px solid var(--secondary);
   box-shadow: inset 0 0 0 1px rgba(255, 102, 0, 0.4);
@@ -340,4 +341,81 @@ footer.bottom{
   position: absolute;
   bottom: 0;
   text-align: center;
+}
+
+/* Arrière-plan semi-transparent */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Contenu de la modal */
+/* MODALE */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-inner {
+  background-color: #1e1e1e;
+  color: var(--text-on-dark);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 30px var(--primary);
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--highlight);
+}
+
+.modal-content-text {
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  font-size: 1.8rem;
+  color: var(--accent1);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.close-button:hover {
+  transform: rotate(90deg);
+  color: var(--secondary);
 }

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "1",
+    "new": true,
+    "mostViewed": true,
+    "title": "À la découverte du math rock",
+    "description": "Une introduction aux riffs angulaires et mesures impaires.",
+    "content": "Le math rock se caractérise par des rythmes asymétriques, des textures sonores complexes et une sensibilité géométrique. Cet article explore ses origines et son influence actuelle."
+  },
+  {
+    "id": "2",
+    "new": false,
+    "mostViewed": false,
+    "title": "LITE : précision japonaise",
+    "description": "Focus sur un pilier du genre instrumental.",
+    "content": "Le groupe LITE incarne la virtuosité technique et la discipline du math rock japonais, mêlant structures rigoureuses et improvisation subtile."
+  },
+  {
+    "id": "3",
+    "new": true,
+    "mostViewed": false,
+    "title": "Scène émergente française",
+    "description": "Qui sont les groupes qui cassent les codes en France ?",
+    "content": "De Lyon à Rennes, la scène math rock française prend de l’ampleur. Nous avons rencontré les acteurs d’un son libre et complexe."
+  },
+  {
+    "id": "4",
+    "new": false,
+    "mostViewed": false,
+    "title": "Math rock & jazz fusion",
+    "description": "Un lien inattendu mais naturel.",
+    "content": "Des groupes comme Jizue ou Mouse on the Keys brouillent les frontières entre jazz contemporain et math rock. Décryptage d’un croisement élégant."
+  },
+  {
+    "id": "5",
+    "new": false,
+    "mostViewed": true,
+    "title": "La guitare comme fractale",
+    "description": "Quand les arpèges deviennent géométriques.",
+    "content": "Le math rock transforme la guitare en outil mathématique. Voici comment certaines structures évoquent des motifs fractals."
+  },
+  {
+    "id": "6",
+    "new": true,
+    "mostViewed": false,
+    "title": "Interview : tricot",
+    "description": "Entretien exclusif avec le groupe japonais post-rock/math rock féminin.",
+    "content": "tricot, groupe à la frontière du chaos et de la pop, nous parle de leur approche expérimentale unique du songwriting."
+  },
+  {
+    "id": "7",
+    "new": false,
+    "mostViewed": true,
+    "title": "Top 5 albums 2024",
+    "description": "Notre sélection incontournable de l’année",
+    "content": "De Covet à Delta Sleep, voici les albums qui ont marqué 2024 dans l’univers mathy et instrumental."
+  },
+  {
+    "id": "8",
+    "new": false,
+    "mostViewed": false,
+    "title": "Signature rythmique : le 7/8 expliqué",
+    "description": "Un guide pour débuter dans les mesures impaires.",
+    "content": "Le 7/8 est omniprésent dans le math rock. Apprenez à le sentir, l'écrire et le jouer dans ce tutoriel illustré."
+  },
+  {
+    "id": "9",
+    "new": false,
+    "mostViewed": false,
+    "title": "Musique et architecture",
+    "description": "Quand les sons dessinent des formes",
+    "content": "Les structures musicales du math rock rappellent souvent celles de l’architecture contemporaine. Coïncidence ?"
+  },
+  {
+    "id": "10",
+    "new": true,
+    "mostViewed": false,
+    "title": "Les femmes dans le math rock",
+    "description": "Une visibilité croissante mais encore fragile.",
+    "content": "De tricot à Yvette Young, retour sur les figures féminines qui façonnent un genre encore trop masculin."
+  },
+  {
+    "id": "11",
+    "new": false,
+    "mostViewed": false,
+    "title": "Effet pédale : math & reverb",
+    "description": "Un arsenal sonore complexe.",
+    "content": "Les effets utilisés par les musiciens math rock ajoutent une nouvelle dimension rythmique et spatiale. Exploration technique."
+  },
+  {
+    "id": "12",
+    "new": false,
+    "mostViewed": false,
+    "title": "Le DIY dans la scène underground",
+    "description": "Concerts en garage, auto-prod et solidarité",
+    "content": "Beaucoup de groupes math rock adoptent un fonctionnement DIY. Voici pourquoi (et comment) cela nourrit la créativité."
+  },
+  {
+    "id": "13",
+    "new": false,
+    "mostViewed": false,
+    "title": "Pourquoi tant de batteurs brillants ?",
+    "description": "Une école de rigueur et d’audace",
+    "content": "Le math rock est un paradis pour les batteurs techniques. Voici comment ils construisent des grooves impossibles."
+  },
+  {
+    "id": "15",
+    "new": false,
+    "mostViewed": false,
+    "title": "Tournée 2025 : dates annoncées",
+    "description": "Découvrez les prochaines scènes math rock européennes.",
+    "content": "Une vingtaine de dates sont prévues entre Berlin, Paris, et Barcelone pour la scène alternative math/post-rock."
+  },
+  {
+    "id": "17",
+    "new": false,
+    "mostViewed": false,
+    "title": "Construire un riff irrégulier",
+    "description": "Guide d’écriture pour guitaristes curieux",
+    "content": "Pas besoin d’être un mathématicien : l’irrégularité peut être intuitive. Voici comment structurer un riff original."
+  },
+  {
+    "id": "20",
+    "new": true,
+    "mostViewed": false,
+    "title": "Future of math rock",
+    "description": "Fusion avec l’IA et l’interaction",
+    "content": "Des projets mêlant codage en temps réel, IA et math rock commencent à émerger. Le futur est fractal."
+  }
+]

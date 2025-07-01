@@ -77,48 +77,37 @@
     <section id="latest-articles">
         <h2>Dérniers Articles</h2>
         <div class="articles">
-            <div class="article">
-                <h3>Découverte et recos</h3>
-                <img src="https://placehold.co/200x100" alt="Image représentant l'article">
-                <p>Groupes émergents, albums de niche, scène locales : on creuse le son math rock.</p>
-            </div>
-            <div class="article">
-                <h3>Découverte et recos</h3>
-                <img src="https://placehold.co/200x100" alt="Image représentant l'article">
-                <p>Groupes émergents, albums de niche, scène locales : on creuse le son math rock.</p>
-            </div>
-            <div class="article">
-                <h3>Découverte et recos</h3>
-                <img src="https://placehold.co/200x100" alt="Image représentant l'article">
-                <p>Groupes émergents, albums de niche, scène locales : on creuse le son math rock.</p>
-            </div>
         </div>
     </section>
 
     <section id="most-viewed-articles">
         <h2>Les plus vus</h2>
         <div class="articles">
-            <div class="article">
-                <h3>Découverte et recos</h3>
-                <img src="https://placehold.co/200x100" alt="Image représentant l'article">
-                <p>Groupes émergents, albums de niche, scène locales : on creuse le son math rock.</p>
-            </div>
-            <div class="article">
-                <h3>Découverte et recos</h3>
-                <img src="https://placehold.co/200x100" alt="Image représentant l'article">
-                <p>Groupes émergents, albums de niche, scène locales : on creuse le son math rock.</p>
-            </div>
-            <div class="article">
-                <h3>Découverte et recos</h3>
-                <img src="https://placehold.co/200x100" alt="Image représentant l'article">
-                <p>Groupes émergents, albums de niche, scène locales : on creuse le son math rock.</p>
-            </div>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2025 Arpèges Fractals - Polyythlmes, riffs et chaos contrôlé.</p>
     </footer>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-inner">
+            <span id="close-modal" class="close-button">&times;</span>
+            <h2 class="modal-title">Titre</h2>
+            <p class="modal-content-text">Contenu</p>
+        </div>
+    </div>
+
+
+    <template id="template-new-article">
+        <div class="article">
+            <span class="badge">Nouveau</span>
+            <h3>Découverte et recos</h3>
+            <img src="https://placehold.co/200x100" alt="Image représentant l'article">
+            <p>Groupes émergents, albums de niche, scène locales : on creuse le son math rock.</p>
+            <button class="button-glow" type="button">Lire</button>
+        </div>
+    </template>
 </body>
 
 </html>
