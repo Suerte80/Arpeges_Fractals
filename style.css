@@ -155,7 +155,7 @@ body {
   }
 }
 
-#latest-articles, #most-viewed-articles, #all-articles
+#latest-articles, #most-viewed-articles, #all-articles, #contact
 {
   display: flex;
   justify-content: center;
@@ -240,12 +240,73 @@ body {
   line-height: 1.4;
 }
 
+#contact{
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-contact{
+  display: flex;
+  flex-direction: column;
+
+  width: auto;
+
+  gap: 15px;
+
+  font-family: 'Fira code', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.form-contact form{
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+#form-buttons{
+  display: flex;
+  
+  justify-content: space-between;
+}
+
+.button-glow {
+  background-color: transparent;
+  color: var(--accent1);
+  border: 2px solid var(--accent1);
+  padding: 0.6rem 1.2rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 201, 167, 0.5);
+}
+
+.button-glow:hover {
+  background-color: var(--accent1);
+  color: black;
+  box-shadow: 0 0 15px var(--accent1), 0 0 40px var(--accent1);
+  transform: translateY(-2px);
+}
+
 footer{
   background-color: black;
+
+  width: 100%;
 
   text-align: center;
 }
 
 footer p{
   color: white;
+}
+
+footer.bottom{
+  position: absolute;
+  bottom: 0;
+  text-align: center;
 }
