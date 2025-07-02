@@ -284,6 +284,7 @@ body {
   flex-direction: column;
 
   width: auto;
+  height: auto;
 
   gap: 15px;
 

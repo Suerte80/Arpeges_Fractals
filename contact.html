@@ -41,12 +41,23 @@
                 <textarea name="Message" id="form-message" cols="30" rows="10"></textarea>
 
                 <div id="form-buttons">
-                    <button class="button-glow" type="button">Historique</button>
-                    <button class="button-glow" type="submit">Envoyer</button>
+                    <button id="button-histo" class="button-glow" type="button">Historique</button>
+                    <button id="button-send" class="button-glow" type="submit">Envoyer</button>
                 </div>
             </form>
         </div>
     </section>
+
+    <div id="modal-histo" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-inner">
+            <div>
+                <button id="close-modal" class="close-button" type="button" aria-label="Fermer la fenêtre">&times;</button>
+                <!-- <button class="favorite-star" title="Ajouter aux favoris" type="button" aria-label="Ajouter aux favoris">&#9734;</button> -->
+            </div>
+            <h2 class="modal-title">Historique des messages</h2>
+            <ul class="modal-content-text"></ul>
+        </div>
+    </div>
 
     <footer class="bottom">
         <p>&copy; 2025 Arpèges Fractals - Polyythlmes, riffs et chaos contrôlé.</p>

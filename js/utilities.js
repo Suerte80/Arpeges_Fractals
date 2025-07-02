@@ -16,54 +16,53 @@ function validateEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function addArticle(article, newSection, mostViewedSection, fullSection, callBackButtonModal)
-{
-    const templateArticle = document.getElementById("template-new-article");
+function addArticle(article, newSection, mostViewedSection, fullSection, callBackButtonModal) {
+  const templateArticle = document.getElementById("template-new-article");
 
-    if( !templateArticle ){
-        console.error("Impossible de charger les éléments du dom pour les articles.");
-        return;
-    }
+  if (!templateArticle) {
+    console.error("Impossible de charger les éléments du dom pour les articles.");
+    return;
+  }
 
-    if( !article ){
-        console.error("Impossible car la liste des articles est vide ou undefined !");
-        return;
-    }
+  if (!article) {
+    console.error("Impossible car la liste des articles est vide ou undefined !");
+    return;
+  }
 
-    const favSaved = JSON.parse(localStorage.getItem("favorites") || "[]");
-    const clonedArticle = templateArticle.content.cloneNode(true);
+  const favSaved = JSON.parse(localStorage.getItem("favorites") || "[]");
+  const clonedArticle = templateArticle.content.cloneNode(true);
 
-    clonedArticle.querySelector("h3").innerHTML = article.title;
-    clonedArticle.querySelector("p").innerHTML = article.description;
-    const favStar = clonedArticle.querySelector(".favorite-star");
+  clonedArticle.querySelector("h3").innerHTML = article.title;
+  clonedArticle.querySelector("p").innerHTML = article.description;
+  const favStar = clonedArticle.querySelector(".favorite-star");
 
-    if( favSaved.includes(article.id) ){
-        favStar.classList.add("active");
-        favStar.innerHTML = "★"; // étoile pleine
-    } else{
-        favStar.classList.remove("active");
-        favStar.innerHTML = "☆"; // étoile vide
-    }
+  if (favSaved.includes(article.id)) {
+    favStar.classList.add("active");
+    favStar.innerHTML = "★"; // étoile pleine
+  } else {
+    favStar.classList.remove("active");
+    favStar.innerHTML = "☆"; // étoile vide
+  }
 
-    const htmlCloneElement = clonedArticle.querySelector(".article");
-    htmlCloneElement.dataset.id = article.id;
+  const htmlCloneElement = clonedArticle.querySelector(".article");
+  htmlCloneElement.dataset.id = article.id;
 
-    if( !article.new ){
-        clonedArticle.querySelector(".badge").style.display = "none";
-    } else{
-        if( newSection )
-            newSection.appendChild(clonedArticle);
-    }
+  if (!article.new) {
+    clonedArticle.querySelector(".badge").style.display = "none";
+  } else {
+    if (newSection)
+      newSection.appendChild(clonedArticle);
+  }
 
-    if( article.mostViewed ){
-        if( mostViewedSection )
-            mostViewedSection.appendChild(clonedArticle);
-    }
+  if (article.mostViewed) {
+    if (mostViewedSection)
+      mostViewedSection.appendChild(clonedArticle);
+  }
 
-    if(fullSection)
-        fullSection.appendChild(clonedArticle);
+  if (fullSection)
+    fullSection.appendChild(clonedArticle);
 
-    return htmlCloneElement;
+  return htmlCloneElement;
 }
 
 function toggleFavorite(starSpan, articleId) {
@@ -81,4 +80,17 @@ function toggleFavorite(starSpan, articleId) {
   }
 
   localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
+/**
+ * Supprime tous les enfants de element.
+ * @param {HTMLElement} element Element parent ou il faut supprimer les enfants.
+ */
+function removeChildren(element) {
+  if (!element)
+    return;
+
+  while(element.firstChild){
+    element.removeChild(element.firstChild);
+  }
 }
