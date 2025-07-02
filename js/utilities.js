@@ -94,3 +94,52 @@ function removeChildren(element) {
     element.removeChild(element.firstChild);
   }
 }
+
+const notificationMessageTypes = Object.freeze({
+  INFO: "info",
+  WARN: "warn",
+  ERROR: "error"
+});
+
+function toggleNotification(message, duration, type ){
+  const elementNotif = document.getElementById("notification");
+  if(!elementNotif)
+    return;
+
+  // Affichage de la notif
+  toggleNotifVisibility(elementNotif);
+
+  elementNotif.classList.add(type);
+
+  elementNotif.textContent = message;
+
+  setTimeout(() => {
+    toggleNotifVisibility(elementNotif);
+  }, duration);
+}
+
+function toggleNotifVisibility(elementNotif)
+{
+  removeClassNotification(elementNotif);
+
+  elementNotif.classList.toggle("visible");
+}
+
+function removeClassNotification(elementNotif)
+{
+  elementNotif.classList.remove("info");
+  elementNotif.classList.remove("warn");
+  elementNotif.classList.remove("error");
+}
+
+function toggleInvalidityForm(element, duration)
+{
+  if(!element)
+    return;
+
+  element.classList.toggle("forImnvalid");
+
+  setTimeout(() => {
+    element.classList.toggle("forImnvalid");
+  }, duration);
+}

@@ -106,30 +106,39 @@ document.addEventListener("DOMContentLoaded", () => {
         buttonSend.addEventListener("click", (e) => {
             e.preventDefault();
 
-            debugger;
+            let isErrorOnForm = false;
 
             // Vérification des inputs
             const email = emailForm.value;
             if( email === "" && !validateEmail(email)){
                 // Ici on trigger la notification
-                return;
+                toggleNotification("Email invalide", 2000, notificationMessageTypes.ERROR);
+                toggleInvalidityForm(emailForm, 2000);
+                isErrorOnForm = true;
             }
 
             const object = objectForm.value;
             if( object === "" ){
                 // Ici on trigger la notif
-                return;
+                toggleNotification("Objet vide", 2000, notificationMessageTypes.ERROR);
+                toggleInvalidityForm(objectForm, 2000);
+                isErrorOnForm = true;
             }
 
             const message = messageForm.value;
             if( message === "" ){
                 // Ici on trigger la notif.
-                return;
+                toggleNotification("Message vide", 2000, notificationMessageTypes.ERROR);
+                toggleInvalidityForm(messageForm, 2000);
+                isErrorOnForm = true;
             }
+
+            if(isErrorOnForm) return;
 
             MessageManager.save(email, object, message);
 
             // Ici on trigger la notif
+            toggleNotification("Message envoyé", 5000, notificationMessageTypes.INFO);
         })
     }
 });
