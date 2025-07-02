@@ -78,11 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 titleHistoModal.textContent = "Historique";
 
                 arrMessages.forEach(message => {
-                    const li = document.createElement("li");
-
-                    li.textContent = `<${message.email}>:${message.objet}:${message.message}`;
-
-                    htmlUL.appendChild(li);           
+                    createHistoListItem(htmlUL, message);       
                 });
             } else{
                 titleHistoModal.textContent = "Aucun Historique";
@@ -115,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const email = emailForm.value;
             if( email === "" && !validateEmail(email)){
                 // Ici on trigger la notification
-                toggleNotification("Email invalide", 2000, notificationMessageTypes.ERROR);
+                createNotification("Email invalide", 2000, notificationMessageTypes.ERROR);
                 toggleInvalidityForm(emailForm, 2000);
                 isErrorOnForm = true;
             }
@@ -123,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const object = objectForm.value;
             if( object === "" ){
                 // Ici on trigger la notif
-                toggleNotification("Objet vide", 2000, notificationMessageTypes.ERROR);
+                createNotification("Objet vide", 2000, notificationMessageTypes.ERROR);
                 toggleInvalidityForm(objectForm, 2000);
                 isErrorOnForm = true;
             }
@@ -131,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const message = messageForm.value;
             if( message === "" ){
                 // Ici on trigger la notif.
-                toggleNotification("Message vide", 2000, notificationMessageTypes.ERROR);
+                createNotification("Message vide", 2000, notificationMessageTypes.ERROR);
                 toggleInvalidityForm(messageForm, 2000);
                 isErrorOnForm = true;
             }
@@ -141,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
             MessageManager.save(email, object, message);
 
             // Ici on trigger la notif
-            toggleNotification("Message envoyé", 5000, notificationMessageTypes.INFO);
+            createNotification("Message envoyé", 5000, notificationMessageTypes.INFO);
         })
     }
 

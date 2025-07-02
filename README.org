@@ -15,7 +15,7 @@ Arpèges Fractals
 *** TODO Vérifier mise en page tablette (768–1024px)
 *** TODO Créer fichier responsive.css si séparé
 ** TODO JavaScript
-*** TODO Créer/structurer utilities.js, manager.js, app.js
+*** DONE Créer/structurer utilities.js, manager.js, app.js
 *** TODO Ajouter effet visuel (parallax ou slider simple)
 *** TODO Nettoyer les console.log inutiles
 *** TODO Ajouter une fonction d'article en favoris dans la modal ( Optionnel )
@@ -48,6 +48,9 @@ Arpèges Fractals
 *** DONE Affichage des messages envoyés en session.
 *** DONE Confirmation d’envoi (alert ou modal)
 *** DONE Utilisation de la div#notification dans le système de favoris.
-*** TODO Ajouter des commentaires dans HTML/CSS/JavaScript.
+*** DONE Ajouter des commentaires dans HTML/CSS/JavaScript.
 *** DONE Que l'article se mette a jours lorsque l'on ajoute un favoris.
 *** DONE Faire en sorte que la fleche soit fonctionnel ( dans le titre )
+*** TODO Réorganisation de app.js
+*** TODO Créer un historique plus lisible.
+*** TODO Rajouter un bouton pour effacer l'historique.
