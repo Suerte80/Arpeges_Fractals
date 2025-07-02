@@ -7,7 +7,7 @@ Arpèges Fractals
 ** DONE Design global cohérent avec le thème
 ** DONE Navigation fonctionnelle
 ** TODO Accessibilité
-*** TODO Ajouter les attributs ARIA (aria-label, role, etc.)
+*** DONE Ajouter les attributs ARIA (aria-label, role, etc.)
 *** TODO Rendre tous les éléments interactifs accessibles au clavier
 *** TODO Vérifier contraste texte/fond (normes WCAG)
 ** TODO Responsive design

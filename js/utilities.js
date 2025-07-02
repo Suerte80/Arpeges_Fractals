@@ -37,8 +37,6 @@ function addArticle(article, newSection, mostViewedSection, fullSection, callBac
     clonedArticle.querySelector("p").innerHTML = article.description;
     const favStar = clonedArticle.querySelector(".favorite-star");
 
-    console.log(favStar);
-
     if( favSaved.includes(article.id) ){
         favStar.classList.add("active");
         favStar.innerHTML = "★"; // étoile pleine

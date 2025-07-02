@@ -21,7 +21,6 @@ function callbackModalManager(article, modalContainer, articleData) {
     if (!article || !modalContainer) return;
 
     const button = article.querySelector("button");
-    console.log(article);
     if (!button) {
         console.warn("Pas de bouton dans :", article);
         return;
@@ -37,9 +36,6 @@ function callbackModalManager(article, modalContainer, articleData) {
         const modalSpanStar = document.querySelector("#modal .favorite-star");
         const articleId = this.parentElement.dataset.id;
         modalContainer.dataset.id = articleId;
-
-        console.log("Article ID: ");
-        console.log(articleId);
 
         // Modification des éléments de la modal.
         if( favSaved && Array.isArray(favSaved) && favSaved.length > 0 ){
@@ -60,5 +56,15 @@ function callbackModalManager(article, modalContainer, articleData) {
 
         // On affiche la modal.
         modalContainer.classList.remove("hidden");
+
+        const focusable = modalContainer.querySelector("button, [tabindex='0'], a, input, textarea");
+        if (focusable) {
+        focusable.focus();
+        }
+    });
+
+    modalContainer.addEventListener("keydown", (event) => {
+        if( event.key === "Escape" )
+            modalContainer.classList.add("hidden");
     });
 }

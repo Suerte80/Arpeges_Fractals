@@ -5,9 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalContainer = document.getElementById("modal");
     const modalContainerStar = document.querySelector("#modal .favorite-star");
 
-
-    console.log(newArticlesContainer);
-
     const newArticles = [];
     const mostViewedArticles = [];
     const fullListArticles = [];
@@ -19,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             return response.json();
         }) .then(data => {
-            console.log(data);
 
             data.forEach(article => {
                 if( article.new ){
@@ -41,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if( modalContainer ){ // On vérifie qu'on a bien la modal de disponible
         document.getElementById("close-modal").addEventListener("click", () => {
             modalContainer.classList.add("hidden");
-            modalContainer.querySelector("button, [tabindex='0']").focus();
         });
     }
 
