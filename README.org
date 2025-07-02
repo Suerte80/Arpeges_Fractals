@@ -18,6 +18,7 @@ Arpèges Fractals
 *** TODO Créer/structurer utilities.js, manager.js, app.js
 *** TODO Ajouter effet visuel (parallax ou slider simple)
 *** TODO Nettoyer les console.log inutiles
+*** TODO Ajouter une fonction d'article en favoris dans la modal ( Optionnel )
 ** TODO Page Contact
 *** DONE Créer le formulaire (nom, email, message)
 *** TODO Ajouter validation JS (email valide, champs remplis)
@@ -45,8 +46,8 @@ Arpèges Fractals
 *** DONE Ajouter validation JS (email valide, champs remplis)
 *** DONE Sauvegarde des messages dans sessionStorage
 *** DONE Affichage des messages envoyés en session.
-*** TODO Confirmation d’envoi (alert ou modal)
-*** TODO Utilisation de la div#notification dans le système de favoris.
+*** DONE Confirmation d’envoi (alert ou modal)
+*** DONE Utilisation de la div#notification dans le système de favoris.
 *** TODO Ajouter des commentaires dans HTML/CSS/JavaScript.
-*** TODO Que l'article se mette a jours lorsque l'on ajoute un favoris.
-*** TODO Faire en sorte que la fleche soit fonctionnel ( dans le titre )
+*** DONE Que l'article se mette a jours lorsque l'on ajoute un favoris.
+*** DONE Faire en sorte que la fleche soit fonctionnel ( dans le titre )

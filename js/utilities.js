@@ -65,6 +65,20 @@ function addArticle(article, newSection, mostViewedSection, fullSection, callBac
   return htmlCloneElement;
 }
 
+function toggleStarInArticle(articleId, isActive)
+{
+  const htmlArticle = document.querySelector(`[data-id="${articleId}"] .favorite-star`);
+  if(htmlArticle){
+    if( isActive ){
+      htmlArticle.classList.add("active");
+      htmlArticle.innerHTML = "&#9733;"; // Étoile pleine
+    } else{
+      htmlArticle.classList.remove("active");
+      htmlArticle.innerHTML = "&#9734;"; // Étoile vide
+    }
+  }
+}
+
 function toggleFavorite(starSpan, articleId) {
   const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
@@ -73,10 +87,12 @@ function toggleFavorite(starSpan, articleId) {
     favorites.push(articleId);
     starSpan.classList.add("active");
     starSpan.innerHTML = "&#9733;"; // Étoile pleine
+    toggleStarInArticle(articleId, true);
   } else {
     favorites.splice(index, 1);
     starSpan.classList.remove("active");
     starSpan.innerHTML = "&#9734;"; // Étoile vide
+    toggleStarInArticle(articleId, false);
   }
 
   localStorage.setItem("favorites", JSON.stringify(favorites));

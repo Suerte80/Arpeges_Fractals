@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttonHisto = document.getElementById("button-histo");
     const buttonSend = document.getElementById("button-send");
 
+    // Fleche
+    const arrow = document.getElementById("arrow");
+
     const newArticles = [];
     const mostViewedArticles = [];
     const fullListArticles = [];
@@ -52,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if( modalContainer ){
         const modFav = document.querySelector("#modal .favorite-star");
         modFav.addEventListener("click", () => {
-            toggleFavorite(modFav, modalContainer.dataset.id)
+            toggleFavorite(modFav, modalContainer.dataset.id);
         });
     }
 
@@ -140,5 +143,14 @@ document.addEventListener("DOMContentLoaded", () => {
             // Ici on trigger la notif
             toggleNotification("Message envoyé", 5000, notificationMessageTypes.INFO);
         })
+    }
+
+    if( arrow ){
+        arrow.addEventListener("click", () => {
+            const target = document.getElementById("latest-articles");
+            if(target){
+                target.scrollIntoView({behavior: "smooth"});
+            }
+        });
     }
 });

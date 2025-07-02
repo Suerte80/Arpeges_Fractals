@@ -157,6 +157,8 @@ body {
   position: absolute;
   font-size: 64pt;
 
+  cursor: pointer;
+
   bottom: 0px;
 }
 
