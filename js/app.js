@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const newArticlesContainer = document.querySelector("#latest-articles .articles");
     const mostViewedArticlesContainer = document.querySelector("#most-viewed-articles .articles");
     const modalContainer = document.getElementById("modal");
+    const modalContainerStar = document.querySelector("#modal .favorite-star");
 
 
     console.log(newArticlesContainer);
@@ -42,5 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
             modalContainer.classList.add("hidden");
         });
     }
+
+    // ON attache l'event d'ajout de favoris au span étoile
+    if( modalContainer ){
+        const modFav = document.querySelector("#modal .favorite-star");
+        modFav.addEventListener("click", () => {
+            console.log("CLICK TA MERE: " + modalContainer.dataset.id);
+            toggleFavorite(modFav, modalContainer.dataset.id)
+        });
+    }
+
 
 });

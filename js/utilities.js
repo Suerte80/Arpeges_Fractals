@@ -16,7 +16,6 @@ function validateEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-
 function addArticle(article, newSection, mostViewedSection, fullSection, callBackButtonModal)
 {
     const templateArticle = document.getElementById("template-new-article");
@@ -31,10 +30,22 @@ function addArticle(article, newSection, mostViewedSection, fullSection, callBac
         return;
     }
 
+    const favSaved = JSON.parse(localStorage.getItem("favorites") || "[]");
     const clonedArticle = templateArticle.content.cloneNode(true);
 
     clonedArticle.querySelector("h3").innerHTML = article.title;
     clonedArticle.querySelector("p").innerHTML = article.description;
+    const favStar = clonedArticle.querySelector(".favorite-star");
+
+    console.log(favStar);
+
+    if( favSaved.includes(article.id) ){
+        favStar.classList.add("active");
+        favStar.innerHTML = "★"; // étoile pleine
+    } else{
+        favStar.classList.remove("active");
+        favStar.innerHTML = "☆"; // étoile vide
+    }
 
     const htmlCloneElement = clonedArticle.querySelector(".article");
     htmlCloneElement.dataset.id = article.id;
@@ -55,4 +66,21 @@ function addArticle(article, newSection, mostViewedSection, fullSection, callBac
         fullSection.appendChild(clonedArticle);
 
     return htmlCloneElement;
+}
+
+function toggleFavorite(starSpan, articleId) {
+  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+  const index = favorites.indexOf(articleId);
+  if (index === -1) {
+    favorites.push(articleId);
+    starSpan.classList.add("active");
+    starSpan.innerHTML = "&#9733;"; // Étoile pleine
+  } else {
+    favorites.splice(index, 1);
+    starSpan.classList.remove("active");
+    starSpan.innerHTML = "&#9734;"; // Étoile vide
+  }
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
 }

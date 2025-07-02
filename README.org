@@ -1,0 +1,38 @@
+Arpèges Fractals
+* Projet : Site Vitrine – Arpèges Fractals
+** DONE Structure de base HTML (index, articles, contact)
+** DONE Intégration JSON dynamique des articles
+** DONE Modal fonctionnelle avec favoris
+** DONE Stockage des favoris en localStorage
+** DONE Design global cohérent avec le thème
+** DONE Navigation fonctionnelle
+** TODO Accessibilité
+*** TODO Ajouter les attributs ARIA (aria-label, role, etc.)
+*** TODO Rendre tous les éléments interactifs accessibles au clavier
+*** TODO Vérifier contraste texte/fond (normes WCAG)
+** TODO Responsive design
+*** TODO Vérifier mise en page mobile (<768px)
+*** TODO Vérifier mise en page tablette (768–1024px)
+*** TODO Créer fichier responsive.css si séparé
+** TODO JavaScript
+*** TODO Créer/structurer utilities.js, manager.js, app.js
+*** TODO Ajouter effet visuel (parallax ou slider simple)
+*** TODO Nettoyer les console.log inutiles
+** TODO Page Contact
+*** TODO Créer le formulaire (nom, email, message)
+*** TODO Ajouter validation JS (email valide, champs remplis)
+*** TODO Sauvegarde des messages dans sessionStorage
+*** TODO Affichage des messages envoyés en session
+*** TODO Confirmation d’envoi (alert ou modal)
+** TODO Design UI
+*** TODO Uniformiser les boutons et étoiles de favoris
+*** TODO Ajouter transitions CSS fluides (hover, modal)
+*** TODO Ajouter typographie cohérente sur tous les écrans
+*** TODO (Optionnel) Ajouter dark/light mode avec toggle
+** TODO Données & Articles
+*** DONE Créer les 20 articles en JSON
+*** TODO Catégorisation ou filtre d’articles (facultatif)
+** TODO Livrables / Organisation
+*** TODO Créer README.md (présentation, structure, consignes)
+*** TODO Dépôt GitHub avec historique de commits
+*** TODO Vérification W3C HTML/CSS validator

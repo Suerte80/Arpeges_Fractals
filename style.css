@@ -8,6 +8,7 @@
   --text-on-dark: #FFFFFF;
   --border-card: #FF6600;
   --highlight: #FFD700;
+  --nonselected: #919a73;
 }
 
 @font-face {
@@ -418,4 +419,22 @@ footer.bottom{
 .close-button:hover {
   transform: rotate(90deg);
   color: var(--secondary);
+}
+
+.favorite-star {
+  font-size: 2.5rem;
+  color: var(--nonselected);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s, color 0.3s;
+}
+
+.favorite-star:hover {
+  transform: scale(1.2);
+  color: var(--accent1); /* Vert clair par exemple */
+}
+
+.favorite-star.active {
+  content: "★";
+  color: var(--secondary); /* Orange par exemple */
 }
