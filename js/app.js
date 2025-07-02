@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if( modalContainer ){ // On vérifie qu'on a bien la modal de disponible
         document.getElementById("close-modal").addEventListener("click", () => {
             modalContainer.classList.add("hidden");
+            modalContainer.querySelector("button, [tabindex='0']").focus();
         });
     }
 
@@ -48,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if( modalContainer ){
         const modFav = document.querySelector("#modal .favorite-star");
         modFav.addEventListener("click", () => {
-            console.log("CLICK TA MERE: " + modalContainer.dataset.id);
             toggleFavorite(modFav, modalContainer.dataset.id)
         });
     }

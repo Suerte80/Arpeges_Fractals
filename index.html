@@ -16,7 +16,7 @@
 
 <body>
     <nav id="sec_navbar" class="navbar">
-        <a href="index.html"><img src="images/logo_40x40.png" alt="Logo du site"></a>
+        <a href="index.html" aria-label="Page d’accueil"><img src="images/logo_40x40.png" alt="Logo du site"></a>
 
         <h2>Arpèges Fractals</h2>
 
@@ -74,13 +74,13 @@
         <img src="images/math_rock_girl.png" alt="Image de la mascotte du site." width="346" height="519">
     </section>
 
-    <section id="latest-articles">
+    <section id="latest-articles" aria-label="Articles récent">
         <h2>Dérniers Articles</h2>
         <div class="articles">
         </div>
     </section>
 
-    <section id="most-viewed-articles">
+    <section id="most-viewed-articles" aria-label="Articles les plus vues">
         <h2>Les plus vus</h2>
         <div class="articles">
         </div>
@@ -90,21 +90,23 @@
         <p>&copy; 2025 Arpèges Fractals - Polyythlmes, riffs et chaos contrôlé.</p>
     </footer>
 
-    <div id="modal" class="modal hidden">
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-inner">
             <div>
-                <span id="close-modal" class="close-button">&times;</span>
-                <span class="favorite-star" title="Ajouter aux favoris">&#9734;</span>
+                <button id="close-modal" class="close-button" type="button" aria-label="Fermer la fenêtre">&times;</button>
+                <button class="favorite-star" title="Ajouter aux favoris" type="button" aria-label="Ajouter aux favoris">&#9734;</button>
             </div>
             <h2 class="modal-title">Titre</h2>
             <p class="modal-content-text">Contenu</p>
         </div>
     </div>
 
+    <div id="notification" aria-live="polite"></div>
 
     <template id="template-new-article">
-        <div class="article">
+        <div class="article" role="dialog">
             <div class="upper-article">
+                <!-- Ici pas d'utilisation des boutons  -->
                 <span class="badge">Nouveau</span>
                 <span class="favorite-star" title="Ajouter aux favoris">&#9734;</span>
             </div>

@@ -427,6 +427,9 @@ footer.bottom{
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s, color 0.3s;
+
+  background-color: transparent;
+  border: none;
 }
 
 .favorite-star:hover {
