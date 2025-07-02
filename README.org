@@ -54,3 +54,8 @@ Arpèges Fractals
 *** TODO Réorganisation de app.js
 *** TODO Créer un historique plus lisible.
 *** TODO Rajouter un bouton pour effacer l'historique.
+
+** BUGS
+
+*** DONE La validation du mail est pas bonne.
+*** DONE Dans le modal contact ça s'affiche dans le mauvais ordre.

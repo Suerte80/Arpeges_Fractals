@@ -198,7 +198,8 @@ function handleFormSubmission(modalHisto, buttonSend)
 
             // Vérification des inputs
             const email = emailForm.value;
-            if( email === "" && !validateEmail(email)){
+            console.log(email, " : ", validateEmail(email));
+            if( email === "" || !validateEmail(email)){
                 // Ici on trigger la notification
                 createNotification("Email invalide", 2000, notificationMessageTypes.ERROR);
                 toggleInvalidityForm(emailForm, 2000);

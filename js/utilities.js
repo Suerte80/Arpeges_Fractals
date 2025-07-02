@@ -223,18 +223,19 @@ function createHistoListItem(htmlUl, objMessage)
     }
 
     // Clonage de la template
-    const htmlMessage = cloneTemplate(templateHistoryMessage);
+    const fragment = cloneTemplate(templateHistoryMessage);
+    const htmlMessage = fragment.querySelector("li");
 
     // Récupération des différents éléments de la template
     const email = htmlMessage.querySelector(".history-email span");
-    const object = htmlMessage.querySelector(".history-objet span");
+    const object = htmlMessage.querySelector(".history-object span");
     const message = htmlMessage.querySelector(".history-message span");
 
-    console.log(htmlMessage, email, object, message);
+    console.log(objMessage);
 
     // Population de la copie
     email.textContent = objMessage.email;
-    object.textContent = objMessage.object;
+    object.textContent = objMessage.objet;
     message.textContent = objMessage.message;
 
     htmlUl.appendChild(htmlMessage);
