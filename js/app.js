@@ -67,7 +67,5 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementsByClassName("particles-container")[1]
     );
 
-    // document.querySelector(".prev").addEventListener("click", () => console.log("Prev clicked"));
-    // document.querySelector(".next").addEventListener("click", () => console.log("Next clicked"));
-
+    handleMathGirlsAnimation();
 });

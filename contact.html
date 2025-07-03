@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <nav id="sec_navbar" class="navbar">
+    <nav id="sec_navbar" class="navbar" aria-label="navbar">
         <div class="nav-title">
             <a href="index.html" aria-label="Page d’accueil"><img src="images/logo_40x40.png" alt="Logo du site"></a>
 
@@ -54,7 +54,8 @@
     <div id="modal-histo" class="modal hidden" role="dialog" aria-modal="true">
         <div class="modal-inner">
             <div>
-                <button id="close-modal" class="close-button" type="button" aria-label="Fermer la fenêtre">&times;</button>
+                <button id="close-modal" class="close-button" type="button"
+                    aria-label="Fermer la fenêtre">&times;</button>
                 <!-- <button class="favorite-star" title="Ajouter aux favoris" type="button" aria-label="Ajouter aux favoris">&#9734;</button> -->
             </div>
             <h2 class="modal-title">Historique des messages</h2>
@@ -66,8 +67,47 @@
 
     <div id="notification" aria-live="polite"></div>
 
-    <footer class="bottom">
-        <p>&copy; 2025 Arpèges Fractals - Polyythlmes, riffs et chaos contrôlé.</p>
+    <footer class="footer-contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Arpèges Fractals</h3>
+                <p>Explorations math rock : riffs angulaires, rythmes tordus et beauté géométrique du son.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <div class="contact-info">
+                    <p><strong>Email :</strong> contact@arpegesfractals.fr</p>
+                    <p><strong>Téléphone :</strong> +33 1 42 86 57 93</p>
+                    <p><strong>Adresse :</strong><br>
+                        25 Rue de la Musique<br>
+                        75011 Paris, France</p>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <nav class="footer-nav" aria-label="Navigation">
+                    <a href="index.html">Accueil</a>
+                    <a href="articles.html">Articles</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+            </div>
+
+            <div class="footer-section">
+                <h4>Suivez-nous</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Spotify" title="Écouter nos playlists">🎵 Spotify</a>
+                    <a href="#" aria-label="YouTube" title="Vidéos math rock">📺 YouTube</a>
+                    <a href="#" aria-label="Bandcamp" title="Découvertes musicales">🎶 Bandcamp</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Arpèges Fractals - Polyrythmes, riffs et chaos contrôlé.</p>
+            <p class="footer-credits">Site développé avec ❤️ pour la communauté math rock</p>
+        </div>
     </footer>
 
     <template id="template-message-history">

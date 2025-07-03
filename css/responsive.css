@@ -127,6 +127,40 @@
   .math-girl {
     max-width: 150px; /* Réduire la taille sur mobile */
   }
+
+   .footer-contact {
+    padding: 2rem 1rem 1rem 1rem;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .footer-section {
+    min-width: auto;
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-section h3 {
+    font-size: 1.3rem;
+  }
+  
+  .footer-section h4 {
+    font-size: 1.1rem;
+  }
+  
+  .social-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .social-links a {
+    flex: 1;
+    text-align: center;
+    min-width: 120px;
+  }
 }
 
 /* Écrans moyens : tablettes (768px - 1024px) */
@@ -243,7 +277,18 @@
   .math-girl {
     max-width: 200px; /* Taille intermédiaire sur tablette */
   }
+
+  .footer-content {
+    justify-content: space-around;
+  }
+  
+  .footer-section {
+    flex: 0 0 45%;
+    min-width: 200px;
+  }
 }
+
+/* Tous ce qu'il y a en bas c'est pour le slider */
 
 /* Écrans grands : desktop (>1024px) */
 @media screen and (min-width: 1024px) {

@@ -284,23 +284,34 @@ function generateParticles(container, count = 20) {
  * Gère le mouvement de la math-girl par rapport a la position de la souris.
  */
 function handleMathGirlsAnimation() {
-    document.addEventListener("mousemove", (e) => {
-        const girls = document.querySelectorAll(".math-girl");
-        const { innerWidth, innerHeight } = window;
+    const girls = document.querySelectorAll(".math-girl");
+    if (girls.length === 0) return;
 
-        // Normalisation : de -1 à 1
+    // Throttling plus agressif (30fps au lieu de 60fps)
+    let lastUpdate = 0;
+    const throttleMs = 33; // ~30fps
+
+    document.addEventListener("mousemove", (e) => {
+        const now = Date.now();
+        
+        // Throttling temporel
+        if (now - lastUpdate < throttleMs) return;
+        lastUpdate = now;
+
+        const { innerWidth, innerHeight } = window;
         const x = (e.clientX / innerWidth - 0.5) * 2;
         const y = (e.clientY / innerHeight - 0.5) * 2;
 
-        // Multiplicateur pour amplifier légèrement
-        const offsetX = x * 10; // px
-        const offsetY = y * 10; // px
+        // On multiplie par un coéf ( 20 ici )
+        const offsetX = x * 20; // en px
+        const offsetY = y * 20; // en px
 
         girls.forEach(girl => {
-            if (girl.classList.contains("rotate90"))
-                girl.style.transform = `translate(${offsetX}px, ${offsetY}px) scaleX(-1)`;
-            else
-                girl.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            const transform = girl.classList.contains("rotate90") 
+                ? `translate(${offsetX}px, ${offsetY}px) scaleX(-1)`
+                : `translate(${offsetX}px, ${offsetY}px)`;
+            
+            girl.style.transform = transform;
         });
     });
 }
