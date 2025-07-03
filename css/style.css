@@ -332,7 +332,6 @@ section:first-of-type{
 .articles-wrapper {
   position: relative;
   width: 100%;
-  overflow: hidden;
   max-width: 100%;
   padding: 0 60px; /* Espace pour les boutons */
   box-sizing: border-box;
