@@ -61,27 +61,28 @@
             <!-- Définition du symbole de note -->
             <svg style="display: none;">
                 <symbol id="note" viewBox="0 0 24 24">
-                    <path d="M9 3v12a4 4 0 1 0 2-3.465V6.118l6-1.714v7.596a4 4 0 1 0 2-3.465V2L9 3z" fill="currentColor" />
+                    <path d="M9 3v12a4 4 0 1 0 2-3.465V6.118l6-1.714v7.596a4 4 0 1 0 2-3.465V2L9 3z"
+                        fill="currentColor" />
                 </symbol>
             </svg>
 
             <div class="math-girl-wrapper">
-                <img class="rotate90 math-girl" src="images/math_rock_girl.png" alt="Image de la mascotte du site." width="346" height="519">
+                <img class="rotate90 math-girl" src="images/math_rock_girl.png" alt="Image de la mascotte du site."
+                    width="400" height="519">
                 <div class="particles-container"></div>
             </div>
 
             <div class="wave-bottom">
                 <svg viewBox="0 0 1440 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                     <defs>
-                    <linearGradient id="fade-to-black" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#0D0D0D" stop-opacity="1" />
-                        <stop offset="100%" stop-color="#0D0D0D" stop-opacity="1" />
-                    </linearGradient>
+                        <linearGradient id="fade-to-black" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#0D0D0D" stop-opacity="1" />
+                            <stop offset="100%" stop-color="#0D0D0D" stop-opacity="1" />
+                        </linearGradient>
                     </defs>
-                    <path
-                    class="wave-path"
-                    d="M0,60 C180,140 360,0 540,80 C720,160 900,20 1080,90 C1260,160 1440,40 1440,40 L1440,150 L0,150 Z"
-                    fill="url(#fade-to-black)" />
+                    <path class="wave-path"
+                        d="M0,60 C180,140 360,0 540,80 C720,160 900,20 1080,90 C1260,160 1440,40 1440,40 L1440,150 L0,150 Z"
+                        fill="url(#fade-to-black)" />
                 </svg>
             </div>
 
@@ -96,14 +97,20 @@
         </div>
 
         <div class="math-girl-wrapper">
-            <img class="math-girl" src="images/math_rock_girl.png" alt="Image de la mascotte du site." width="346" height="519">
+            <img class="math-girl" src="images/math_rock_girl.png" alt="Image de la mascotte du site." width="400"
+                height="519">
             <div class="particles-container"></div>
         </div>
     </section>
 
-    <section id="latest-articles" aria-label="Articles récent">
-        <h2>Dérniers Articles</h2>
-        <div class="articles">
+    <section id="latest-articles" aria-label="Articles récents">
+        <h2>Derniers Articles</h2>
+        <div class="articles-wrapper">
+            <button type="button" class="slider-btn prev">&#10094;</button>
+            <div class="articles slider-track">
+                <!-- Tes .article ici -->
+            </div>
+            <button type="button" class="slider-btn next">&#10095;</button>
         </div>
     </section>
 

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const fullArticlescontainer = document.getElementById("full-articles");
-    const newArticlesContainer = document.querySelector("#latest-articles .articles");
+    const newArticlesContainer = document.querySelector("#latest-articles .slider-track");
     const mostViewedArticlesContainer = document.querySelector("#most-viewed-articles .articles");
     const modalContainer = document.getElementById("modal");
     const modalContainerStar = document.querySelector("#modal .favorite-star");
@@ -66,5 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementsByClassName("particles-container")[1]
     );
 
-    handleMathGirlsAnimation();
+    // document.querySelector(".prev").addEventListener("click", () => console.log("Prev clicked"));
+    // document.querySelector(".next").addEventListener("click", () => console.log("Next clicked"));
+
 });

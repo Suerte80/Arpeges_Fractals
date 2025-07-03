@@ -269,6 +269,8 @@ function handleLoadArticle(
                 callbackModalManager(htmlArticle, modalContainer, article);
             });
 
+            handleNewArticleSlider();
+
         }) .catch(error => {
             console.error("Erreur lors du chargement des articles :", error);
         });

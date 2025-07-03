@@ -13,12 +13,12 @@ Arpèges Fractals
 ** TODO Responsive design
 *** TODO Vérifier mise en page mobile (<768px)
 *** TODO Vérifier mise en page tablette (768–1024px)
-*** TODO Créer fichier responsive.css si séparé
+*** DONE Créer fichier responsive.css si séparé
 ** TODO JavaScript
 *** DONE Créer/structurer utilities.js, manager.js, app.js
 *** TODO Ajouter effet visuel (parallax ou slider simple)
 *** TODO Nettoyer les console.log inutiles
-*** TODO Ajouter une fonction d'article en favoris dans la modal ( Optionnel )
+*** DONE Ajouter une fonction d'article en favoris dans la modal ( Optionnel )
 ** TODO Page Contact
 *** DONE Créer le formulaire (nom, email, message)
 *** TODO Ajouter validation JS (email valide, champs remplis)
@@ -55,6 +55,11 @@ Arpèges Fractals
 *** DONE Créer un historique plus lisible.
 *** DONE Rajouter un bouton pour effacer l'historique.
 
+** Liste des choses a faire le 3/07/25:
+
+*** TODO Finir le responsive
+*** TODO Ajouter slider des derniers articles.
+
 ** Liste des choses a faire pour le responsive
 
 *** DONE Enlever math rock girl et les notes sur petit écran.
@@ -64,3 +69,4 @@ Arpèges Fractals
 *** DONE La validation du mail est pas bonne.
 *** DONE Dans le modal contact ça s'affiche dans le mauvais ordre.
 *** TODO Désactivé le scroll lorsque la modal est activé !
+*** TODO Reglé le pb de taille de la MATH-GIRL ( en scaleX(-1) )

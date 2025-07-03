@@ -210,14 +210,13 @@ function toggleInvalidityForm(element, duration) {
  * @param {HTMLElement} htmlUl Représente une balise <ul> ou l'ont insere un message.
  * @param {Object} objMessage Message a inserer.
  */
-function createHistoListItem(htmlUl, objMessage)
-{
+function createHistoListItem(htmlUl, objMessage) {
     const templateHistoryMessage = document.getElementById("template-message-history");
 
-    if( !htmlUl || !objMessage )
+    if (!htmlUl || !objMessage)
         return;
 
-    if( !templateHistoryMessage ){
+    if (!templateHistoryMessage) {
         console.warn("Impossible de trouver la templateHistoryMessage");
         return;
     }
@@ -246,9 +245,8 @@ function createHistoListItem(htmlUl, objMessage)
  * @param {HTMLElement} templateElement Element template a cloner.
  * @returns Un HTMLFragment qui est le clone.
  */
-function cloneTemplate(templateElement)
-{
-    if(!templateElement)
+function cloneTemplate(templateElement) {
+    if (!templateElement)
         return;
 
     return templateElement.content.cloneNode(true);
@@ -282,8 +280,7 @@ function generateParticles(container, count = 20) {
 /**
  * Gère le mouvement de la math-girl par rapport a la position de la souris.
  */
-function handleMathGirlsAnimation()
-{
+function handleMathGirlsAnimation() {
     document.addEventListener("mousemove", (e) => {
         const girls = document.querySelectorAll(".math-girl");
         const { innerWidth, innerHeight } = window;
@@ -297,10 +294,57 @@ function handleMathGirlsAnimation()
         const offsetY = y * 10; // px
 
         girls.forEach(girl => {
-            if( girl.classList.contains("rotate90") )
+            if (girl.classList.contains("rotate90"))
                 girl.style.transform = `translate(${offsetX}px, ${offsetY}px) scaleX(-1)`;
             else
                 girl.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
         });
     });
+}
+
+/**
+ * Gère le comportement du slider.
+ */
+function handleNewArticleSlider() {
+    const sliderTrack = document.querySelector("#latest-articles .slider-track");
+    const prevBtn = document.querySelector("#latest-articles .prev");
+    const nextBtn = document.querySelector("#latest-articles .next");
+    const articles = sliderTrack.querySelectorAll(".article");
+
+    const visibleCount = 3;
+    let index = 0;
+
+    // Calcule la largeur complète d'un article + le gap
+    const getArticleWidth = () => {
+        const article = sliderTrack.querySelector(".article");
+        const style = window.getComputedStyle(article);
+        const gap = parseFloat(style.marginRight || 0); // fallback si pas de gap
+        return article.offsetWidth + gap;
+    };
+
+    const updateSlider = () => {
+        const articleWidth = getArticleWidth();
+        sliderTrack.style.transform = `translateX(-${index * articleWidth}px)`;
+
+        // Activer/désactiver les boutons
+        prevBtn.disabled = index <= 0;
+        nextBtn.disabled = index >= articles.length - visibleCount;
+    };
+
+    // Navigation
+    nextBtn.addEventListener("click", () => {
+        if (index < articles.length - visibleCount) {
+            index++;
+            updateSlider();
+        }
+    });
+
+    prevBtn.addEventListener("click", () => {
+        if (index > 0) {
+            index--;
+            updateSlider();
+        }
+    });
+
+    updateSlider(); // Initialisation
 }
