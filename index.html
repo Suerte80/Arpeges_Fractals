@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
     <script src="js/utilities.js"></script>
     <script src="js/manager.js"></script>
@@ -58,20 +59,44 @@
             <!-- Définition du symbole de note -->
             <svg style="display: none;">
                 <symbol id="note" viewBox="0 0 24 24">
-                    <path d="M9 3v12a4 4 0 1 0 2-3.465V6.118l6-1.714v7.596a4 4 0 1 0 2-3.465V2L9 3z" fill="#000000" />
+                    <path d="M9 3v12a4 4 0 1 0 2-3.465V6.118l6-1.714v7.596a4 4 0 1 0 2-3.465V2L9 3z" fill="currentColor" />
                 </symbol>
             </svg>
+
+            <div class="math-girl-wrapper">
+                <img class="rotate90" src="images/math_rock_girl.png" alt="Image de la mascotte du site." width="346" height="519">
+                <div class="particles-container"></div>
+            </div>
+
+            <div class="wave-bottom">
+                <svg viewBox="0 0 1440 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                    <defs>
+                    <linearGradient id="fade-to-black" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#0D0D0D" stop-opacity="1" />
+                        <stop offset="100%" stop-color="#0D0D0D" stop-opacity="1" />
+                    </linearGradient>
+                    </defs>
+                    <path
+                    class="wave-path"
+                    d="M0,60 C180,140 360,0 540,80 C720,160 900,20 1080,90 C1260,160 1440,40 1440,40 L1440,150 L0,150 Z"
+                    fill="url(#fade-to-black)" />
+                </svg>
+            </div>
+
 
         </div>
 
         <div id="central-hero">
-            <img src="images/logo_164X194.png" alt="Image du logo">
+            <img id="math-girl" src="images/logo_164X194.png" alt="Image du logo">
             <h2>Arpèges Fractals</h2>
             <p>Explorations math rock: riffs angulaires, rythmes tordus et beauté géométrique du son.</p>
             <p id="arrow">&#x2193;</p>
         </div>
 
-        <img src="images/math_rock_girl.png" alt="Image de la mascotte du site." width="346" height="519">
+        <div class="math-girl-wrapper">
+            <img src="images/math_rock_girl.png" alt="Image de la mascotte du site." width="346" height="519">
+            <div class="particles-container"></div>
+        </div>
     </section>
 
     <section id="latest-articles" aria-label="Articles récent">
@@ -104,6 +129,19 @@
     </div>
 
     <div id="notification" aria-live="polite"></div>
+
+    <template id="template-new-article">
+        <div class="article">
+            <div class="upper-article">
+                <span class="badge">Nouveau</span>
+                <span class="favorite-star" title="Ajouter aux favoris">&#9734;</span>
+            </div>
+            <h3>Découverte et recos</h3>
+            <img src="https://placehold.co/200x100" alt="Image représentant l'article">
+            <p>Groupes émergents, albums de niche, scène locales : on creuse le son math rock.</p>
+            <button class="button-glow" type="button">Lire</button>
+        </div>
+    </template>
 
 </body>
 

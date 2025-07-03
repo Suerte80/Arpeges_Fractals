@@ -248,3 +248,33 @@ function cloneTemplate(templateElement)
 
     return templateElement.content.cloneNode(true);
 }
+
+function randomizeAnimation()
+{
+    document.querySelectorAll('.note').forEach(note => {
+        const delay = Math.random() * 3; // entre 0s et 3s
+        const duration = 4 + Math.random() * 2; // entre 4s et 6s
+        note.style.animationDelay = `${delay.toFixed(2)}s`;
+        note.style.animationDuration = `${duration.toFixed(2)}s`;
+    });
+}
+
+function generateParticles(container, count = 20) {
+    for (let i = 0; i < count; i++) {
+        const p = document.createElement("div");
+        p.className = "particle";
+
+        // Position aléatoire autour de l'image
+        p.style.top = `${Math.random() * 100}%`;
+        p.style.left = `${Math.random() * 100}%`;
+
+        // Couleur math-rock aléatoire
+        const colors = ["#FF6B6B", "#FFD93D", "#6BCB77", "#4D96FF", "#9D4EDD", "#F67280", "#F8B400", "#00C9A7"];
+        p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+        // Délai aléatoire
+        p.style.animationDelay = `${Math.random() * 4}s`;
+
+        container.appendChild(p);
+    }
+}

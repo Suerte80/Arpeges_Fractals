@@ -57,4 +57,14 @@ document.addEventListener("DOMContentLoaded", () => {
     handleFormSubmission(modalHisto, buttonSend);
 
     handleArrowScrollDown(arrow);
+
+    randomizeAnimation();
+
+    generateParticles(
+        document.getElementsByClassName("particles-container")[0]
+    );
+
+    generateParticles(
+        document.getElementsByClassName("particles-container")[1]
+    );
 });

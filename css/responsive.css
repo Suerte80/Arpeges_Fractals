@@ -1,0 +1,128 @@
+/* === Responsive design additions === */
+
+/* Écrans petits : smartphones (<768px) */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    #link {
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    #hero-container {
+        grid-template-columns: 1fr;
+        height: 100vh;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    #hero-container > img:last-of-type {
+        width: 100%;
+        max-width: 250px;
+
+        position: absolute;
+        right: -150px;
+    }
+
+    .note{
+        display: none;
+    }
+
+    #arrow{
+        display: none;
+    }
+
+    #full-articles {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .article {
+        width: 100%;
+        height: auto;
+    }
+
+    #form-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .modal-inner {
+        padding: 1rem;
+    }
+
+    .button-glow {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Écrans moyens : tablettes (768px - 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .navbar {
+    padding: 10px 1rem;
+    flex-wrap: wrap; /* permet un retour à la ligne si besoin */
+  }
+
+  .navbar h2 {
+    font-size: 16pt;
+    flex: 1 1 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  #hero-container {
+        grid-template-columns: 1fr;
+        height: 100vh;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    #note{
+        display: none;
+    }
+
+    #arrow{
+        display: none;
+    }
+
+    #hero-container > img:last-of-type {
+        width: 100%;
+        max-width: 250px;
+
+        position: absolute;
+        right: -150px;
+    }
+
+  #link {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex: 1 1 100%;
+  }
+
+  #link a {
+    font-size: 14pt;
+  }
+
+  .navbar img {
+    display: none; /* optionnel : masque le logo si nécessaire */
+  }
+
+  #full-articles {
+    grid-template-columns: 1fr; /* une seule colonne */
+    padding: 1rem;
+  }
+
+  .article {
+    width: 100%;
+    max-width: 90vw;
+  }
+}
