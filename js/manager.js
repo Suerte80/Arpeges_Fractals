@@ -272,7 +272,12 @@ function handleLoadArticle(
                 callbackModalManager(htmlArticle, modalContainer, article);
             });
 
-            handleNewArticleSlider();
+            // merci claude
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() =>{
+                    handleNewArticleSlider();
+                });
+            });
 
         }) .catch(error => {
             console.error("Erreur lors du chargement des articles :", error);

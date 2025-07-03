@@ -1,43 +1,90 @@
-/* === Responsive design additions === */
+/* === Responsive design for Arpèges Fractals === */
 
 /* Écrans petits : smartphones (<768px) */
 @media screen and (max-width: 768px) {
+  /* NAVBAR RESPONSIVE */
   .navbar {
     flex-direction: row;
-    align-items: flex-start;
-    gap: 0.5rem;
-
     align-items: center;
+    gap: 0.5rem;
+    padding: 5px 0.5rem;
+  }
+
+  .navbar h2 {
+    font-size: 14pt;
   }
 
   #link {
-    font-size: 1rem;
+    font-size: 14px;
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
   }
 
+  /* HERO SECTION RESPONSIVE */
   #hero-container {
     flex-direction: row;
+    padding: 1rem;
   }
 
   #hero-container>img:last-of-type {
     width: 100%;
-    max-width: 250px;
-
+    max-width: 200px;
     position: absolute;
-    right: -150px;
+    right: -120px;
   }
 
-
-  .note {
-    display: none;
+  #central-hero {
+    max-width: 70%;
   }
 
+  #central-hero h2 {
+    font-size: 1.5rem;
+  }
+
+  #central-hero p {
+    font-size: 0.9rem;
+  }
+
+  /* Masquer les éléments non essentiels sur mobile */
+  .note,
   #arrow {
     display: none;
   }
 
+  /* SLIDER RESPONSIVE MOBILE */
+  .articles-wrapper {
+    padding: 0 55px; /* Plus d'espace pour les boutons sur mobile */
+  }
+
+  .slider-track {
+    display: flex !important; /* Forcer l'affichage en ligne */
+    flex-direction: row !important; /* Forcer la direction horizontale */
+    flex-wrap: nowrap !important; /* Empêcher le retour à la ligne */
+  }
+
+  .slider-track .article {
+    flex: 0 0 auto !important; /* Empêcher le rétrécissement */
+    display: flex !important; /* Garder flex pour le contenu interne */
+    flex-direction: column !important; /* Contenu vertical dans l'article */
+  }
+
+  .slider-btn {
+    font-size: 1.5rem;
+    padding: 0.4rem;
+    width: 45px;
+    height: 45px;
+  }
+
+  .slider-btn.prev {
+    left: 5px;
+  }
+
+  .slider-btn.next {
+    right: 5px;
+  }
+
+  /* ARTICLES GRID RESPONSIVE */
   #full-articles {
     grid-template-columns: 1fr;
     padding: 1rem;
@@ -47,82 +94,256 @@
   .article {
     width: 100%;
     height: auto;
+    min-width: auto;
   }
 
+  /* CONTACT FORM RESPONSIVE */
   #form-buttons {
     flex-direction: column;
     gap: 1rem;
   }
 
+  /* MODAL RESPONSIVE */
   .modal-inner {
     padding: 1rem;
+    width: 95%;
   }
 
+  .modal-title {
+    font-size: 1.4rem;
+  }
+
+  /* BOUTONS RESPONSIVE */
   .button-glow {
     font-size: 0.9rem;
     padding: 0.5rem 1rem;
+  }
+
+  /* MATH GIRL RESPONSIVE */
+  .math-girl-wrapper {
+    display: flex; /* Garder les math girls visibles sur mobile */
+  }
+
+  .math-girl {
+    max-width: 150px; /* Réduire la taille sur mobile */
   }
 }
 
 /* Écrans moyens : tablettes (768px - 1024px) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
+  /* NAVBAR RESPONSIVE */
   .navbar {
     flex-direction: row;
-    align-items: flex-start;
-    gap: 0.5rem;
-
     align-items: center;
+    gap: 0.8rem;
+    padding: 5px 1rem;
+  }
+
+  .navbar h2 {
+    font-size: 16pt;
   }
 
   #link {
-    font-size: 1rem;
+    font-size: 16px;
     display: flex;
     flex-direction: row;
-    gap: 0.5rem;
+    gap: 0.8rem;
   }
 
+  /* HERO SECTION RESPONSIVE */
   #hero-container {
     flex-direction: row;
+    padding: 1.5rem;
   }
 
   #hero-container>img:last-of-type {
     width: 100%;
-    max-width: 250px;
-
+    max-width: 220px;
     position: absolute;
-    right: -150px;
+    right: -100px;
   }
 
-  .note {
-    display: none;
+  #central-hero {
+    max-width: 60%;
   }
 
+  #central-hero h2 {
+    font-size: 1.8rem;
+  }
+
+  /* Masquer les éléments non essentiels sur tablette */
+  .note,
   #arrow {
     display: none;
   }
 
+  /* SLIDER RESPONSIVE TABLETTE */
+  .articles-wrapper {
+    padding: 0 60px;
+  }
+
+  .slider-track {
+    display: flex !important; /* Forcer l'affichage en ligne */
+    flex-direction: row !important; /* Forcer la direction horizontale */
+    flex-wrap: nowrap !important; /* Empêcher le retour à la ligne */
+  }
+
+  .slider-track .article {
+    flex: 0 0 auto !important; /* Empêcher le rétrécissement */
+    display: flex !important; /* Garder flex pour le contenu interne */
+    flex-direction: column !important; /* Contenu vertical dans l'article */
+  }
+
+  .slider-btn {
+    font-size: 1.8rem;
+    width: 48px;
+    height: 48px;
+  }
+
+  /* ARTICLES GRID RESPONSIVE */
   #full-articles {
-    grid-template-columns: 1fr;
-    padding: 1rem;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1.5rem;
+    gap: 1.5rem;
   }
 
   .article {
     width: 100%;
     height: auto;
+    min-width: auto;
   }
 
+  /* CONTACT FORM RESPONSIVE */
   #form-buttons {
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
   }
 
+  /* MODAL RESPONSIVE */
   .modal-inner {
-    padding: 1rem;
+    padding: 1.5rem;
+    width: 90%;
   }
 
+  .modal-title {
+    font-size: 1.6rem;
+  }
+
+  /* BOUTONS RESPONSIVE */
   .button-glow {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    padding: 0.55rem 1.1rem;
+  }
+
+  /* MATH GIRL RESPONSIVE */
+  .math-girl-wrapper {
+    display: flex; /* Garder les math girls visibles sur tablette */
+  }
+
+  .math-girl {
+    max-width: 200px; /* Taille intermédiaire sur tablette */
+  }
+}
+
+/* Écrans grands : desktop (>1024px) */
+@media screen and (min-width: 1024px) {
+  /* SLIDER RESPONSIVE DESKTOP */
+  .articles-wrapper {
+    padding: 0 60px;
+  }
+
+  .slider-track {
+    display: flex !important; /* Forcer l'affichage en ligne */
+    flex-direction: row !important; /* Forcer la direction horizontale */
+    flex-wrap: nowrap !important; /* Empêcher le retour à la ligne */
+  }
+
+  .slider-track .article {
+    flex: 0 0 auto !important; /* Empêcher le rétrécissement */
+    display: flex !important; /* Garder flex pour le contenu interne */
+    flex-direction: column !important; /* Contenu vertical dans l'article */
+  }
+
+  .slider-btn {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  /* MATH GIRL VISIBLE SUR DESKTOP */
+  .math-girl-wrapper {
+    display: flex; /* Garder les math girls visibles sur desktop */
+  }
+
+  .math-girl {
+    max-width: 400px; /* Taille normale sur desktop */
+  }
+
+  /* ARROW VISIBLE SUR DESKTOP */
+  #arrow {
+    display: block;
+  }
+}
+
+/* Écrans très grands : desktop large (>1400px) */
+@media screen and (min-width: 1400px) {
+  #full-articles {
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+  }
+
+  #central-hero {
+    max-width: 40%;
+  }
+
+  .math-girl {
+    max-width: 450px;
+  }
+}
+
+/* Styles spécifiques pour les hauteurs courtes (paysage mobile) */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  #hero-container {
+    height: auto;
+    min-height: 100vh;
+    padding: 0.5rem;
+  }
+
+  #central-hero {
+    max-width: 50%;
+  }
+
+  #central-hero h2 {
+    font-size: 1.2rem;
+  }
+
+  #central-hero p {
+    font-size: 0.8rem;
+  }
+
+  .math-girl {
+    max-width: 150px;
+  }
+
+  #arrow {
+    display: none;
+  }
+}
+
+/* Mode impression */
+@media print {
+  .navbar,
+  .slider-btn,
+  #arrow,
+  .particles-container {
+    display: none;
+  }
+
+  #hero-container {
+    height: auto;
+    page-break-after: always;
+  }
+
+  .article {
+    break-inside: avoid;
   }
 }

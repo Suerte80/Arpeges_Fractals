@@ -306,54 +306,146 @@ function handleMathGirlsAnimation() {
 }
 
 /**
- * Gère le comportement du slider.
+ * Détermine le nombre d'articles visibles selon la taille d'écran
  */
-function handleNewArticleSlider() {
-    const sliderTrack = document.querySelector("#latest-articles .slider-track");
+function getVisibleArticlesCount() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 768) return 1;
+    if (screenWidth <= 1024) return 2;
+    return 3;
+}
 
-    if( !sliderTrack ) // On vérifie ici pour savoir si on est bien dans le bon fichier.
-        return;
+/**
+ * Calcule la largeur d'un article pour le slider
+ */
+function calculateArticleWidth(sliderTrack) {
+    const visibleCount = getVisibleArticlesCount();
+    const container = sliderTrack.parentElement;
+    const containerStyle = window.getComputedStyle(container);
+    
+    const paddingLeft = parseFloat(containerStyle.paddingLeft) || 0;
+    const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
+    const availableWidth = container.offsetWidth - paddingLeft - paddingRight;
+    
+    const gap = parseFloat(window.getComputedStyle(sliderTrack).gap) || 16;
+    const totalGapWidth = gap * (visibleCount - 1);
+    
+    return (availableWidth - totalGapWidth) / visibleCount;
+}
 
-    const prevBtn = document.querySelector("#latest-articles .prev");
-    const nextBtn = document.querySelector("#latest-articles .next");
-    const articles = sliderTrack.querySelectorAll(".article");
+/**
+ * Met à jour la position et l'état du slider
+ */
+function updateSliderPosition(sliderTrack, articles, index, prevBtn, nextBtn) {
+    const visibleCount = getVisibleArticlesCount();
+    const articleWidth = calculateArticleWidth(sliderTrack);
+    const gap = parseFloat(window.getComputedStyle(sliderTrack).gap) || 16;
+    
+    if (articleWidth <= 0) return;
 
-    const visibleCount = 3;
+    // Mettre à jour les tailles des articles
+    articles.forEach(article => {
+        article.style.flex = `0 0 ${articleWidth}px`;
+        article.style.width = `${articleWidth}px`;
+        article.style.minWidth = `${articleWidth}px`;
+        article.style.maxWidth = `${articleWidth}px`;
+    });
+
+    // Calculer la translation
+    const stepWidth = articleWidth + gap;
+    const translateX = -index * stepWidth;
+    sliderTrack.style.transform = `translateX(${translateX}px)`;
+
+    // Gérer l'état des boutons
+    const maxIndex = Math.max(0, articles.length - visibleCount);
+    const isAtStart = index <= 0;
+    const isAtEnd = index >= maxIndex;
+    
+    prevBtn.disabled = isAtStart;
+    nextBtn.disabled = isAtEnd;
+    prevBtn.classList.toggle('disabled', isAtStart);
+    nextBtn.classList.toggle('disabled', isAtEnd);
+}
+
+/**
+ * Initialise les event listeners du slider
+ */
+function setupSliderControls(sliderTrack, articles, prevBtn, nextBtn) {
     let index = 0;
 
-    // Calcule la largeur complète d'un article + le gap
-    const getArticleWidth = () => {
-        const article = sliderTrack.querySelector(".article");
-        const style = window.getComputedStyle(article);
-        const gap = parseFloat(style.marginRight || 0); // fallback si pas de gap
-        return article.offsetWidth + gap;
-    };
+    const updateSlider = () => updateSliderPosition(sliderTrack, articles, index, prevBtn, nextBtn);
 
-    const updateSlider = () => {
-        const articleWidth = getArticleWidth();
-        sliderTrack.style.transform = `translateX(-${index * articleWidth}px)`;
-
-        // Activer/désactiver les boutons
-        prevBtn.disabled = index <= 0;
-        nextBtn.disabled = index >= articles.length - visibleCount;
-    };
-
-    // Navigation
-    nextBtn.addEventListener("click", () => {
-        if (index < articles.length - visibleCount) {
+    // Navigation suivant
+    const handleNext = () => {
+        const maxIndex = Math.max(0, articles.length - getVisibleArticlesCount());
+        if (index < maxIndex) {
             index++;
             updateSlider();
         }
-    });
+    };
 
-    prevBtn.addEventListener("click", () => {
+    // Navigation précédent
+    const handlePrev = () => {
         if (index > 0) {
             index--;
             updateSlider();
         }
-    });
+    };
 
-    updateSlider(); // Initialisation
+    // Supprimer les anciens listeners et en créer de nouveaux
+    const newPrevBtn = prevBtn.cloneNode(true);
+    const newNextBtn = nextBtn.cloneNode(true);
+    prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+    nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+
+    newPrevBtn.addEventListener("click", handlePrev);
+    newNextBtn.addEventListener("click", handleNext);
+
+    // Redimensionnement avec debounce
+    let resizeTimeout;
+    const handleResize = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const maxIndex = Math.max(0, articles.length - getVisibleArticlesCount());
+            if (index > maxIndex) index = maxIndex;
+            updateSlider();
+        }, 250);
+    };
+    
+    window.addEventListener('resize', handleResize);
+
+    // Initialisation
+    updateSlider();
+}
+
+/**
+ * Attend que les articles soient chargés et initialise le slider
+ */
+function waitForArticlesAndInitialize(sliderTrack, prevBtn, nextBtn) {
+    const articles = sliderTrack.querySelectorAll(".article");
+    
+    if (articles.length === 0) {
+        setTimeout(() => waitForArticlesAndInitialize(sliderTrack, prevBtn, nextBtn), 50);
+        return;
+    }
+
+    setupSliderControls(sliderTrack, articles, prevBtn, nextBtn);
+}
+
+/**
+ * Gère le comportement du slider - Version refactorisée
+ */
+function handleNewArticleSlider() {
+    const sliderTrack = document.querySelector("#latest-articles .slider-track");
+    const prevBtn = document.querySelector("#latest-articles .prev");
+    const nextBtn = document.querySelector("#latest-articles .next");
+
+    if (!sliderTrack || !prevBtn || !nextBtn) {
+        console.warn("Éléments du slider non trouvés");
+        return;
+    }
+
+    waitForArticlesAndInitialize(sliderTrack, prevBtn, nextBtn);
 }
 
 /**
