@@ -130,6 +130,7 @@ function callbackModalManager(article, modalContainer, articleData) {
 
         // On affiche la modal.
         modalContainer.classList.remove("hidden");
+        handleScrollCapability();
 
         const focusable = modalContainer.querySelector("button, [tabindex='0'], a, input, textarea");
         if (focusable) {
@@ -138,8 +139,10 @@ function callbackModalManager(article, modalContainer, articleData) {
     });
 
     modalContainer.addEventListener("keydown", (event) => {
-        if( event.key === "Escape" )
+        if( event.key === "Escape" ){
             modalContainer.classList.add("hidden");
+            handleScrollCapability();
+        }
     });
 }
 

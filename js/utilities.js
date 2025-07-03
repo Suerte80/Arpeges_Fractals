@@ -258,6 +258,9 @@ function cloneTemplate(templateElement) {
  * @param {Number} count Nombres de particules a afficher.
  */
 function generateParticles(container, count = 20) {
+    if(!container)
+        return;
+
     for (let i = 0; i < count; i++) {
         const p = document.createElement("div");
         p.className = "particle";
@@ -307,6 +310,10 @@ function handleMathGirlsAnimation() {
  */
 function handleNewArticleSlider() {
     const sliderTrack = document.querySelector("#latest-articles .slider-track");
+
+    if( !sliderTrack ) // On vérifie ici pour savoir si on est bien dans le bon fichier.
+        return;
+
     const prevBtn = document.querySelector("#latest-articles .prev");
     const nextBtn = document.querySelector("#latest-articles .next");
     const articles = sliderTrack.querySelectorAll(".article");
@@ -347,4 +354,41 @@ function handleNewArticleSlider() {
     });
 
     updateSlider(); // Initialisation
+}
+
+/**
+ * Permet d'activer ou de désactivé le scroll
+ */
+let scrollPosition = 0;
+
+function handleScrollCapability(toggleMode = true, activate = true) {
+    const html = document.documentElement;
+    const body = document.body;
+
+    if (toggleMode) {
+        const isDisabled = html.classList.contains('no-scroll');
+        if (!isDisabled) {
+            scrollPosition = window.scrollY || window.pageYOffset;
+            html.classList.add('no-scroll');
+            body.classList.add('no-scroll');
+            body.style.top = `-${scrollPosition}px`;
+        } else {
+            html.classList.remove('no-scroll');
+            body.classList.remove('no-scroll');
+            body.style.top = '';
+            window.scrollTo(0, scrollPosition);
+        }
+    } else {
+        if (!activate) {
+            scrollPosition = window.scrollY || window.pageYOffset;
+            html.classList.add('no-scroll');
+            body.classList.add('no-scroll');
+            body.style.top = `-${scrollPosition}px`;
+        } else {
+            html.classList.remove('no-scroll');
+            body.classList.remove('no-scroll');
+            body.style.top = '';
+            window.scrollTo(0, scrollPosition);
+        }
+    }
 }

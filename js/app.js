@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if( modalContainer ){ // On vérifie qu'on a bien la modal de disponible
         document.getElementById("close-modal").addEventListener("click", () => {
             modalContainer.classList.add("hidden");
+            handleScrollCapability();
         });
     }
 
