@@ -132,9 +132,40 @@ body {
 .math-girl-wrapper {
     position: relative;
     display: inline-block;
+
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#math-girl {
+.math-girl {
+  max-width: 400px;
+  width: 100%;
+  animation:  glowHueShift 15s ease-in-out infinite;
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+
+@keyframes glowHueShift {
+  0% {
+    filter: hue-rotate(0deg) drop-shadow(0 0 5px #00C9A7);
+  }
+  25% {
+    filter: hue-rotate(30deg) drop-shadow(0 0 10px #FF6600);
+  }
+  50% {
+    filter: hue-rotate(60deg) drop-shadow(0 0 8px #FFD93D);
+  }
+  75% {
+    filter: hue-rotate(30deg) drop-shadow(0 0 10px #9D4EDD);
+  }
+  100% {
+    filter: hue-rotate(0deg) drop-shadow(0 0 5px #00C9A7);
+  }
+}
+
+#logo {
     display: block;
     z-index: 2;
     position: relative;

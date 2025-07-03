@@ -241,6 +241,11 @@ function createHistoListItem(htmlUl, objMessage)
     htmlUl.appendChild(htmlMessage);
 }
 
+/**
+ * Clone un élément template et retourne le contenu de la copie.
+ * @param {HTMLElement} templateElement Element template a cloner.
+ * @returns Un HTMLFragment qui est le clone.
+ */
 function cloneTemplate(templateElement)
 {
     if(!templateElement)
@@ -249,16 +254,11 @@ function cloneTemplate(templateElement)
     return templateElement.content.cloneNode(true);
 }
 
-function randomizeAnimation()
-{
-    document.querySelectorAll('.note').forEach(note => {
-        const delay = Math.random() * 3; // entre 0s et 3s
-        const duration = 4 + Math.random() * 2; // entre 4s et 6s
-        note.style.animationDelay = `${delay.toFixed(2)}s`;
-        note.style.animationDuration = `${duration.toFixed(2)}s`;
-    });
-}
-
+/**
+ * Affiche des particules dans le conteneur.
+ * @param {HTMLElement} container Conteneur pour les particules.
+ * @param {Number} count Nombres de particules a afficher.
+ */
 function generateParticles(container, count = 20) {
     for (let i = 0; i < count; i++) {
         const p = document.createElement("div");
@@ -277,4 +277,30 @@ function generateParticles(container, count = 20) {
 
         container.appendChild(p);
     }
+}
+
+/**
+ * Gère le mouvement de la math-girl par rapport a la position de la souris.
+ */
+function handleMathGirlsAnimation()
+{
+    document.addEventListener("mousemove", (e) => {
+        const girls = document.querySelectorAll(".math-girl");
+        const { innerWidth, innerHeight } = window;
+
+        // Normalisation : de -1 à 1
+        const x = (e.clientX / innerWidth - 0.5) * 2;
+        const y = (e.clientY / innerHeight - 0.5) * 2;
+
+        // Multiplicateur pour amplifier légèrement
+        const offsetX = x * 10; // px
+        const offsetY = y * 10; // px
+
+        girls.forEach(girl => {
+            if( girl.classList.contains("rotate90") )
+                girl.style.transform = `translate(${offsetX}px, ${offsetY}px) scaleX(-1)`;
+            else
+                girl.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        });
+    });
 }

@@ -58,8 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     handleArrowScrollDown(arrow);
 
-    randomizeAnimation();
-
     generateParticles(
         document.getElementsByClassName("particles-container")[0]
     );
@@ -67,4 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
     generateParticles(
         document.getElementsByClassName("particles-container")[1]
     );
+
+    handleMathGirlsAnimation();
 });
