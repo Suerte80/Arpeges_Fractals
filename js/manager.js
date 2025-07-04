@@ -28,9 +28,10 @@ const MessageManager = {
      * @param {String} objet Object du message.
      * @param {String} message Message de l'expediteur.
      */
-    save(email, objet, message) {
+    save(email, objet, message, date) {
         const objMessage = {
             id: this.lastMessageID() + 1,
+            date: (date)?date.getTime():new Date(),
             email: email,
             objet: objet,
             message: message
@@ -114,22 +115,22 @@ function callbackModalManager(article, modalContainer, articleData) {
         // Modification des éléments de la modal.
         if( favSaved && Array.isArray(favSaved) && favSaved.length > 0 ){
             if( favSaved.includes(articleId) ){
-                modalSpanStar.classList.add("active");
+                addClass(modalSpanStar, "active");
                 modalSpanStar.innerHTML = "★"; // étoile pleine
             } else{
-                modalSpanStar.classList.remove("active");
+                removeClass(modalSpanStar, "active");
                 modalSpanStar.innerHTML = "☆"; // étoile vide
             }
         } else{
             // Aucun fav enregistré, on part sur étoile vide
-            modalSpanStar.classList.remove("active");
+            removeClass(modalSpanStar, "active");
             modalSpanStar.innerHTML = "☆";
         }
         if (modalTitle) modalTitle.textContent = articleData.title;
         if (modalContent) modalContent.textContent = articleData.content;
 
         // On affiche la modal.
-        modalContainer.classList.remove("hidden");
+        removeClass(modalContainer, "hidden");
         handleScrollCapability();
 
         const focusable = modalContainer.querySelector("button, [tabindex='0'], a, input, textarea");
@@ -140,7 +141,7 @@ function callbackModalManager(article, modalContainer, articleData) {
 
     modalContainer.addEventListener("keydown", (event) => {
         if( event.key === "Escape" ){
-            modalContainer.classList.add("hidden");
+            addClass(modalContainer, "hidden");
             handleScrollCapability();
         }
     });
@@ -174,13 +175,13 @@ function callBackHistoryOnClick(modalHisto)
     }
 
     // On ouvre la modal
-    modalHisto.classList.remove("hidden");
+    removeClass(modalHisto, "hidden");
 
     // On récupére le bouton
     const closeModalButton = modalHisto.querySelector("#close-modal");
     // On ajoute le callback sur le click du bouton
     closeModalButton.addEventListener("click", () => {
-        modalHisto.classList.add("hidden");
+        addClass(modalHisto, "hidden");
     });
 }
 
@@ -259,7 +260,7 @@ function handleLoadArticle(
 
     // On vérifie que les éléments sont présent dans la page.
     if( fullArticlescontainer || newArticlesContainer || mostViewedArticlesContainer){
-        fetch("articles/articles.json")
+        fetch("data/articles.json")
         .then(response => {
             if (!response.ok) {
                 throw new Error("Erreur lors du chargement des articles");

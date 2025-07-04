@@ -7,13 +7,42 @@ function createElement(tag, className = "", content = "") {
 }
 
 // Ajoute ou retire une classe
-function toggleClass(el, className) {
+function toggleClass(el, className, toggle = true, active = true)
+{
+    if(!el)
+        return;
+
     el.classList.toggle(className);
+}
+
+function addClass(el, className)
+{
+    if(!el)
+        return;
+
+    el.classList.add(className);
+}
+
+function removeClass(el, className){
+    if(!el)
+        return;
+
+    el.classList.remove(className);
 }
 
 // Vérifie email (pour formulaire contact)
 function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function formatDate(date) {
+    return new Date(date).toLocaleDateString('fr-FR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric'
+    });
 }
 
 /**
@@ -93,10 +122,10 @@ function toggleStarInArticle(articleId, isActive) {
     const htmlArticle = document.querySelector(`[data-id="${articleId}"] .favorite-star`);
     if (htmlArticle) {
         if (isActive) {
-            htmlArticle.classList.add("active");
+            addClass(htmlArticle, "active");
             htmlArticle.innerHTML = "&#9733;"; // Étoile pleine
         } else {
-            htmlArticle.classList.remove("active");
+            removeClass(htmlArticle, "active");
             htmlArticle.innerHTML = "&#9734;"; // Étoile vide
         }
     }
@@ -113,12 +142,12 @@ function toggleFavorite(starSpan, articleId) {
     const index = favorites.indexOf(articleId);
     if (index === -1) {
         favorites.push(articleId);
-        starSpan.classList.add("active");
+        addClass(starSpan, "active");
         starSpan.innerHTML = "&#9733;"; // Étoile pleine
         toggleStarInArticle(articleId, true);
     } else {
         favorites.splice(index, 1);
-        starSpan.classList.remove("active");
+        removeClass(starSpan, "active");
         starSpan.innerHTML = "&#9734;"; // Étoile vide
         toggleStarInArticle(articleId, false);
     }
@@ -167,6 +196,8 @@ function createNotification(message, duration, type) {
 
     setTimeout(() => {
         toggleNotifVisibility(elementNotif);
+
+    console.log(objMessage);
     }, duration);
 }
 
@@ -176,7 +207,7 @@ function createNotification(message, duration, type) {
  */
 function toggleNotifVisibility(elementNotif) {
     removeClassNotification(elementNotif);
-    elementNotif.classList.toggle("visible");
+    toggleClass(elementNotif, "visible");
 }
 
 /**
@@ -198,10 +229,10 @@ function toggleInvalidityForm(element, duration) {
     if (!element)
         return;
 
-    element.classList.toggle("forImnvalid");
+    toggleClass(element, "formInvalid");
 
     setTimeout(() => {
-        element.classList.toggle("forImnvalid");
+        toggleClass(element, "formInvalid");
     }, duration);
 }
 
@@ -226,13 +257,15 @@ function createHistoListItem(htmlUl, objMessage) {
     const htmlMessage = fragment.querySelector("li");
 
     // Récupération des différents éléments de la template
+    const date = htmlMessage.querySelector(".history-date span");
     const email = htmlMessage.querySelector(".history-email span");
     const object = htmlMessage.querySelector(".history-object span");
     const message = htmlMessage.querySelector(".history-message span");
 
-    console.log(objMessage);
+    console.log(date);
 
     // Population de la copie
+    date.textContent = formatDate(new Date(objMessage.date));
     email.textContent = objMessage.email;
     object.textContent = objMessage.objet;
     message.textContent = objMessage.message;
@@ -425,6 +458,13 @@ function setupSliderControls(sliderTrack, articles, prevBtn, nextBtn) {
     
     window.addEventListener('resize', handleResize);
 
+    document.addEventListener("keydown", (e) => {
+        if( e.key === "ArrowRight" )
+            handleNext();
+        else if( e.key === "ArrowLeft" )
+            handlePrev();
+    });
+
     // Initialisation
     updateSlider();
 }
@@ -472,24 +512,24 @@ function handleScrollCapability(toggleMode = true, activate = true) {
         const isDisabled = html.classList.contains('no-scroll');
         if (!isDisabled) {
             scrollPosition = window.scrollY || window.pageYOffset;
-            html.classList.add('no-scroll');
-            body.classList.add('no-scroll');
+            addClass(html, "no-scroll");
+            addClass(body, "no-scroll");
             body.style.top = `-${scrollPosition}px`;
         } else {
-            html.classList.remove('no-scroll');
-            body.classList.remove('no-scroll');
+            removeClass(html, "no-scroll");
+            removeClass(body, "no-scroll");
             body.style.top = '';
             window.scrollTo(0, scrollPosition);
         }
     } else {
         if (!activate) {
             scrollPosition = window.scrollY || window.pageYOffset;
-            html.classList.add('no-scroll');
-            body.classList.add('no-scroll');
+            addClass(html, "no-scroll");
+            addClass(body, "no-scroll");
             body.style.top = `-${scrollPosition}px`;
         } else {
-            html.classList.remove('no-scroll');
-            body.classList.remove('no-scroll');
+            removeClass(html, "no-scroll");
+            removeClass(body, "no-scroll");
             body.style.top = '';
             window.scrollTo(0, scrollPosition);
         }
