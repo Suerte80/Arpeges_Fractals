@@ -76,16 +76,22 @@ function addArticle(article, newSection, mostViewedSection, fullSection, callBac
     // Selection des élément interne à clonedArticle
     clonedArticle.querySelector("h3").innerHTML = article.title;
     clonedArticle.querySelector("p").innerHTML = article.description;
+    clonedArticle.querySelector("img").src = article.imgPres;
     const favStar = clonedArticle.querySelector(".favorite-star");
 
     // Vérification s'il est dans les articles favorie.
     if (favSaved.includes(article.id)) {
         favStar.classList.add("active");
-        favStar.innerHTML = "★"; // étoile pleine
+        favStar.innerHTML = "&#9829;"; // étoile pleine
     } else {
         favStar.classList.remove("active");
-        favStar.innerHTML = "☆"; // étoile vide
+        favStar.innerHTML = "&#9825;"; // étoile vide
     }
+
+    // Ajout de l'ajout aux favoris lors du clique de la souris sur l'étoile.
+    favStar.addEventListener("click", () => {
+        toggleFavorite(favStar, article.id);
+    });
 
     const htmlCloneElement = clonedArticle.querySelector(".article");
     htmlCloneElement.dataset.id = article.id;
@@ -114,7 +120,7 @@ function addArticle(article, newSection, mostViewedSection, fullSection, callBac
 }
 
 /**
- * Permet de mettre a jour l'étoile qui représente si un article est en favoris ou non.
+ * Permet de mettre a jour l'étoile qui représente si un article est en favoris ou non. Changement de dernière minute maintenant c'est un coeur pour l'UX.
  * @param {Number} articleId Numéro identifiant de l'article.
  * @param {Boolean} isActive Représente si l'étoile doit être afficher pleine ou non.
  */
@@ -123,10 +129,12 @@ function toggleStarInArticle(articleId, isActive) {
     if (htmlArticle) {
         if (isActive) {
             addClass(htmlArticle, "active");
-            htmlArticle.innerHTML = "&#9733;"; // Étoile pleine
+            htmlArticle.innerHTML = "&#9829;"; // Étoile pleine
+            createNotification("Ajoutez aux favoris !", 5000, notificationMessageTypes.INFO);
         } else {
             removeClass(htmlArticle, "active");
-            htmlArticle.innerHTML = "&#9734;"; // Étoile vide
+            htmlArticle.innerHTML = "&#9825;"; // Étoile vide
+            createNotification("Supprimer des favoris !", 5000, notificationMessageTypes.INFO);
         }
     }
 }
@@ -143,12 +151,12 @@ function toggleFavorite(starSpan, articleId) {
     if (index === -1) {
         favorites.push(articleId);
         addClass(starSpan, "active");
-        starSpan.innerHTML = "&#9733;"; // Étoile pleine
+        starSpan.innerHTML = "&#9829;"; // Étoile pleine
         toggleStarInArticle(articleId, true);
     } else {
         favorites.splice(index, 1);
         removeClass(starSpan, "active");
-        starSpan.innerHTML = "&#9734;"; // Étoile vide
+        starSpan.innerHTML = "&#9825;"; // Étoile vide
         toggleStarInArticle(articleId, false);
     }
 

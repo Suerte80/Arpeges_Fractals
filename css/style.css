@@ -304,6 +304,7 @@ body {
 #latest-articles {
   margin-left: 0;
   margin-right: 0;
+  padding-top: 60px;
   width: 100%;
 
   gap: 16px;
@@ -436,9 +437,10 @@ section:first-of-type{
 }
 
 .article img {
-  width: 100%;
-  height: auto;
+  width: 200px;
+  height: 100px;
   max-width: 200px;
+  max-height: 100px;
   border-radius: 5px;
   margin-bottom: 0.5rem;
 }

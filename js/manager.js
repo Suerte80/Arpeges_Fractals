@@ -116,15 +116,15 @@ function callbackModalManager(article, modalContainer, articleData) {
         if( favSaved && Array.isArray(favSaved) && favSaved.length > 0 ){
             if( favSaved.includes(articleId) ){
                 addClass(modalSpanStar, "active");
-                modalSpanStar.innerHTML = "★"; // étoile pleine
+                modalSpanStar.innerHTML = "&#9829;"; // étoile pleine
             } else{
                 removeClass(modalSpanStar, "active");
-                modalSpanStar.innerHTML = "☆"; // étoile vide
+                modalSpanStar.innerHTML = "&#9825;"; // étoile vide
             }
         } else{
             // Aucun fav enregistré, on part sur étoile vide
             removeClass(modalSpanStar, "active");
-            modalSpanStar.innerHTML = "☆";
+            modalSpanStar.innerHTML = "&#9825;";
         }
         if (modalTitle) modalTitle.textContent = articleData.title;
         if (modalContent) modalContent.textContent = articleData.content;

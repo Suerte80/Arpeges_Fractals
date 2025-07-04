@@ -20,6 +20,16 @@ Site vitrine thématique consacré au math rock, développé dans le cadre de l'
 
 **GitHub :** https://github.com/Suerte80/Arpeges_Fractals
 
+## Maquêtes
+
+Voici les maquettes:
+
+![Maquette Iphone](maquettes/smartphone.png Maquette Smartphone)
+
+![Maquette Tablette](maquettes/tablette.png Maquette Tablette)
+
+![Maquette Desktop](maquettes/desktop.png Maquette Desktop)
+
 ## Fonctionnalités principales
 
 - Site responsive (mobile, tablette, desktop)
