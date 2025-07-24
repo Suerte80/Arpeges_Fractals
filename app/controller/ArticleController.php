@@ -11,7 +11,7 @@ class ArticleController {
      * Affiche tous les articles au format JSON.
      */
     public function getArticleJSON(){
-        $model = new Article();
+        $model = new Article(PDO);
         $articles = $model->getAll();
 
         header('Content-Type: application/json');
