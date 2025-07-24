@@ -145,15 +145,19 @@ body {
   0% {
     filter: hue-rotate(0deg) drop-shadow(0 0 5px #00C9A7);
   }
+
   25% {
     filter: hue-rotate(30deg) drop-shadow(0 0 10px #FF6600);
   }
+
   50% {
     filter: hue-rotate(60deg) drop-shadow(0 0 8px #FFD93D);
   }
+
   75% {
     filter: hue-rotate(30deg) drop-shadow(0 0 10px #9D4EDD);
   }
+
   100% {
     filter: hue-rotate(0deg) drop-shadow(0 0 5px #00C9A7);
   }
@@ -194,9 +198,11 @@ body {
   0% {
     transform: translateY(0) scaleX(1);
   }
+
   50% {
     transform: translateY(4px) scaleX(1.02);
   }
+
   100% {
     transform: translateY(0) scaleX(1);
   }
@@ -227,6 +233,7 @@ body {
     transform: translate(0, 0) scale(1);
     opacity: 1;
   }
+
   100% {
     transform: translate(-30px, -50px) scale(0.5);
     opacity: 0;
@@ -310,7 +317,7 @@ body {
   gap: 16px;
 }
 
-section:first-of-type{
+section:first-of-type {
   padding: 60px;
 }
 
@@ -336,9 +343,11 @@ section:first-of-type{
   position: relative;
   width: 100%;
   max-width: 100%;
-  padding: 0 60px; /* Espace pour les boutons */
+  padding: 0 60px;
+  /* Espace pour les boutons */
   box-sizing: border-box;
-  margin: 0; /* Supprimer toute marge */
+  margin: 0;
+  /* Supprimer toute marge */
 }
 
 .slider-track {
@@ -346,13 +355,17 @@ section:first-of-type{
   transition: transform 0.5s ease;
   gap: 1rem;
   will-change: transform;
-  width: fit-content; /* Important pour éviter les débordements */
-  margin: 0; /* Assurer qu'il n'y a pas de margin */
-  padding: 0; /* Assurer qu'il n'y a pas de padding */
+  width: fit-content;
+  /* Important pour éviter les débordements */
+  margin: 0;
+  /* Assurer qu'il n'y a pas de margin */
+  padding: 0;
+  /* Assurer qu'il n'y a pas de padding */
 }
 
 .slider-track .article {
-  flex: 0 0 auto; /* Ne pas rétrécir automatiquement */
+  flex: 0 0 auto;
+  /* Ne pas rétrécir automatiquement */
   box-sizing: border-box;
   /* Les dimensions seront définies par JS */
 }
