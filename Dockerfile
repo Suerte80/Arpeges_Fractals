@@ -13,3 +13,7 @@ RUN curl -sS https://getcomposer.org/installer | php && \
 # Installer PHPMailer
 WORKDIR /var/www/html
 RUN composer require phpmailer/phpmailer
+
+# Configurer Apache
+RUN a2enmod rewrite
+COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf

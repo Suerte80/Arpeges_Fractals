@@ -256,7 +256,7 @@ function handleLoadArticle(
 
     // On vérifie que les éléments sont présent dans la page.
     if (fullArticlescontainer || newArticlesContainer || mostViewedArticlesContainer) {
-        fetch('api/get_articles.php')
+        fetch('/api/get_articles')
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Erreur lors du chargement des articles");
