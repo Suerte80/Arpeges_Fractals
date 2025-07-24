@@ -1,34 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php include('view/head.php'); ?>
+<?php include('view/layout/head_view.php'); ?>
 
 <body>
-    <?php include('view/navbar.php'); ?>
+    <?php include('view/layout/navbar_view.php'); ?>
 
-    <section id="all-articles" aria-label="Liste des articles">
-        <h3>Liste des articles</h3>
+    <?php include('view/section/all_articles_view.php'); ?>
 
-        <div id="full-articles">
-        </div>
-    </section>
+    <?php include('view/layout/footer_view.php'); ?>
 
-    <?php include('view/footer.php'); ?>
+    <?php include('view/section/notification_view.php'); ?>
 
-    <?php include('view/section/modal.php'); ?>
+    <?php include('view/section/modal_view.php'); ?>
 
-    <template id="template-new-article">
-        <div class="article">
-            <div class="upper-article">
-                <span class="badge">Nouveau</span>
-                <span class="favorite-star" title="Ajouter aux favoris">&#9734;</span>
-            </div>
-            <h3>Découverte et recos</h3>
-            <img src="https://placehold.co/200x100" alt="Image représentant l'article">
-            <p>Groupes émergents, albums de niche, scène locales : on creuse le son math rock.</p>
-            <button class="button-glow" type="button">Lire</button>
-        </div>
-    </template>
+    <?php include('view/template/new_article_view.php'); ?>
+
 </body>
 
 </html>
