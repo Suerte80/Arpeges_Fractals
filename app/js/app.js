@@ -18,14 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const mostViewedArticles = [];
     const fullListArticles = [];
 
-    handleLoadArticle(fullArticlescontainer,
-        newArticlesContainer,
-        mostViewedArticlesContainer,
-        modalContainer
-    );
-    
+    // On commente cette partie pour éviter de charger les articles et le faire dans le PHP. 
+    // handleLoadArticle(fullArticlescontainer,
+    //     newArticlesContainer,
+    //     mostViewedArticlesContainer,
+    //     modalContainer
+    // );
+
     // Fermeture de la modal lors du click de la souris
-    if( modalContainer ){ // On vérifie qu'on a bien la modal de disponible
+    if (modalContainer) { // On vérifie qu'on a bien la modal de disponible
         document.getElementById("close-modal").addEventListener("click", () => {
             modalContainer.classList.add("hidden");
             handleScrollCapability();
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ON attache l'event d'ajout de favoris au span étoile
-    if( modalContainer ){
+    if (modalContainer) {
         const modFav = document.querySelector("#modal .favorite-star");
         modFav.addEventListener("click", () => {
             toggleFavorite(modFav, modalContainer.dataset.id);
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Section pour le bouton historique de la page contact
-    if( modalHisto && buttonHisto ){
+    if (modalHisto && buttonHisto) {
         buttonHisto.addEventListener("click", () => {
             callBackHistoryOnClick(modalHisto);
         });
@@ -53,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             callBackHistoryOnClick(modalHisto);
         });
     }
-    
+
     // Section pour le bouton envoyer de la page contact
     handleFormSubmission(modalHisto, buttonSend);
 
