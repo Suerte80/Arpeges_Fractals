@@ -31,16 +31,16 @@ const MessageManager = {
     save(email, objet, message, date) {
         const objMessage = {
             id: this.lastMessageID() + 1,
-            date: (date)?date.getTime():new Date(),
+            date: (date) ? date.getTime() : new Date(),
             email: email,
             objet: objet,
             message: message
         };
 
         let arrMessages = this.loadMessages();
-        if( Array.isArray(arrMessages) ){
+        if (Array.isArray(arrMessages)) {
             arrMessages.push(objMessage);
-        } else if( !arrMessages ){
+        } else if (!arrMessages) {
             arrMessages = [objMessage];
         }
 
@@ -51,10 +51,10 @@ const MessageManager = {
      * Retourne l'id du dernier message enregistré.
      * @returns L'id du dernier message enregistré.
      */
-    lastMessageID(){
+    lastMessageID() {
         const data = this.loadMessages();
-        if(!data || data.length === 0) return 0;
-        const last = data[data.length-1];
+        if (!data || data.length === 0) return 0;
+        const last = data[data.length - 1];
         return last.id || 0;
     },
 
@@ -63,16 +63,16 @@ const MessageManager = {
      * @param {Number} id Id du message rechercher.
      * @returns L'objet message qui correspond a l'ID.
      */
-    loadMessage(id){
+    loadMessage(id) {
         const data = this.loadMessages();
-        if(!data) return null;
+        if (!data) return null;
         return data.find(message => message.id == id);
     },
 
     /**
      * @returns Un array qui contient tous les objets messages ou un array vide s'il n'y pas d'objet message dans le sessions storage.
      */
-    loadMessages(){
+    loadMessages() {
         const data = sessionStorage.getItem(this.messageKey);
         return data ? JSON.parse(data) : [];
     },
@@ -80,7 +80,7 @@ const MessageManager = {
     /**
      * Efface tous les messages dans le sessionStorage.
      */
-    clearMessages(){
+    clearMessages() {
         sessionStorage.removeItem(this.messageKey);
     }
 }
@@ -101,7 +101,7 @@ function callbackModalManager(article, modalContainer, articleData) {
         return;
     }
 
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
         // Affiche le contenu de l'article dans la modal
         const modalTitle = modalContainer.querySelector(".modal-title");
         const modalContent = modalContainer.querySelector(".modal-content-text");
@@ -113,15 +113,15 @@ function callbackModalManager(article, modalContainer, articleData) {
         modalContainer.dataset.id = articleId;
 
         // Modification des éléments de la modal.
-        if( favSaved && Array.isArray(favSaved) && favSaved.length > 0 ){
-            if( favSaved.includes(articleId) ){
+        if (favSaved && Array.isArray(favSaved) && favSaved.length > 0) {
+            if (favSaved.includes(articleId)) {
                 addClass(modalSpanStar, "active");
                 modalSpanStar.innerHTML = "&#9829;"; // étoile pleine
-            } else{
+            } else {
                 removeClass(modalSpanStar, "active");
                 modalSpanStar.innerHTML = "&#9825;"; // étoile vide
             }
-        } else{
+        } else {
             // Aucun fav enregistré, on part sur étoile vide
             removeClass(modalSpanStar, "active");
             modalSpanStar.innerHTML = "&#9825;";
@@ -140,16 +140,15 @@ function callbackModalManager(article, modalContainer, articleData) {
     });
 
     modalContainer.addEventListener("keydown", (event) => {
-        if( event.key === "Escape" ){
+        if (event.key === "Escape") {
             addClass(modalContainer, "hidden");
             handleScrollCapability();
         }
     });
 }
 
-function callBackHistoryOnClick(modalHisto)
-{
-    if(!modalHisto)
+function callBackHistoryOnClick(modalHisto) {
+    if (!modalHisto)
         return;
 
     // On récupére l'historique
@@ -157,20 +156,20 @@ function callBackHistoryOnClick(modalHisto)
 
     // On récupére le ul
     const htmlUL = modalHisto.querySelector("ul");
-    
+
     // On récupére le titre de la modal
     const titleHistoModal = modalHisto.querySelector("h2");
 
     // ON néttoie le fils de htmlUL
     removeChildren(htmlUL);
 
-    if( arrMessages.length > 0 ){
+    if (arrMessages.length > 0) {
         titleHistoModal.textContent = "Historique";
 
         arrMessages.forEach(message => {
-            createHistoListItem(htmlUL, message);       
+            createHistoListItem(htmlUL, message);
         });
-    } else{
+    } else {
         titleHistoModal.textContent = "Aucun Historique";
     }
 
@@ -185,12 +184,11 @@ function callBackHistoryOnClick(modalHisto)
     });
 }
 
-function handleFormSubmission(modalHisto, buttonSend)
-{
-    if(!modalHisto && !buttonSend)
+function handleFormSubmission(modalHisto, buttonSend) {
+    if (!modalHisto && !buttonSend)
         return;
 
-    if( buttonSend ){
+    if (buttonSend) {
         const emailForm = document.getElementById("form-email");
         const objectForm = document.getElementById("form-objet");
         const messageForm = document.getElementById("form-message");
@@ -203,7 +201,7 @@ function handleFormSubmission(modalHisto, buttonSend)
             // Vérification des inputs
             const email = emailForm.value;
             console.log(email, " : ", validateEmail(email));
-            if( email === "" || !validateEmail(email)){
+            if (email === "" || !validateEmail(email)) {
                 // Ici on trigger la notification
                 createNotification("Email invalide", 2000, notificationMessageTypes.ERROR);
                 toggleInvalidityForm(emailForm, 2000);
@@ -211,7 +209,7 @@ function handleFormSubmission(modalHisto, buttonSend)
             }
 
             const object = objectForm.value;
-            if( object === "" ){
+            if (object === "") {
                 // Ici on trigger la notif
                 createNotification("Objet vide", 2000, notificationMessageTypes.ERROR);
                 toggleInvalidityForm(objectForm, 2000);
@@ -219,14 +217,14 @@ function handleFormSubmission(modalHisto, buttonSend)
             }
 
             const message = messageForm.value;
-            if( message === "" ){
+            if (message === "") {
                 // Ici on trigger la notif.
                 createNotification("Message vide", 2000, notificationMessageTypes.ERROR);
                 toggleInvalidityForm(messageForm, 2000);
                 isErrorOnForm = true;
             }
 
-            if(isErrorOnForm) return;
+            if (isErrorOnForm) return;
 
             MessageManager.save(email, object, message);
 
@@ -236,13 +234,12 @@ function handleFormSubmission(modalHisto, buttonSend)
     }
 }
 
-function handleArrowScrollDown(arrow)
-{
-    if( arrow ){
+function handleArrowScrollDown(arrow) {
+    if (arrow) {
         arrow.addEventListener("click", () => {
             const target = document.getElementById("latest-articles");
-            if(target){
-                target.scrollIntoView({behavior: "smooth"});
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
             }
         });
     }
@@ -253,35 +250,34 @@ function handleLoadArticle(
     newArticlesContainer,
     mostViewedArticlesContainer,
     modalContainer
-)
-{
-    if(!modalContainer)
+) {
+    if (!modalContainer)
         return;
 
     // On vérifie que les éléments sont présent dans la page.
-    if( fullArticlescontainer || newArticlesContainer || mostViewedArticlesContainer){
-        fetch("data/articles.json")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erreur lors du chargement des articles");
-            }
-            return response.json();
-        }) .then(data => {
+    if (fullArticlescontainer || newArticlesContainer || mostViewedArticlesContainer) {
+        fetch('api/get_articles.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erreur lors du chargement des articles");
+                }
+                return response.json();
+            }).then(data => {
 
-            data.forEach(article => {
-                const htmlArticle = addArticle(article, newArticlesContainer, mostViewedArticlesContainer, fullArticlescontainer);
-                callbackModalManager(htmlArticle, modalContainer, article);
-            });
-
-            // merci claude
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() =>{
-                    handleNewArticleSlider();
+                data.forEach(article => {
+                    const htmlArticle = addArticle(article, newArticlesContainer, mostViewedArticlesContainer, fullArticlescontainer);
+                    callbackModalManager(htmlArticle, modalContainer, article);
                 });
-            });
 
-        }) .catch(error => {
-            console.error("Erreur lors du chargement des articles :", error);
-        });
+                // merci claude
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        handleNewArticleSlider();
+                    });
+                });
+
+            }).catch(error => {
+                console.error("Erreur lors du chargement des articles :", error);
+            });
     }
 }

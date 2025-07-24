@@ -7,24 +7,22 @@ function createElement(tag, className = "", content = "") {
 }
 
 // Ajoute ou retire une classe
-function toggleClass(el, className, toggle = true, active = true)
-{
-    if(!el)
+function toggleClass(el, className, toggle = true, active = true) {
+    if (!el)
         return;
 
     el.classList.toggle(className);
 }
 
-function addClass(el, className)
-{
-    if(!el)
+function addClass(el, className) {
+    if (!el)
         return;
 
     el.classList.add(className);
 }
 
-function removeClass(el, className){
-    if(!el)
+function removeClass(el, className) {
+    if (!el)
         return;
 
     el.classList.remove(className);
@@ -43,6 +41,19 @@ function formatDate(date) {
         hour: 'numeric',
         minute: 'numeric'
     });
+}
+
+function isRecentArticle(article) {
+    if (!article || !article.parution_date) return false;
+
+    const articleDate = new Date(article.parution_date);
+    const now = new Date();
+    const diffTime = Math.abs(now - articleDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    console.log(diffDays, " : ", article.parution_date);
+
+    return diffDays <= 80; // Considérer un article comme récent s'il a été publié dans les 7 derniers jours
 }
 
 /**
@@ -76,7 +87,7 @@ function addArticle(article, newSection, mostViewedSection, fullSection, callBac
     // Selection des élément interne à clonedArticle
     clonedArticle.querySelector("h3").innerHTML = article.title;
     clonedArticle.querySelector("p").innerHTML = article.description;
-    clonedArticle.querySelector("img").src = article.imgPres;
+    clonedArticle.querySelector("img").src = article.image_filepath;
     const favStar = clonedArticle.querySelector(".favorite-star");
 
     // Vérification s'il est dans les articles favorie.
@@ -99,7 +110,7 @@ function addArticle(article, newSection, mostViewedSection, fullSection, callBac
     /*
      * Si un article est nouveau alors on affiche le badge sinon non.
      */
-    if (!article.new) {
+    if (!isRecentArticle(article)) {
         clonedArticle.querySelector(".badge").style.display = "none";
     } else {
         if (newSection)
@@ -107,7 +118,7 @@ function addArticle(article, newSection, mostViewedSection, fullSection, callBac
     }
 
     // Si un article fait partie des plus vues ou le met dans la section des plus vus.
-    if (article.mostViewed) {
+    if (article.views > 100) {
         if (mostViewedSection)
             mostViewedSection.appendChild(clonedArticle);
     }
@@ -205,7 +216,7 @@ function createNotification(message, duration, type) {
     setTimeout(() => {
         toggleNotifVisibility(elementNotif);
 
-    console.log(objMessage);
+        console.log(objMessage);
     }, duration);
 }
 
@@ -299,7 +310,7 @@ function cloneTemplate(templateElement) {
  * @param {Number} count Nombres de particules a afficher.
  */
 function generateParticles(container, count = 20) {
-    if(!container)
+    if (!container)
         return;
 
     for (let i = 0; i < count; i++) {
@@ -334,7 +345,7 @@ function handleMathGirlsAnimation() {
 
     document.addEventListener("mousemove", (e) => {
         const now = Date.now();
-        
+
         // Throttling temporel
         if (now - lastUpdate < throttleMs) return;
         lastUpdate = now;
@@ -348,10 +359,10 @@ function handleMathGirlsAnimation() {
         const offsetY = y * 20; // en px
 
         girls.forEach(girl => {
-            const transform = girl.classList.contains("rotate90") 
+            const transform = girl.classList.contains("rotate90")
                 ? `translate(${offsetX}px, ${offsetY}px) scaleX(-1)`
                 : `translate(${offsetX}px, ${offsetY}px)`;
-            
+
             girl.style.transform = transform;
         });
     });
@@ -374,14 +385,14 @@ function calculateArticleWidth(sliderTrack) {
     const visibleCount = getVisibleArticlesCount();
     const container = sliderTrack.parentElement;
     const containerStyle = window.getComputedStyle(container);
-    
+
     const paddingLeft = parseFloat(containerStyle.paddingLeft) || 0;
     const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
     const availableWidth = container.offsetWidth - paddingLeft - paddingRight;
-    
+
     const gap = parseFloat(window.getComputedStyle(sliderTrack).gap) || 16;
     const totalGapWidth = gap * (visibleCount - 1);
-    
+
     return (availableWidth - totalGapWidth) / visibleCount;
 }
 
@@ -392,7 +403,7 @@ function updateSliderPosition(sliderTrack, articles, index, prevBtn, nextBtn) {
     const visibleCount = getVisibleArticlesCount();
     const articleWidth = calculateArticleWidth(sliderTrack);
     const gap = parseFloat(window.getComputedStyle(sliderTrack).gap) || 16;
-    
+
     if (articleWidth <= 0) return;
 
     // Mettre à jour les tailles des articles
@@ -412,7 +423,7 @@ function updateSliderPosition(sliderTrack, articles, index, prevBtn, nextBtn) {
     const maxIndex = Math.max(0, articles.length - visibleCount);
     const isAtStart = index <= 0;
     const isAtEnd = index >= maxIndex;
-    
+
     prevBtn.disabled = isAtStart;
     nextBtn.disabled = isAtEnd;
     prevBtn.classList.toggle('disabled', isAtStart);
@@ -463,13 +474,13 @@ function setupSliderControls(sliderTrack, articles, prevBtn, nextBtn) {
             updateSlider();
         }, 250);
     };
-    
+
     window.addEventListener('resize', handleResize);
 
     document.addEventListener("keydown", (e) => {
-        if( e.key === "ArrowRight" )
+        if (e.key === "ArrowRight")
             handleNext();
-        else if( e.key === "ArrowLeft" )
+        else if (e.key === "ArrowLeft")
             handlePrev();
     });
 
@@ -482,7 +493,7 @@ function setupSliderControls(sliderTrack, articles, prevBtn, nextBtn) {
  */
 function waitForArticlesAndInitialize(sliderTrack, prevBtn, nextBtn) {
     const articles = sliderTrack.querySelectorAll(".article");
-    
+
     if (articles.length === 0) {
         setTimeout(() => waitForArticlesAndInitialize(sliderTrack, prevBtn, nextBtn), 50);
         return;

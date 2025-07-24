@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const fullListArticles = [];
 
     // On commente cette partie pour éviter de charger les articles et le faire dans le PHP. 
-    // handleLoadArticle(fullArticlescontainer,
-    //     newArticlesContainer,
-    //     mostViewedArticlesContainer,
-    //     modalContainer
-    // );
+    handleLoadArticle(fullArticlescontainer,
+        newArticlesContainer,
+        mostViewedArticlesContainer,
+        modalContainer
+    );
 
     // Fermeture de la modal lors du click de la souris
     if (modalContainer) { // On vérifie qu'on a bien la modal de disponible
