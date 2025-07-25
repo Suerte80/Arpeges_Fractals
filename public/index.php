@@ -4,6 +4,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 require_once __DIR__ . '/../app/model/InitPDO.php';
 
+// ON démare la session !
+session_start();
+
 define('PDO', new InitPDO());
 
 $routes = [
@@ -11,6 +14,8 @@ $routes = [
     '/contact' => '../app/view/pages/contact.php',
     '/articles' => '../app/view/pages/articles.php',
     '/signup' => '../app/controller/SignupController.php',
+    '/login' => '../app/view/pages/login.php',
+
     '/api/get_articles' => '../app/api/get_articles.php',
 ];
 
@@ -28,6 +33,21 @@ if (isset($routes[$uri])) {
             $controller = new SignupController();
             $controller->handleSignup();
         } else{
+            require $pagePath;
+        }
+
+        switch($pagePath) {
+            case '/signup':
+                $controller = new SignupController();
+                $controller->handleSignup();
+                break;
+            case '/login':
+                $controller = new LoginController();
+                $controller->handleLogin();
+                break;
+            default:
+                break;
+
             require $pagePath;
         }
     } else {

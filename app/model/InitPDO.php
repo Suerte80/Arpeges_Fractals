@@ -5,7 +5,7 @@
  * D'executer des requêtes préparé et de retourner les résultats.
  */
 class InitPdo{
-    private $pdo;
+    private PDO $pdo;
 
     /**
      * Constructeur de la classe InitPdo.
@@ -29,7 +29,7 @@ class InitPdo{
      * @param array $params Les paramètres à lier à la requête.
      * @return array Les résultats de la requête.
      */
-    public function executeQuery($query, $params = []){
+    public function executeQuery($query, $params = []):array {
         $stmt = $this->pdo->prepare($query);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
