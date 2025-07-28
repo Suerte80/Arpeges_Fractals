@@ -8,6 +8,7 @@ require_once __DIR__ . '/../app/model/InitPDO.php';
 
 require_once __DIR__ . '/../app/controller/LoginController.php';
 require_once __DIR__ . '/../app/controller/SignupController.php';
+require_once __DIR__ . '/../app/controller/LogoutController.php';
 
 // ON démare la session !
 session_start();
@@ -16,10 +17,14 @@ define('PDO', new InitPDO());
 
 $routes = [
     '/' => '../app/view/pages/acceuil.php',
+
     '/contact' => '../app/view/pages/contact.php',
     '/articles' => '../app/view/pages/articles.php',
+
     '/signup' => '../app/controller/SignupController.php',
+
     '/login' => '../app/view/pages/login.php',
+    '/logout' => '../app/controller/LogoutController.php',
 
     '/api/get_articles' => '../app/api/get_articles.php',
     '/api/notifications' => '../app/api/notifications.php',
@@ -43,6 +48,10 @@ if (isset($routes[$uri])) {
             case '/login':
                 $controller = new LoginController();
                 $controller->handleLogin();
+                break;
+            case '/logout':
+                $controller = new LogoutController();
+                $controller->handleLogout();
                 break;
             default:
                 require $pagePath;

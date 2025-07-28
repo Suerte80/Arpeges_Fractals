@@ -84,13 +84,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.log(data);
 
-            data.forEach(element => {
-                createNotification(
-                    element['message'],
-                    2000,
-                    element['type']
-                );
-            });
+            if( Array.isArray(data) ) {
+                data.forEach(element => {
+                    createNotification(
+                        element['message'],
+                        2000,
+                        element['type']
+                    );
+                });
+            }
 
         });
 });

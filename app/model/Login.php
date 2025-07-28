@@ -54,4 +54,9 @@ class Login{
         }
     }
 
+    public function logout()
+    {
+        session_destroy();
+    }
+
 }
