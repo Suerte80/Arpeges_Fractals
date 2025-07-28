@@ -10,7 +10,7 @@
             <input type="password" name="password" id="password">
 
             <div id="form-buttons">
-                <button id="button-signup-form" class="button-glow" type="submit">S'inscrire</button>
+                <button id="button-signup-form" class="button-glow" type="submit">Se connecter</button>
             </div>
         </form>
     </div>

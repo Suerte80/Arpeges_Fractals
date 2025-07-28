@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '../model/Login.php';
+require_once __DIR__ . '/../model/Login.php';
 
 class LoginController{
 
@@ -15,7 +15,7 @@ class LoginController{
     public function handleLogin()
     {
         if( $_SERVER['REQUEST_METHOD'] === 'POST' ){
-            $email = $this->valid_donnees($_POST['email']);
+            $email = $this->valid_donnees($_POST['mail']);
             $password = $this->valid_donnees($_POST['password']);
 
             $errors = [];
@@ -25,18 +25,28 @@ class LoginController{
 
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Email invalide";
 
+            error_log("HEY !");
+
             if(empty($errors)){
                 $login = new Login(PDO);
 
-                if( $login->login($email, password_hash($password, PASSWORD_DEFAULT)) ){
+                if( $login->login($email, $password) ){
 
+                    error_log("ICI");
                     header('Location: /');
                     exit();
 
                 } else{
                     error_log("Echec de la méthode login();");
                 }
+            } else{
+                // Gestion des erreurs dans le mdp etc... ici
+                foreach($errors as $error){
+                    echo $error;
+                }
             }
+        } else{
+            include_once __DIR__ . '/../view/pages/login.php';
         }
     }
 

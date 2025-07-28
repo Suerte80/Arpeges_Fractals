@@ -15,34 +15,42 @@ class Login{
         }
     }
 
-    public function login($email, $hashedPassword)
+    public function login($email, $password)
     {
         // On veut récupérer l'id, le mail, l'username et le password quand pour les email (UNIQUE) et password corresponde.
         $sql = '
             SELECT id, email, username, password, role
             FROM users
-            WHERE email=:email AND password=:hashedPassword;
+            WHERE email=:email;
         ';
 
-        // ON execute la requête
-        $resReq = $this->pdo->executeQuery(
-            $sql,
-            [
-                ':email' => $email,
-                ':hashedPassword' => $hashedPassword
-            ]
-        );
+        $resReq = $this->pdo->executeQuery($sql, array(':email' => $email));
 
+        error_log("FetchAll: " . print_r($resReq, true));
+
+        // On vérifie qu'il existe au moins une ligne ( normalement qu'une ligne vu que le champ email est unique )
         if( count($resReq) > 0 ){
 
-            $_SESSION['user-id'] = $resReq['id'];
-            $_SESSION['user-is-connected'] = true;
-            $_SESSION['user-email'] = $resReq['email'];
-            $_SESSION['user-username'] = $resReq['username'];
-            $_SESSION['user-role'] = $resReq['role'];
+            $resReq = $resReq[0];
 
+            // On vérifie le password avec le hash de la bdd.
+            if(password_verify($password, $resReq['password'])){
+                // On enregistre les différents champs dans une session.
+                $_SESSION['user-id'] = $resReq['id'];
+                $_SESSION['user-is-connected'] = true;
+                $_SESSION['user-email'] = $resReq['email'];
+                $_SESSION['user-username'] = $resReq['username'];
+                $_SESSION['user-role'] = $resReq['role'];
+
+                error_log("Connexion réussis?");
+                return true;
+            }
+
+            error_log("Mot de passe incorrecte?");
+            return false;
         } else{
-            echo "Email ou mot de passe incorrect !";
+            error_log("Email ou mot de passe incorrect !");
+            return false;
         }
     }
 

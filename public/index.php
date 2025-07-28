@@ -4,6 +4,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 require_once __DIR__ . '/../app/model/InitPDO.php';
 
+require_once __DIR__ . '/../app/controller/LoginController.php';
+
 // ON démare la session !
 session_start();
 
@@ -28,15 +30,8 @@ if (isset($routes[$uri])) {
     $pagePath = $routes[$uri];
 
     if (file_exists($pagePath)) {
-        if ($uri === '/signup') {
-            require_once $pagePath;
-            $controller = new SignupController();
-            $controller->handleSignup();
-        } else{
-            require $pagePath;
-        }
 
-        switch($pagePath) {
+        switch($uri) {
             case '/signup':
                 $controller = new SignupController();
                 $controller->handleSignup();
@@ -46,9 +41,8 @@ if (isset($routes[$uri])) {
                 $controller->handleLogin();
                 break;
             default:
+                require $pagePath;
                 break;
-
-            require $pagePath;
         }
     } else {
         http_response_code(500);
