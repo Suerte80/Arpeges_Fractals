@@ -215,8 +215,6 @@ function createNotification(message, duration, type) {
 
     setTimeout(() => {
         toggleNotifVisibility(elementNotif);
-
-        console.log(objMessage);
     }, duration);
 }
 
