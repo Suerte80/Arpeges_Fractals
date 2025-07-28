@@ -44,9 +44,9 @@ class Signup {
         ";
 
         if (!class_exists(\App\Service\MailService::class)) {
-            error_log("🚨 MailService introuvable");
+            error_log("MailService introuvable");
         } else {
-            error_log("✅ MailService bien chargé");
+            error_log("MailService bien chargé");
         }
         
         try{            

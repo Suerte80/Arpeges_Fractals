@@ -12,6 +12,7 @@ RUN curl -sS https://getcomposer.org/installer | php && \
 
 # Installer PHPMailer
 WORKDIR /var/www/html
+# A cause du volume nommé qui écrase /var/www/html a la fin de l'execution du DockerFile il faut faire: "docker compose exec composer require phpmailer/phpmailer"
 RUN composer require phpmailer/phpmailer
 
 # Configurer Apache
