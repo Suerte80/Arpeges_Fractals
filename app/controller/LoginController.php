@@ -18,14 +18,14 @@ class LoginController{
             $email = $this->valid_donnees($_POST['email']);
             $password = $this->valid_donnees($_POST['password']);
 
-            $erreur = [];
+            $errors = [];
 
-            if(empty($email)) $erreur[] = "Email Vide";
-            if(empty($password)) $errreur[] = "Password Vide";
+            if(empty($email)) $errors[] = "Email Vide";
+            if(empty($password)) $errors[] = "Password Vide";
 
-            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $erreur[] = "Email invalide";
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Email invalide";
 
-            if(empty($erreur)){
+            if(empty($errors)){
                 $login = new Login(PDO);
 
                 if( $login->login($email, password_hash($password, PASSWORD_DEFAULT)) ){
