@@ -57,8 +57,8 @@ class SignupController{
                 error_log("Début de l'inscription...");
 
                 if ($signup->signup($firstname, $lastname, $username, $email, $password)) {
-                    include_once __DIR__ . '/../view/pages/signup.php';
-                    echo "Utilisateur inscrit avec succès.";
+                    addNotification("info", "Utilisateur inscrit avec succès.");
+                    header('Location: /');
                 } else {
                     error_log("Échec de la méthode signup()");
                 }
@@ -69,15 +69,14 @@ class SignupController{
                     error_log("❌ " . $erreur);
                 }
 
-                // (Optionnel) afficher les erreurs côté utilisateur :
-                echo "<ul>";
+                // afficher les erreurs côté client
                 foreach ($erreurs as $erreur) {
-                    echo "<li>" . htmlspecialchars($erreur) . "</li>";
+                    addNotification("error", $erreur);
                 }
-                echo "</ul>";
+
+                include_once __DIR__ . '/../view/pages/signup.php';
 }
         } else{
-            error_log("MERDE");
             include_once __DIR__ . '/../view/pages/signup.php';
         }
     }

@@ -69,4 +69,28 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     handleMathGirlsAnimation();
+
+    // On fetch les notifications depuis /api/notifications
+    fetch('/api/notifications')
+        .then(response => response.json())
+        .then(data => {
+            // Exemples de données
+            /*
+            [
+                {"type": "info", "message": "message_texte"},
+                ...
+            ]
+             */
+
+            console.log(data);
+
+            data.forEach(element => {
+                createNotification(
+                    element['message'],
+                    2000,
+                    element['type']
+                );
+            });
+
+        });
 });

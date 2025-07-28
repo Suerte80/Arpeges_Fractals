@@ -25,25 +25,21 @@ class LoginController{
 
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Email invalide";
 
-            error_log("HEY !");
-
             if(empty($errors)){
                 $login = new Login(PDO);
 
                 if( $login->login($email, $password) ){
 
-                    error_log("ICI");
+                    addNotification("info", "Connexion réussis !");
                     header('Location: /');
                     exit();
 
                 } else{
+                    addNotification("warn", "Login ou mot de passe incorrect !");
                     error_log("Echec de la méthode login();");
                 }
             } else{
-                // Gestion des erreurs dans le mdp etc... ici
-                foreach($errors as $error){
-                    echo $error;
-                }
+                addNotification("warn", "Login ou mot de passe incorrect !");
             }
         } else{
             include_once __DIR__ . '/../view/pages/login.php';
