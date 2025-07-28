@@ -334,6 +334,125 @@ body {
   bottom: 55px;
 }
 
+/* Profil - Section principale */
+#profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 60px;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Titre du profil */
+#profile h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--accent1);
+  font-family: 'Fira Code', monospace;
+}
+
+/* Avatar */
+#profile .math-girl-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+#profile .math-girl {
+  max-width: 200px;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 201, 167, 0.4);
+}
+
+/* Informations utilisateur */
+.profile-info {
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--accent1);
+  box-shadow: 0 0 20px rgba(0, 201, 167, 0.1);
+  max-width: 500px;
+  width: 90%;
+  font-size: 1rem;
+  font-family: 'Fira Code', monospace;
+  line-height: 2;
+  text-align: left;
+}
+
+.profile-info p {
+  margin: 0.5rem 0;
+}
+
+.profile-info strong {
+  color: var(--highlight);
+}
+
+/* Bouton déconnexion */
+#profile .button-glow {
+  margin-top: 2rem;
+}
+
+.profile-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+.profile-field label {
+  width: 150px;
+  color: var(--highlight);
+  font-weight: bold;
+}
+
+.field-value {
+  flex: 1;
+  font-family: 'Fira Code', monospace;
+  color: var(--text);
+}
+
+.field-input {
+  flex: 1;
+  font-family: 'Fira Code', monospace;
+  padding: 0.3rem;
+  font-size: 1rem;
+  border: 1px solid var(--accent1);
+  border-radius: 5px;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+.hidden {
+  display: none;
+}
+
+.edit-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--accent1);
+  transition: color 0.3s;
+}
+
+.edit-btn:hover {
+  color: var(--secondary);
+}
+
+.edit-img-btn{
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+
+  font-size: 48px;
+
+  z-index: 100;
+}
+
 #latest-articles,
 #most-viewed-articles,
 #all-articles,

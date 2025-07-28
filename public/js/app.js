@@ -95,4 +95,24 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
         });
+
+    // TODO Refactorisé ce code
+    // On récupère tous les boutons avec la classe .edit-btn
+    document.querySelectorAll(".edit-btn").forEach(button => {
+        button.addEventListener("click", e => {
+            e.preventDefault();
+
+            const target = button.dataset.target;
+            const span = document.querySelector(`.field-value[data-field="${target}"]`);
+            const input = document.querySelector(`input[name="${target}"]`);
+
+            if(target === "image"){
+                
+            } else{
+                span.classList.add("hidden");
+                input.classList.remove("hidden");
+                input.focus();
+            }
+        });
+    });
 });

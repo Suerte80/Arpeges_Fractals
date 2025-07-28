@@ -9,11 +9,16 @@ require_once __DIR__ . '/../app/model/InitPDO.php';
 require_once __DIR__ . '/../app/controller/LoginController.php';
 require_once __DIR__ . '/../app/controller/SignupController.php';
 require_once __DIR__ . '/../app/controller/LogoutController.php';
+require_once __DIR__ . '/../app/controller/ProfileController.php';
 
 // ON démare la session !
 session_start();
 
+// Initialisation de la customPDO
 define('PDO', new InitPDO());
+
+// Initialisation du gestionnaire d'image
+define('IMAGE_MANAGER', new ImageManager(PDO));
 
 $routes = [
     '/' => '../app/view/pages/acceuil.php',
@@ -25,6 +30,8 @@ $routes = [
 
     '/login' => '../app/view/pages/login.php',
     '/logout' => '../app/controller/LogoutController.php',
+
+    '/profile' => '../app/controller/ProfileController.php',
 
     '/api/get_articles' => '../app/api/get_articles.php',
     '/api/notifications' => '../app/api/notifications.php',
@@ -52,6 +59,10 @@ if (isset($routes[$uri])) {
             case '/logout':
                 $controller = new LogoutController();
                 $controller->handleLogout();
+                break;
+            case '/profile':
+                $controller = new ProfileController();
+                $controller->handleProfile();
                 break;
             default:
                 require $pagePath;
