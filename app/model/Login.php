@@ -43,14 +43,13 @@ class Login{
                 $_SESSION['user-role'] = $resReq['role'];
 
                 error_log("Connexion réussis?");
-                return true;
+            } else{
+                error_log("Mot de passe incorrecte?");
+                throw new Exception("Mot de passe incorrecte", 1);
             }
-
-            error_log("Mot de passe incorrecte?");
-            return false;
         } else{
-            error_log("Email ou mot de passe incorrect !");
-            return false;
+            error_log("Email incorrect !");
+            throw new Exception("Email incorrect", 2);
         }
     }
 

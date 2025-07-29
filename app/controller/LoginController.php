@@ -24,18 +24,33 @@ class LoginController{
             if(empty($errors)){
                 $login = new Login(PDO);
 
-                if( $login->login($email, $password) ){
+                try{
+                    $login->login($email, $password);
+                } catch (Exception $e){
+                    $errCode = $e->getCode();
+                    $errMsg = $e->getMessage();
 
-                    addNotification("info", "Connexion réussis !");
-                    header('Location: /');
-                    exit();
-
-                } else{
-                    addNotification("warn", "Login ou mot de passe incorrect !");
-                    error_log("Echec de la méthode login();");
+                    switch ($errCode){
+                        case 1:
+                            addNotification("warn", $errMsg);
+                            header('Location: /login');
+                            return;
+                        case 2:
+                            addNotification("warn", $errMsg);
+                            header('Location: /login');
+                            return;
+                    }
                 }
+
+                // Si tous c'est bien passé
+                addNotification('info', "Connexion réussie !");
+                header('Location: /');
+
             } else{
-                addNotification("warn", "Login ou mot de passe incorrect !");
+                error_log("3");
+
+                addNotification("warn", "Les informations fournis sont non conforme !");
+                header('Location: /login');
             }
         } else{
             include_once __DIR__ . '/../view/pages/login.php';
