@@ -44,4 +44,53 @@ class Profile
             'image_alt' => $image['alt'],
         ];
     }
+
+    public function handleModifyProfile($id, $firstname, $lastname, $username, $email)
+    {
+        $sql = '
+            UPDATE users
+            SET firstname=:firstname,
+                lastname=:lastname,
+                username=:username,
+                email=:email
+            WHERE id=:id;
+        ';
+
+        $sqlWithoutEmail = '
+            UPDATE users
+            SET firstname=:firstname,
+                lastname=:lastname,
+                username=:username
+            WHERE id=:id;
+        ';
+
+        $sqlVerifyUniqueEmail = '
+            SELECT id
+            FROM users
+            WHERE email=:email;
+        ';
+
+        // On vérifie que l'email est unique dans la base de données.
+        if( $_SESSION['user-email'] !== $email ){
+            if( count(
+                    $this->pdo->executeQuery($sqlVerifyUniqueEmail,[':email' => $email])
+                ) != 0 ){
+                throw new Exception("L'adresse email existe déjà !", 1);
+            }
+        }
+
+        // modification du profile dans la bdd.
+        $resReq = $this->pdo->executeQuery($sql,
+            [
+                ':firstname' => $firstname,
+                ':lastname' => $lastname,
+                ':username' => $username,
+                ':email' => $email,
+                ':id' => $id,
+            ]
+        );
+
+        addNotification("info", "Modification du profile effectué.");
+        header('location: /profile');
+    }
 }

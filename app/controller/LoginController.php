@@ -2,21 +2,17 @@
 
 require_once __DIR__ . '/../model/Login.php';
 
+require_once __DIR__ . '/../utils/utils.php';
+
 class LoginController{
 
     // fonction qui valide les données : https://www.pierre-giraud.com/php-mysql-apprendre-coder-cours/securiser-valider-formulaire/
-    private function valid_donnees($donnees){
-        $donnees = trim($donnees);
-        $donnees = stripslashes($donnees);
-        $donnees = htmlspecialchars($donnees);
-        return $donnees;
-    }
     
     public function handleLogin()
     {
         if( $_SERVER['REQUEST_METHOD'] === 'POST' ){
-            $email = $this->valid_donnees($_POST['mail']);
-            $password = $this->valid_donnees($_POST['password']);
+            $email = valid_donnees($_POST['mail']);
+            $password = valid_donnees($_POST['password']);
 
             $errors = [];
 
