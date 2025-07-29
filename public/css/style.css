@@ -109,6 +109,7 @@ body {
   border: none;
   color: inherit;
   font: inherit;
+  font-weight: bold;
   cursor: pointer;
   padding: 0.5em;
 }
