@@ -8,6 +8,8 @@ $allowedMimeTypes = [
     'image/png'
 ];
 
+$storageAvatar = "/../../public/avatars/";
+
 // On vérifie que la méthode est en poste
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -33,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Nommae aléatoire
             $randomName = bin2hex(random_bytes(16)) . '.' . $extention;
             // création de chemin du fichier pour la copie.
-            $destination = __DIR__ . '/../../public/uploads/' . $randomName;
+            $destination = __DIR__ . $storageAvatar . $randomName;
 
             // On vérifie que le déplacement s'est bien passé
             if(move_uploaded_file($tmp, $destination)){
