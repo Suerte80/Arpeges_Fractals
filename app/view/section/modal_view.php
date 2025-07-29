@@ -8,5 +8,7 @@
         </div>
         <h2 class="modal-title">Titre</h2>
         <p class="modal-content-text">Contenu</p>
+
+        <button id="readmore-btn" class="button-glow">Lire plus...</button>
     </div>
 </div>

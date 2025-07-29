@@ -768,6 +768,11 @@ footer.bottom {
   color: var(--secondary);
 }
 
+#readmore-btn{
+  margin-top: 1rem;
+}
+
+/** Pour les notifications **/
 #notification {
   position: fixed;
   top: 1rem;

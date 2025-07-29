@@ -101,6 +101,7 @@ function callbackModalManager(article, modalContainer, articleData) {
         return;
     }
 
+    // C'est le bouton Lire sur les articles.
     button.addEventListener("click", function () {
         // Affiche le contenu de l'article dans la modal
         const modalTitle = modalContainer.querySelector(".modal-title");
@@ -111,6 +112,13 @@ function callbackModalManager(article, modalContainer, articleData) {
         const modalSpanStar = document.querySelector("#modal .favorite-star");
         const articleId = this.parentElement.dataset.id;
         modalContainer.dataset.id = articleId;
+
+        // récupération du bouton lire plus
+        const readmoreBtn = document.querySelector("#readmore-btn");
+        readmoreBtn.addEventListener("click", e => {
+            e.preventDefault();
+            window.location = '/article?id=' + articleId;
+        });
 
         // Modification des éléments de la modal.
         if (favSaved && Array.isArray(favSaved) && favSaved.length > 0) {
