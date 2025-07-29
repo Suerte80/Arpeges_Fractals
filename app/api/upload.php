@@ -41,14 +41,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $basename = basename($destination);
 
                 $sql = '
-                    INSERT INTO images(image_filepath, alt)
+                    INSERT INTO images_avatar(image_filepath, alt)
                     VALUES (:image_filepath, :alt)
                 ';
 
                 $sqlUpdateProfile = '
                     UPDATE users
-                    JOIN images ON images.image_filepath = :image_filepath
-                    SET users.id_avatar = images.id
+                    JOIN images_avatar i ON i.image_filepath = :image_filepath
+                    SET users.id_avatar = i.id
                     WHERE users.id = :id;
                 ';
 
