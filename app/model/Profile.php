@@ -33,7 +33,7 @@ class Profile
 
         // On récupère le filepath de l'image et son alt via le manager d'image.
         $imageManager = IMAGE_MANAGER;
-        $image = $imageManager->getImageFromId($resReq[0]['id_avatar']);
+        $image = $imageManager->getImageAvatarFromId($resReq[0]['id_avatar']);
 
         return [
             'firstname' => $resReq[0]['firstname'],

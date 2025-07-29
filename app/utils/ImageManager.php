@@ -13,9 +13,19 @@ class ImageManager
         $this->pdo = $pdo;
     }
 
-    public function getImageFromId($id)
+    public function getImageAvatarFromId($id)
     {
-        $sql = 'SELECT image_filepath, alt FROM images_avatar WHERE id = :id';
+        return $this->getImageFromIdAndTable($id, 'images_avatar');
+    }
+
+    public function getImageArticleFromId($id)
+    {
+        return $this->getImageFromIdAndTable($id, 'images');
+    }
+
+    private function getImageFromIdAndTable($id, $table)
+    {
+        $sql = "SELECT image_filepath, alt FROM $table WHERE id = :id";
 
         $resReq = $this->pdo->executeQuery($sql, ['id' => $id]);
 

@@ -996,3 +996,72 @@ footer.bottom {
   font-style: italic;
   color: var(--accent1) !important;
 }
+
+/* Pour les articles */
+.article-container {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.article-container article {
+  border: 1px solid var(--accent2);
+  border-radius: 8px;
+  padding: 2rem;
+
+  margin: 4rem auto;
+}
+
+.article-container article:hover{
+  transform: scale(1.02);
+  transition: 0.2s;
+}
+
+.article-container h2 {
+  color: var(--accent1);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.article-container h3 {
+  color: var(--accent1);
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
+.article-container p {
+  margin-bottom: 1.2rem;
+}
+
+.article-container figure {
+  margin: 2rem 0;
+}
+
+.article-container img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(142, 240, 248, 0.2);
+}
+
+.article-container figcaption {
+  font-size: 0.85rem;
+  color: var(--nonselected);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.article-container blockquote {
+  border-left: 4px solid var(--accent1);
+  padding-left: 1rem;
+  color: var(--highlight);
+  margin: 2rem 0;
+  font-style: italic;
+}
+
+.article-container a {
+  color: var(--accent1);
+  text-decoration: underline;
+}

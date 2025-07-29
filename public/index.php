@@ -10,6 +10,7 @@ require_once __DIR__ . '/../app/controller/LoginController.php';
 require_once __DIR__ . '/../app/controller/SignupController.php';
 require_once __DIR__ . '/../app/controller/LogoutController.php';
 require_once __DIR__ . '/../app/controller/ProfileController.php';
+require_once __DIR__ . '/../app/controller/ReadArticleController.php';
 
 // ON démare la session !
 session_start();
@@ -32,6 +33,8 @@ $routes = [
     '/logout' => '../app/controller/LogoutController.php',
 
     '/profile' => '../app/controller/ProfileController.php',
+
+    '/article' => '../app/view/pages/readArticle.php',
 
     '/api/get_articles' => '../app/api/get_articles.php',
     '/api/notifications' => '../app/api/notifications.php',
@@ -64,6 +67,10 @@ if (isset($routes[$uri])) {
             case '/profile':
                 $controller = new ProfileController();
                 $controller->handleProfile();
+                break;
+            case '/article':
+                $controller = new ReadArticleController();
+                $controller->handleReadArticle();
                 break;
             default:
                 require $pagePath;
