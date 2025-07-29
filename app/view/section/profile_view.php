@@ -8,7 +8,7 @@
     <h2>Mon Profil</h2>
 
     <div class="math-girl-wrapper" style="margin: 2rem 0;">
-        <img src="<?= $userInfo['image_filepath'] ?>" alt="<?= $userInfo['image_alt'] ?>" class="math-girl" style="max-width: 200px; border-radius: 50%;">
+        <img id="image-profile" src="<?= '/uploads/' . $userInfo['image_filepath'] ?>" alt="<?= $userInfo['image_alt'] ?>" class="math-girl" style="max-width: 200px; border-radius: 50%;">
         <button class="edit-btn edit-img-btn" data-target="image">✎</button>
     </div>
 
@@ -43,7 +43,7 @@
             </div>
 
             <div class="profile-field centered">
-                <input type="submit" value="Modifier son profile" nam="submit-change-profile" id="submit-change-profile" class="button-glow">
+                <input type="submit" value="Modifier son profile" name="submit-change-profile" id="submit-change-profile" class="button-glow">
             </div>
         </form>
     </div>

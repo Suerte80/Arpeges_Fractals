@@ -70,31 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     handleMathGirlsAnimation();
 
-    // On fetch les notifications depuis /api/notifications
-    fetch('/api/notifications')
-        .then(response => response.json())
-        .then(data => {
-            // Exemples de données
-            /*
-            [
-                {"type": "info", "message": "message_texte"},
-                ...
-            ]
-             */
-
-            console.log(data);
-
-            if( Array.isArray(data) ) {
-                data.forEach(element => {
-                    createNotification(
-                        element['message'],
-                        2000,
-                        element['type']
-                    );
-                });
-            }
-
-        });
+    updateNotification();
 
     // TODO Refactorisé ce code
     // On récupère tous les boutons avec la classe .edit-btn
@@ -107,7 +83,49 @@ document.addEventListener("DOMContentLoaded", () => {
             const input = document.querySelector(`input[name="${target}"]`);
 
             if(target === "image"){
-                
+                let input = document.createElement("input");
+                input.type = 'file';
+                input.accept = 'image/*';
+
+                console.log(input);
+
+                input.addEventListener("change", e => {
+                    const file = e.target.files[0];
+                    if(!file) {
+                        alert("Aucun fichier séléctionner !");
+                        return;
+                    }
+
+                    if(!file.type.startsWith("image/")) {
+                        alert("Seuls les fichiers image sont autorisés.");
+                        return;
+                    }
+
+                    const formData = new FormData();
+                    formData.append('profile-image-update', 'true');
+                    formData.append("image", file);
+
+                    fetch('/api/upload', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+
+
+                            // On met à jour l'image de profile
+                            if( data.success){
+                                // TODO Il faut que le serveur envoie la nom de fichier.
+                                document.querySelector('#image-profile').src = data.filename;
+                            }
+
+                            updateNotification();
+                        })
+                    .catch(err => console.log(err));
+                });
+
+                input.click();
             } else{
                 span.classList.add("hidden");
                 input.classList.remove("hidden");

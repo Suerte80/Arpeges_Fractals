@@ -219,6 +219,38 @@ function createNotification(message, duration, type) {
 }
 
 /**
+ * Met a jours les notifications qui sotn stocké sur le serveur distant /api/notifications
+ */
+function updateNotification()
+{
+    // On fetch les notifications depuis /api/notifications
+    fetch('/api/notifications')
+        .then(response => response.json())
+        .then(data => {
+            // Exemples de données
+            /*
+            [
+                {"type": "info", "message": "message_texte"},
+                ...
+            ]
+             */
+
+            console.log(data);
+
+            if( Array.isArray(data) ) {
+                data.forEach(element => {
+                    createNotification(
+                        element['message'],
+                        2000,
+                        element['type']
+                    );
+                });
+            }
+
+        });
+}
+
+/**
  * Afficher désaffiche la notification de l'écran.
  * @param {HTMLElement} elementNotif Element html de la notification.
  */

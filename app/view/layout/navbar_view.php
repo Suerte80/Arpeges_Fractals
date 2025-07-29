@@ -9,7 +9,7 @@
             <div class="dropdown">
                 <button class="dropbtn">Mon compte ▾</button>
                 <div class="dropdown-content">
-                    <a href="/account">Profil</a>
+                    <a href="/profile">Profil</a>
                     <a href="/logout">Déconnexion</a>
                 </div>
             </div>
