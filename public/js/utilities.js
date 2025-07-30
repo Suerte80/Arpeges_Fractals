@@ -221,8 +221,7 @@ function createNotification(message, duration, type) {
 /**
  * Met a jours les notifications qui sotn stocké sur le serveur distant /api/notifications
  */
-function updateNotification()
-{
+function updateNotification() {
     // On fetch les notifications depuis /api/notifications
     fetch('/api/notifications')
         .then(response => response.json())
@@ -235,9 +234,7 @@ function updateNotification()
             ]
              */
 
-            console.log(data);
-
-            if( Array.isArray(data) ) {
+            if (Array.isArray(data)) {
                 data.forEach(element => {
                     createNotification(
                         element['message'],

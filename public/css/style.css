@@ -1080,6 +1080,20 @@ footer.bottom {
   /* Optionnel pour plus de contraste */
 }
 
+input::file-selector-button {
+  background-color: transparent;
+  color: var(--accent1);
+  border: 2px solid var(--accent1);
+  padding: 0.6rem 1.2rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 201, 167, 0.5);
+}
+
 .article-input {
   width: 100%;
   font-size: 1.5rem;

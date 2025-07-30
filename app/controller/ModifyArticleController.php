@@ -54,6 +54,13 @@ class ModifyArticleController
                 exit();
             }
 
+            // Vérification de l'image a modifié
+            $check = getimagesize($_FILE['image']['tmp_name'] ?? null);
+            if ($check) {
+            } else {
+                $check = null;
+            }
+
             try {
                 $model = new ReadArticle(PDO);
                 $model->updateArticle($id, $title, $content);

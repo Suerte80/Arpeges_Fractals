@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var Array $userInfo
  */
@@ -8,7 +9,7 @@
     <h2>Mon Profil</h2>
 
     <div class="math-girl-wrapper" style="margin: 2rem 0;">
-        <img id="image-profile" src="<?= '/uploads/' . $userInfo['image_filepath'] ?>" alt="<?= $userInfo['image_alt'] ?>" class="math-girl" style="max-width: 200px; border-radius: 50%;">
+        <img id="image-profile" src="<?= '/avatars/' . $userInfo['image_filepath'] ?>" alt="<?= $userInfo['image_alt'] ?>" class="math-girl" style="max-width: 200px; border-radius: 50%;">
         <button class="edit-btn edit-img-btn" data-target="image">✎</button>
     </div>
 

@@ -3,88 +3,54 @@
 /* TODO Gèrer les erreur */
 // TODO ajouter un alt
 
+/*
+ * @var IMAGE_MANAGER ImageManager
+ */
+
 $allowedMimeTypes = [
     'image/jpeg',
     'image/png'
 ];
 
 $storageAvatar = "/../../public/avatars/";
+$storageArticle = "/../../public/article_image/";
 
 // On vérifie que la méthode est en poste
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // On vérifie que la session est bien ouverte et l'utilisateur est connecté.
-    if(isset($_SESSION['user-is-connected']) && isset($_POST['profile-image-update'])){
+    if (isset($_SESSION['user-is-connected']) && isset($_POST['profile-image-update'])) {
 
-        // ON vérifie que le fichier a bien été uploadé et qu'il n'y a pas d'erreur
-        if( isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK ){
+        // On vérifie qu'on a bien le message profile-image-update dans le POST
+        // C'est pour mettre a jours l'image de profil de l'utilisateur.
+        if (isset($_POST['profile-image-update'])) {
+            try {
+                // On récupère l'image de l'avatar de l'utilisateur.
+                $ret = IMAGE_MANAGER->uploadImage(StorageType::avatar);
 
-            // Vérification de type de fichier s'il est présent dans la liste
-            $finfo = new finfo(FILEINFO_MIME_TYPE);
-            $mimeType = $finfo->file($_FILES['image']['tmp_name']);
-            $ext = strtolower($mimeType);
-            if(!in_array($ext, $allowedMimeTypes)){
-                addNotification("error", "Fichier non pris en charge");
-                exit();
-            }
-
-            // Récupération du nom de fichier temporaire
-            $tmp = $_FILES['image']['tmp_name'];
-            // Récupèration de l'extension du fichier
-            $extention = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-            // Nommae aléatoire
-            $randomName = bin2hex(random_bytes(16)) . '.' . $extention;
-            // création de chemin du fichier pour la copie.
-            $destination = __DIR__ . $storageAvatar . $randomName;
-
-            // On vérifie que le déplacement s'est bien passé
-            if(move_uploaded_file($tmp, $destination)){
-
-                $basename = basename($destination);
-
-                $sql = '
-                    INSERT INTO images_avatar(image_filepath, alt)
-                    VALUES (:image_filepath, :alt)
-                ';
-
-                $sqlUpdateProfile = '
-                    UPDATE users
-                    JOIN images_avatar i ON i.image_filepath = :image_filepath
-                    SET users.id_avatar = i.id
-                    WHERE users.id = :id;
-                ';
-
-                $query = PDO->executeQuery($sql, [
-                    ':image_filepath' => $basename,
-                    ':alt' => "Image de profil de " . htmlspecialchars($_SESSION['user-username'])
-                ]);
-
-                $queryUpdateAvatar = PDO->executeQuery($sqlUpdateProfile, [
-                    ':id' => $_SESSION['user-id'],
-                    ':image_filepath' => $basename
-                ]);
-
+                // On envoie la notification et la réponse JSON
                 addNotification("info", "Upload de l'image fait !");
                 header('Content-Type: application/json');
                 echo json_encode([
                     'success' => true,
                     'message' => "Upload de l'image fait !",
-                    'filename' => '/uploads/' . $basename,
+                    'filename' => $ret['filename'],
                 ]);
-            } else{
-                addNotification("error", "Impossible upload");
-                echo json_encode(['success' => false, 'message' => "Fichier manquant"]);
-                exit();
+            } catch (Exception $e) {
+                // En cas d'erreur on envoi le message d'erreur.
+                $message = $e->getMessage();
+
+                http_response_code(405);
+                echo json_encode(['success' => false, 'message' => $message]);
             }
-
-        } else{
-            addNotification("error", "Impossible upload");
-            echo json_encode(['success' => false, 'message' => "Accès refusé"]);
-            exit();
+        } else {
+            // Si on n'a pas le bon message envoyé en POST 
+            http_response_code(405);
+            echo json_encode(['success' => false, 'message' => "Méthode non autorisée"]);
         }
-    } else{
+    } else {
+        // Si l'utilisateur n'est pas connecté.
         http_response_code(405);
-        echo json_encode(['success' => false, 'message' => "Méthode non autorisée"]);
+        echo json_encode(['success' => false, 'message' => "Vous n'êtes pas connecté !"]);
     }
-
 }

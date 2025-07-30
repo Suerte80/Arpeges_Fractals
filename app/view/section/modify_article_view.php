@@ -6,7 +6,7 @@
 ?>
 
 <main class="article-container">
-    <form action="/modify-article" method="POST" class="form-edit-article">
+    <form action="/modify-article" method="POST" class="form-edit-article" enctype="multipart/form-data">
         <input type="hidden" name="article-id" value="<?= $resArticle['article-id'] ?>">
 
         <header class="article-header">
@@ -20,18 +20,19 @@
 
         <figure class="article-figure">
             <img src="<?= $resArticle['image_pres']['filepath'] ?>" alt="Illustration de l'article" class="article-img" />
+            <input type="file" name="image" id="form-image" accept="image/*"">
         </figure>
 
-        <section class="article-content">
+        <section class=" article-content">
             <label for="article-content">
                 <h3>Contenu</h3>
             </label>
             <textarea id="article-content" name="content" rows="20" class="article-textarea"><?= htmlspecialchars($resArticle['content']) ?></textarea>
-        </section>
+            </section>
 
-        <div class="article-actions">
-            <button type="submit" class="button-glow">Enregistrer les modifications</button>
-            <a href="/article?id=<?= $resArticle['article-id'] ?>" class="button-secondary">Annuler</a>
-        </div>
+            <div class="article-actions">
+                <button type="submit" class="button-glow">Enregistrer les modifications</button>
+                <a href="/article?id=<?= $resArticle['article-id'] ?>" class="button-secondary">Annuler</a>
+            </div>
     </form>
 </main>
