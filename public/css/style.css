@@ -118,7 +118,7 @@ body {
   display: none;
   position: absolute;
   background-color: white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   min-width: 150px;
   z-index: 1;
 }
@@ -444,7 +444,7 @@ body {
   color: var(--secondary);
 }
 
-.edit-img-btn{
+.edit-img-btn {
   position: absolute;
   right: -20px;
   bottom: -20px;
@@ -768,7 +768,7 @@ footer.bottom {
   color: var(--secondary);
 }
 
-#readmore-btn{
+#readmore-btn {
   margin-top: 1rem;
 }
 
@@ -1015,7 +1015,7 @@ footer.bottom {
   margin: 4rem auto;
 }
 
-.article-container article:hover{
+.article-container article:hover {
   transform: scale(1.02);
   transition: 0.2s;
 }
@@ -1064,4 +1064,60 @@ footer.bottom {
 .article-container a {
   color: var(--accent1);
   text-decoration: underline;
+}
+
+.form-edit-article {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  border: 2px solid var(--secondary);
+  /* Bordure orange */
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 0 12px rgba(255, 102, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.02);
+  /* Optionnel pour plus de contraste */
+}
+
+.article-input {
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--accent1);
+  border-radius: 6px;
+  background: var(--primary);
+  color: var(--text);
+}
+
+.article-textarea {
+  width: 100%;
+  font-size: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--accent1);
+  border-radius: 6px;
+  background: var(--primary);
+  color: var(--text);
+  resize: vertical;
+}
+
+.article-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.button-secondary {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--accent1);
+  color: var(--text);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.button-secondary:hover {
+  background-color: var(--accent1);
+  color: black;
 }

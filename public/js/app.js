@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modifyArticleBtn.addEventListener("click", e => {
             e.preventDefault();
 
-            window.location = '/article/modification?id=' + modifyArticleBtn.dataset.id;
+            window.location = '/modify-article?id=' + modifyArticleBtn.dataset.id;
 
             console.log('Click');
         });

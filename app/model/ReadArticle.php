@@ -57,4 +57,23 @@ class ReadArticle
             'article-id' => $req[0]['article_id'],
         ];
     }
+
+    public function updateArticle($id, $title, $content): void
+    {
+        $sql = '
+            UPDATE articles
+            SET title = :title, content = :content
+            WHERE id = :id
+        ';
+
+        try {
+            $this->pdo->executeQuery($sql, [
+                ':title' => $title,
+                ':content' => $content,
+                ':id' => $id,
+            ]);
+        } catch (PDOException $e) {
+            throw new Exception("Impossible de modifier l'article", 2);
+        }
+    }
 }
