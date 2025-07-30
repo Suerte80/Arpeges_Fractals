@@ -15,11 +15,27 @@ enum StorageType
         };
     }
 
-    public function getTableName(): string
+    public function getTableImageName(): string
     {
         return match ($this) {
             self::avatar => ImageManager::$tableAvatar,
             self::article => ImageManager::$tableArticle,
+        };
+    }
+
+    public function getTableResourceName(): string
+    {
+        return match ($this) {
+            self::avatar => ImageManager::$tableResourceNameAvatar,
+            self::article => ImageManager::$tableResourceNameArticle,
+        };
+    }
+
+    public function getFieldImage(): string
+    {
+        return match ($this) {
+            self::avatar => ImageManager::$fieldImageAvatar,
+            self::article => ImageManager::$fieldImageArticle,
         };
     }
 
@@ -46,6 +62,12 @@ class ImageManager
 
     public static $publicStorageAvatar = '/avatars/';
     public static $publicStorageArticle = '/articles/';
+
+    public static $tableResourceNameAvatar = 'users';
+    public static $tableResourceNameArticle = 'articles';
+
+    public static $fieldImageAvatar = 'id_avatar';
+    public static $fieldImageArticle = 'id_image_pres';
 
     public static $tableAvatar = 'images_avatar';
     public static $tableArticle = 'images';
@@ -92,7 +114,7 @@ class ImageManager
      * Upload une image dans le dossier approprié (c'est storageType qui le détermine)
      * @param StorageType $storageType Le type de stockage (avatar ou article)
      */
-    public function uploadImage(StorageType $storageType): array
+    public function uploadImage(StorageType $storageType, int $id): array
     {
         // ON vérifie que le fichier a bien été uploadé et qu'il n'y a pas d'erreur
         if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
@@ -118,27 +140,24 @@ class ImageManager
             if (move_uploaded_file($tmp, $destination)) {
 
                 $basename = basename($destination);
-                $tableName = $storageType->getTableName();
+                $tableImagesName = $storageType->getTableImageName();
+                $tableRessourceName = $storageType->getTableResourceName();
+                $fieldImage = $storageType->getFieldImage();
 
-                /*
-                 * Deux requêtes sql en une:
-                 *  * Insère l'image dans la table appropriée
-                 *  * Met à jour l'id_avatar de l'utilisateur connecté
-                 */
                 $sql = "
-                        INSERT INTO $tableName (image_filepath, alt)
-                        VALUES (:image_filepath, :alt);
-                        
-                        UPDATE users
-                        SET id_avatar = LAST_INSERT_ID()
-                        WHERE id = :id;
-                    ";
+                            INSERT INTO $tableImagesName (image_filepath, alt)
+                            VALUES (:image_filepath, :alt);
+                            
+                            UPDATE $tableRessourceName
+                            SET $fieldImage = LAST_INSERT_ID()
+                            WHERE id = :id;
+                        ";
 
                 // On exécute la requête
                 PDO->executeQuery($sql, [
                     ':image_filepath' => $basename,
                     ':alt' => "Image de profil de " . htmlspecialchars($_SESSION['user-username']),
-                    ':id' => $_SESSION['user-id']
+                    ':id' => $id
                 ]);
 
                 // On retourne le message de succès et le chemin de l'image.

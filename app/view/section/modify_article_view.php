@@ -19,7 +19,7 @@
         </header>
 
         <figure class="article-figure">
-            <img src="<?= $resArticle['image_pres']['filepath'] ?>" alt="Illustration de l'article" class="article-img" />
+            <img src="<?= ImageManager::$publicStorageArticle . $resArticle['image_pres']['filepath'] ?>" alt="Illustration de l'article" class="article-img" />
             <input type="file" name="image" id="form-image" accept="image/*"">
         </figure>
 

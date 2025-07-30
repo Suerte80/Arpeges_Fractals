@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @var IMAGE_MANAGER ImageManager
+ */
+
 require_once __DIR__ . '/../model/ReadArticle.php';
 
 require_once __DIR__ . '/../utils/utils.php';
@@ -20,18 +24,9 @@ class ModifyArticleController
                 $model = new ReadArticle(PDO);
                 $resArticle = $model->retrieveArticle($id);
             } catch (Exception $e) {
-                switch ($e->getCode()) {
-                    case 1:
-                        addNotification("error", $e->getMessage());
-                        header('location: /');
-                        exit();
-                    case 2:
-                        addNotification("error", $e->getMessage());
-                        header("Location: /");
-                        exit();
-                    default:
-                        break;
-                }
+                addNotification("error", $e->getMessage());
+                header("Location: /");
+                exit();
             }
 
             include(__DIR__ . '/../view/pages/modifyArticle.php');
@@ -54,21 +49,23 @@ class ModifyArticleController
                 exit();
             }
 
-            // Vérification de l'image a modifié
-            $check = getimagesize($_FILE['image']['tmp_name'] ?? null);
-            if ($check) {
-            } else {
-                $check = null;
-            }
-
             try {
+                // On modifie le contenu de l'article
                 $model = new ReadArticle(PDO);
                 $model->updateArticle($id, $title, $content);
+
+                // On modifie l'image si elle a été envoyée
+                if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                    IMAGE_MANAGER->uploadImage(StorageType::article, $_POST['article-id']);
+                }
+
+                // Affichage de la notification
                 addNotification("success", "Article modifié avec succès !");
                 header('location: /article?id=' . $id);
             } catch (Exception $e) {
                 addNotification("error", $e->getMessage());
                 header('location: /modify-article?id=' . $id);
+                exit();
             }
         } else {
             addNotification("error", "Article introuvable");

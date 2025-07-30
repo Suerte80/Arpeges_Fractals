@@ -19,14 +19,14 @@ $storageArticle = "/../../public/article_image/";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // On vérifie que la session est bien ouverte et l'utilisateur est connecté.
-    if (isset($_SESSION['user-is-connected']) && isset($_POST['profile-image-update'])) {
+    if (isset($_SESSION['user-is-connected'])) {
 
         // On vérifie qu'on a bien le message profile-image-update dans le POST
         // C'est pour mettre a jours l'image de profil de l'utilisateur.
         if (isset($_POST['profile-image-update'])) {
             try {
                 // On récupère l'image de l'avatar de l'utilisateur.
-                $ret = IMAGE_MANAGER->uploadImage(StorageType::avatar);
+                $ret = IMAGE_MANAGER->uploadImage(StorageType::avatar, $_SESSION['user-id']);
 
                 // On envoie la notification et la réponse JSON
                 addNotification("info", "Upload de l'image fait !");
