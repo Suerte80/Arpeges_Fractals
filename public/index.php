@@ -12,6 +12,7 @@ require_once __DIR__ . '/../app/controller/LogoutController.php';
 require_once __DIR__ . '/../app/controller/ProfileController.php';
 require_once __DIR__ . '/../app/controller/ReadArticleController.php';
 require_once __DIR__ . '/../app/controller/ModifyArticleController.php';
+require_once __DIR__ . '/../app/controller/AdminPanelController.php';
 
 // ON démare la session !
 session_start();
@@ -38,6 +39,10 @@ $routes = [
     '/article' => '../app/view/pages/readArticle.php',
     '/modify-article' => '../app/view/pages/modifyArticle.php',
     '/create-article' => '../app/view/pages/createArticle.php', // La je ne sais pas quoi faire.
+
+    '/admin/user/panel' => '../app/view/pages/adminPanel.php',
+    '/admin/user/update-role' => '../app/controller/AdminPanelController.php',
+    '/admin/user/delete-user' => '../app/controller/AdminPanelController.php',
 
     '/api/get_articles' => '../app/api/get_articles.php',
     '/api/notifications' => '../app/api/notifications.php',
@@ -83,6 +88,18 @@ if (isset($routes[$uri])) {
                 $controller = new ModifyArticleController();
                 $controller->handleCreateArticle();
                 echo "Je suis passé par la !";
+                break;
+            case '/admin/user/panel':
+                $controller = new AdminPanelController();
+                $controller->handleAdminPanel();
+                break;
+            case '/admin/user/update-role':
+                $controller = new AdminPanelController();
+                $controller->handleUpdateUserRole();
+                break;
+            case '/admin/user/delete-user':
+                $controller = new AdminPanelController();
+                $controller->handleDeleteUser();
                 break;
             default:
                 require $pagePath;

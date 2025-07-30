@@ -1,6 +1,6 @@
 <nav id="sec_navbar" class="navbar" aria-label="navbar">
     <div class="nav-title">
-        <a href="/" aria-label="Page d’accueil"><img src="images/logo_40x40.png" alt="Logo du site"></a>
+        <a href="/" aria-label="Page d’accueil"><img src="/images/logo_40x40.png" alt="Logo du site"></a>
         <h1>Arpèges Fractals</h1>
     </div>
 
@@ -13,6 +13,11 @@
                     <?php if (isset($_SESSION['user-role']) && ($_SESSION['user-role'] == 'creator' || $_SESSION['user-role'] == 'admin')): ?>
                         <a href="/create-article">Créer un article</a>
                     <?php endif; ?>
+
+                    <?php if (isset($_SESSION['user-role']) && $_SESSION['user-role'] == 'admin'): ?>
+                        <a href="/admin/user/panel">Panneau d'administration</a>
+                    <?php endif; ?>
+
                     <a href="/logout">Déconnexion</a>
                 </div>
             </div>
