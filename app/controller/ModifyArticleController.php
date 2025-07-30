@@ -79,12 +79,19 @@ class ModifyArticleController
     {
         // On vérifie la connexion
         if (isset($_SESSION['user-id'])) {
-            // On créer dans la base de données un article vide
-            $model = new ReadArticle(PDO);
-            $id = $model->createEmptyArticle($_SESSION['user-id']);
+            // Vérification des droits pour la création d'article ( seul un role creator ou admin le peut le faire )
+            if (isset($_SESSION['user-role']) && ($_SESSION['user-role'] == 'creator' || $_SESSION['user-role'] == 'admin')) {
+                // On créer dans la base de données un article vide
+                $model = new ReadArticle(PDO);
+                $id = $model->createEmptyArticle($_SESSION['user-id']);
 
-            // On va sur la page de modification d'article
-            header('location: /modify-article?id=' . $id);
+                // On va sur la page de modification d'article
+                header('location: /modify-article?id=' . $id);
+            } else {
+                // Si l'utilisateur n'a pas le droit de créer un article, on le redirige vers la page d'accueil
+                addNotification("error", "Vous n'avez pas le droit de créer un article.");
+                header('location: /');
+            }
         } else {
             // Si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion
             addNotification("error", "Vous devez être connecté pour créer un article.");

@@ -10,7 +10,9 @@
                 <button class="dropbtn">Mon compte ▾</button>
                 <div class="dropdown-content">
                     <a href="/profile">Profil</a>
-                    <a href="/create-article">Créer un article</a>
+                    <?php if (isset($_SESSION['user-role']) && ($_SESSION['user-role'] == 'creator' || $_SESSION['user-role'] == 'admin')): ?>
+                        <a href="/create-article">Créer un article</a>
+                    <?php endif; ?>
                     <a href="/logout">Déconnexion</a>
                 </div>
             </div>
