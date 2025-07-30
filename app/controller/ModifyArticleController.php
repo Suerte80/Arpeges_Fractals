@@ -12,6 +12,21 @@ class ModifyArticleController
 {
     public function handleModifyArticle()
     {
+        // On vérifie que l'utilisateur est connecté
+        if (!isset($_SESSION['user-id'])) {
+            addNotification("error", "Vous devez être connecté pour modifier un article.");
+            header('location: /login');
+            exit();
+        }
+
+        // On vérifie que l'utilisateur a le droit de modifier un article ( seul un role creator ou admin le peut le faire )
+        if (!isset($_SESSION['user-role']) || ($_SESSION['user-role'] != 'creator' && $_SESSION['user-role'] != 'admin')) {
+            addNotification("error", "Vous n'avez pas le droit de modifier un article.");
+            header('location: /');
+            exit();
+        }
+
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
             $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
             if (!$id) {
