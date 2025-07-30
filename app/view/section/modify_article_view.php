@@ -24,10 +24,18 @@
         </figure>
 
         <section class=" article-content">
-            <label for="article-content">
-                <h3>Contenu</h3>
+            <label for="article-description">
+                <h3>Description</h3>
             </label>
-            <textarea id="article-content" name="content" rows="20" class="article-textarea"><?= htmlspecialchars($resArticle['content']) ?></textarea>
+
+            <textarea id="article-description" name="description" rows="5" class="article-textarea"><?= htmlspecialchars($resArticle['description']) ?></textarea>
+            </section>
+
+            <section class=" article-content">
+                <label for="article-content">
+                    <h3>Contenu</h3>
+                </label>
+                <textarea id="article-content" name="content" rows="20" class="article-textarea"><?= htmlspecialchars($resArticle['content']) ?></textarea>
             </section>
 
             <div class="article-actions">

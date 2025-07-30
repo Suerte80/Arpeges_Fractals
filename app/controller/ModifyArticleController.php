@@ -40,6 +40,8 @@ class ModifyArticleController
 
             $title = htmlspecialchars(trim($_POST['title'] ?? ''));
 
+            $description = htmlspecialchars(trim($_POST['description'] ?? ''));
+
             $allowedTags = '<p><br><strong><em><ul><ol><li><blockquote><a><h2><h3>';
             $content = trim(strip_tags($_POST['content'] ?? '', $allowedTags));
 
@@ -52,7 +54,7 @@ class ModifyArticleController
             try {
                 // On modifie le contenu de l'article
                 $model = new ReadArticle(PDO);
-                $model->updateArticle($id, $title, $content);
+                $model->updateArticle($id, $title, $description, $content);
 
                 // On modifie l'image si elle a été envoyée
                 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {

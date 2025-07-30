@@ -23,7 +23,7 @@ class ReadArticle
     public function retrieveArticle($id): array
     {
         $sql = '
-            SELECT articles.id article_id, parution_date, views, id_image_pres, title, content, users.id user_id, users.firstname, users.lastname
+            SELECT articles.id article_id, parution_date, views, id_image_pres, title, description, content, users.id user_id, users.firstname, users.lastname
             FROM articles
             JOIN users ON articles.created_by = users.id
             WHERE articles.id = :id
@@ -40,6 +40,7 @@ class ReadArticle
         $views = $req[0]['views'];
         $id_image_pres = IMAGE_MANAGER->getImageArticleFromId($req[0]['id_image_pres']);
         $title = $req[0]['title'];
+        $description = $req[0]['description'];
         $content = $req[0]['content'];
         $creatorFirstname = $req[0]['firstname'];
         $creatorLastname = $req[0]['lastname'];
@@ -50,6 +51,7 @@ class ReadArticle
             'views' => $views,
             'image_pres' => $id_image_pres,
             'title' => $title,
+            'description' => $description,
             'content' => $content,
             'creator_firstname' => $creatorFirstname,
             'creator_lastname' => $creatorLastname,
@@ -58,17 +60,18 @@ class ReadArticle
         ];
     }
 
-    public function updateArticle($id, $title, $content): void
+    public function updateArticle($id, $title, $description, $content): void
     {
         $sql = '
             UPDATE articles
-            SET title = :title, content = :content
+            SET title = :title, content = :content, description = :description
             WHERE id = :id
         ';
 
         try {
             $this->pdo->executeQuery($sql, [
                 ':title' => $title,
+                ':description' => $description,
                 ':content' => $content,
                 ':id' => $id,
             ]);
