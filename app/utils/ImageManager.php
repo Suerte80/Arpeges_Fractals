@@ -57,11 +57,11 @@ class ImageManager
         'image/png'
     ];
 
-    public static $storageAvatar = '/../../public/avatars/';
-    public static $storageArticle = '/../../public/articles/';
+    public static $storageAvatar = '/../../public/uploads/avatars/';
+    public static $storageArticle = '/../../public/uploads/articles/';
 
-    public static $publicStorageAvatar = '/avatars/';
-    public static $publicStorageArticle = '/articles/';
+    public static $publicStorageAvatar = '/uploads/avatars/';
+    public static $publicStorageArticle = '/uploads/articles/';
 
     public static $tableResourceNameAvatar = 'users';
     public static $tableResourceNameArticle = 'articles';
