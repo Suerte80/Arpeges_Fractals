@@ -11,7 +11,7 @@ class ReadArticle
      */
     public function __construct($pdo)
     {
-        if($pdo == null)
+        if ($pdo == null)
             throw new Exception("Pdo not set", 1);
         $this->pdo = $pdo;
     }
@@ -20,16 +20,16 @@ class ReadArticle
      * @param $id L'id de l'article.
      * @return Array retourne les informations sur l'article en question.
      */
-    public function retrieveArticle($id): Array
+    public function retrieveArticle($id): array
     {
         $sql = '
-            SELECT parution_date, views, id_image_pres, title, content, users.firstname, users.lastname
+            SELECT articles.id article_id, parution_date, views, id_image_pres, title, content, users.id user_id, users.firstname, users.lastname
             FROM articles
             JOIN users ON articles.created_by = users.id
             WHERE articles.id = :id
         ';
 
-        try{
+        try {
             $req = $this->pdo->executeQuery($sql, [':id' => $id]);
         } catch (PDOException $e) {
             throw new Exception("Impossible de récupèrer l'article", 2);
@@ -43,6 +43,7 @@ class ReadArticle
         $content = $req[0]['content'];
         $creatorFirstname = $req[0]['firstname'];
         $creatorLastname = $req[0]['lastname'];
+        $userCanEdit = ($req[0]['user_id'] == $_SESSION['user-id'] || $_SESSION['user-role'] == 'admin');
 
         return [
             'parution_date' => $parutionDate,
@@ -52,6 +53,8 @@ class ReadArticle
             'content' => $content,
             'creator_firstname' => $creatorFirstname,
             'creator_lastname' => $creatorLastname,
+            'user-can-edit' => $userCanEdit,
+            'article-id' => $req[0]['article_id'],
         ];
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $resArticle Array
  */
@@ -9,6 +10,9 @@
         <header class="article-header">
             <h2 class="article-title"><?= $resArticle['title'] ?></h2>
             <p class="article-meta">Publié le <time datetime="<?= $resArticle['parution_date'] ?>"><?= $resArticle['parution_date'] ?></time> par <strong class="article-author"><?= $resArticle['creator_firstname'] . ' ' . $resArticle['creator_lastname'] ?></strong></p>
+            <?php if ($resArticle['user-can-edit']): ?>
+                <button class="button-glow" id="modify-article-btn" data-id="<?= $resArticle['article-id'] ?>">Modifier</button>
+            <?php endif; ?>
         </header>
 
         <figure class="article-figure">

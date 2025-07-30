@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const span = document.querySelector(`.field-value[data-field="${target}"]`);
             const input = document.querySelector(`input[name="${target}"]`);
 
-            if(target === "image"){
+            if (target === "image") {
                 let input = document.createElement("input");
                 input.type = 'file';
                 input.accept = 'image/*';
@@ -91,12 +91,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 input.addEventListener("change", e => {
                     const file = e.target.files[0];
-                    if(!file) {
+                    if (!file) {
                         alert("Aucun fichier séléctionner !");
                         return;
                     }
 
-                    if(!file.type.startsWith("image/")) {
+                    if (!file.type.startsWith("image/")) {
                         alert("Seuls les fichiers image sont autorisés.");
                         return;
                     }
@@ -115,22 +115,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                             // On met à jour l'image de profile
-                            if( data.success){
+                            if (data.success) {
                                 // TODO Il faut que le serveur envoie la nom de fichier.
                                 document.querySelector('#image-profile').src = data.filename;
                             }
 
                             updateNotification();
                         })
-                    .catch(err => console.log(err));
+                        .catch(err => console.log(err));
                 });
 
                 input.click();
-            } else{
+            } else {
                 span.classList.add("hidden");
                 input.classList.remove("hidden");
                 input.focus();
             }
         });
     });
+
+    const modifyArticleBtn = document.querySelector("#modify-article-btn");
+    if (modifyArticleBtn) {
+        modifyArticleBtn.addEventListener("click", e => {
+            e.preventDefault();
+
+            window.location = '/article/modification?id=' + modifyArticleBtn.dataset.id;
+
+            console.log('Click');
+        });
+    }
 });
