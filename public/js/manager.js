@@ -135,7 +135,7 @@ function callbackModalManager(article, modalContainer, articleData) {
             modalSpanStar.innerHTML = "&#9825;";
         }
         if (modalTitle) modalTitle.textContent = articleData.title;
-        if (modalContent) modalContent.textContent = articleData.content;
+        if (modalContent) modalContent.innerHTML = getFirstParagraph(articleData.content); // TODO Ici je ne sais pas ???? C'esty protèger dans le backend mais???
 
         // On affiche la modal.
         removeClass(modalContainer, "hidden");
@@ -153,6 +153,14 @@ function callbackModalManager(article, modalContainer, articleData) {
             handleScrollCapability();
         }
     });
+}
+
+function getFirstParagraph(content) {
+    const div = document.createElement("div");
+    div.innerHTML = content;
+
+    const firstP = div.querySelector("p");
+    return firstP ? firstP.innerHTML : "";
 }
 
 function callBackHistoryOnClick(modalHisto) {
