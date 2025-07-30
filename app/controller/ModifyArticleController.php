@@ -72,4 +72,21 @@ class ModifyArticleController
             header("Location: /");
         }
     }
+
+    public function handleCreateArticle()
+    {
+        // On vérifie la connexion
+        if (isset($_SESSION['user-id'])) {
+            // On créer dans la base de données un article vide
+            $model = new ReadArticle(PDO);
+            $id = $model->createEmptyArticle($_SESSION['user-id']);
+
+            // On va sur la page de modification d'article
+            header('location: /modify-article?id=' . $id);
+        } else {
+            // Si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion
+            addNotification("error", "Vous devez être connecté pour créer un article.");
+            header('location: /login');
+        }
+    }
 }

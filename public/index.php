@@ -37,6 +37,7 @@ $routes = [
 
     '/article' => '../app/view/pages/readArticle.php',
     '/modify-article' => '../app/view/pages/modifyArticle.php',
+    '/create-article' => '../app/view/pages/createArticle.php', // La je ne sais pas quoi faire.
 
     '/api/get_articles' => '../app/api/get_articles.php',
     '/api/notifications' => '../app/api/notifications.php',
@@ -77,6 +78,11 @@ if (isset($routes[$uri])) {
             case '/modify-article':
                 $controller = new ModifyArticleController();
                 $controller->handleModifyArticle();
+                break;
+            case '/create-article':
+                $controller = new ModifyArticleController();
+                $controller->handleCreateArticle();
+                echo "Je suis passé par la !";
                 break;
             default:
                 require $pagePath;

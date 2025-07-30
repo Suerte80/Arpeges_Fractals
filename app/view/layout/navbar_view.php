@@ -10,6 +10,7 @@
                 <button class="dropbtn">Mon compte ▾</button>
                 <div class="dropdown-content">
                     <a href="/profile">Profil</a>
+                    <a href="/create-article">Créer un article</a>
                     <a href="/logout">Déconnexion</a>
                 </div>
             </div>
