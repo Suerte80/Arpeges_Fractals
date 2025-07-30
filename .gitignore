@@ -3,5 +3,6 @@
 
 public/uploads/*
 public/avatars/*
+public/articles/*
 
 notes.md
