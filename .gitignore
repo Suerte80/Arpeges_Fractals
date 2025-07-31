@@ -5,4 +5,8 @@ public/uploads/*
 public/avatars/*
 public/articles/*
 
+vendor/*
+
 notes.md
+composer.json
+composer.lock
