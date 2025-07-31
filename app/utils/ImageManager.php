@@ -10,40 +10,40 @@ enum StorageType
     public function getStoragePath(): string
     {
         return match ($this) {
-            self::avatar => ImageManager::$storageAvatar,
-            self::article => ImageManager::$storageArticle,
+            self::avatar => ImageManager::STORAGE_AVATAR,
+            self::article => ImageManager::STORAGE_ARTICLE,
         };
     }
 
     public function getTableImageName(): string
     {
         return match ($this) {
-            self::avatar => ImageManager::$tableAvatar,
-            self::article => ImageManager::$tableArticle,
+            self::avatar => ImageManager::TABLE_AVATAR,
+            self::article => ImageManager::TABLE_ARTICLE,
         };
     }
 
     public function getTableResourceName(): string
     {
         return match ($this) {
-            self::avatar => ImageManager::$tableResourceNameAvatar,
-            self::article => ImageManager::$tableResourceNameArticle,
+            self::avatar => ImageManager::TABLE_RESOURCE_NAME_AVATAR,
+            self::article => ImageManager::TABLE_RESOURCE_NAME_ARTICLE,
         };
     }
 
     public function getFieldImage(): string
     {
         return match ($this) {
-            self::avatar => ImageManager::$fieldImageAvatar,
-            self::article => ImageManager::$fieldImageArticle,
+            self::avatar => ImageManager::FIELD_IMAGE_AVATAR,
+            self::article => ImageManager::FIELD_IMAGE_ARTICLE,
         };
     }
 
     public function getPublicStoragePath(): string
     {
         return match ($this) {
-            self::avatar => ImageManager::$publicStorageAvatar,
-            self::article => ImageManager::$publicStorageArticle,
+            self::avatar => ImageManager::PUBLIC_STORAGE_AVATAR,
+            self::article => ImageManager::PUBLIC_STORAGE_ARTICLE,
         };
     }
 }
@@ -52,25 +52,33 @@ class ImageManager
 {
     private InitPdo $pdo;
 
-    private static $allowedMimeTypes = [
+    private const ALLOWED_MIME_TYPES = [
         'image/jpeg',
         'image/png'
     ];
 
-    public static $storageAvatar = '/../../public/uploads/avatars/';
-    public static $storageArticle = '/../../public/uploads/articles/';
+    private const ALLOWED_EXTENSIONS = [
+        'jpg',
+        'jpeg',
+        'png'
+    ];
 
-    public static $publicStorageAvatar = '/uploads/avatars/';
-    public static $publicStorageArticle = '/uploads/articles/';
+    public const STORAGE_AVATAR = '/../../public/uploads/avatars/';
+    public const STORAGE_ARTICLE = '/../../public/uploads/articles/';
 
-    public static $tableResourceNameAvatar = 'users';
-    public static $tableResourceNameArticle = 'articles';
+    public const PUBLIC_STORAGE_AVATAR = '/uploads/avatars/';
+    public const PUBLIC_STORAGE_ARTICLE = '/uploads/articles/';
 
-    public static $fieldImageAvatar = 'id_avatar';
-    public static $fieldImageArticle = 'id_image_pres';
+    public const TABLE_RESOURCE_NAME_AVATAR = 'users';
+    public const TABLE_RESOURCE_NAME_ARTICLE = 'articles';
 
-    public static $tableAvatar = 'images_avatar';
-    public static $tableArticle = 'images';
+    public const FIELD_IMAGE_AVATAR = 'id_avatar';
+    public const FIELD_IMAGE_ARTICLE = 'id_image_pres';
+
+    public const TABLE_AVATAR = 'images_avatar';
+    public const TABLE_ARTICLE = 'images';
+
+    private const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 Mo max
 
     public function __construct(InitPdo $pdo)
     {
@@ -81,12 +89,12 @@ class ImageManager
 
     public function getImageAvatarFromId($id)
     {
-        return $this->getImageFromIdAndTable($id, 'images_avatar');
+        return $this->getImageFromIdAndTable($id, self::TABLE_AVATAR);
     }
 
     public function getImageArticleFromId($id)
     {
-        return $this->getImageFromIdAndTable($id, 'images');
+        return $this->getImageFromIdAndTable($id, self::TABLE_ARTICLE);
     }
 
     private function getImageFromIdAndTable($id, $table)
@@ -119,14 +127,6 @@ class ImageManager
         // ON vérifie que le fichier a bien été uploadé et qu'il n'y a pas d'erreur
         if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-            // Vérification de type de fichier s'il est présent dans la liste
-            $finfo = new finfo(FILEINFO_MIME_TYPE);
-            $mimeType = $finfo->file($_FILES['image']['tmp_name']);
-            $ext = strtolower($mimeType);
-            if (!in_array($ext, ImageManager::$allowedMimeTypes)) {
-                throw new Exception("Fichier non pris en charge", 1);
-            }
-
             // Récupération du nom de fichier temporaire
             $tmp = $_FILES['image']['tmp_name'];
             // Récupèration de l'extension du fichier
@@ -135,6 +135,9 @@ class ImageManager
             $randomName = bin2hex(random_bytes(16)) . '.' . $extention;
             // création de chemin du fichier pour la copie.
             $destination = __DIR__ . $storageType->getStoragePath() . $randomName;
+
+            // vérification du fichier image d'entrée
+            $this->verifInputFile($extention, $tmp);
 
             // On vérifie que le déplacement s'est bien passé
             if (move_uploaded_file($tmp, $destination)) {
@@ -167,12 +170,37 @@ class ImageManager
                 ];
             } else {
                 // Si le déplacement a échoué, on lance une exception
-                // TODO message a modifier.
                 throw new Exception("Fichier manquant", 2);
             }
         } else {
             // Si le fichier n'a pas été uploadé ou qu'il y a une erreur, on lance une exception
             throw new Exception("Accès refusé", 3);
+        }
+    }
+
+    private function verifInputFile($extention, $tmp)
+    {
+        // Vérification de type de fichier s'il est présent dans la liste
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $mimeType = $finfo->file($_FILES['image']['tmp_name']);
+        $ext = strtolower($mimeType);
+        if (!in_array($ext, self::ALLOWED_MIME_TYPES)) {
+            throw new Exception("Fichier non pris en charge", 1);
+        }
+
+        // On vérifie l'extension du fichier est correcte
+        if (!in_array($extention, self::ALLOWED_EXTENSIONS)) {
+            throw new Exception("Extension de fichier non prise en charge", 1);
+        }
+
+        // Vérification que le contenu est bien une image
+        if (@getimagesize($tmp) === false) {
+            throw new Exception("Le fichier n'est pas une image", 1);
+        }
+
+        // On vérifie la taille du fichier
+        if ($_FILES['image']['size'] > self::MAX_FILE_SIZE) {
+            throw new Exception("Le fichier est trop volumineux", 1);
         }
     }
 }

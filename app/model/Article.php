@@ -47,7 +47,7 @@ class Article
                 ) {
                     $arr[$key]['image_filepath'] = $article['image_filepath'];
                 } else {
-                    $arr[$key]['image_filepath'] = ImageManager::$publicStorageArticle . $article['image_filepath'];
+                    $arr[$key]['image_filepath'] = ImageManager::PUBLIC_STORAGE_ARTICLE . $article['image_filepath'];
                 }
             }
         }
