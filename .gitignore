@@ -10,4 +10,4 @@ vendor/*
 notes.md
 composer.json
 composer.lock
-.idead/
+.idea/
