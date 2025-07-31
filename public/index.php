@@ -1,5 +1,8 @@
 <?php
 
+// ON démare la session !
+session_start();
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 require_once __DIR__ . '/../app/utils/utils.php';
@@ -13,9 +16,6 @@ require_once __DIR__ . '/../app/controller/ProfileController.php';
 require_once __DIR__ . '/../app/controller/ReadArticleController.php';
 require_once __DIR__ . '/../app/controller/ModifyArticleController.php';
 require_once __DIR__ . '/../app/controller/AdminPanelController.php';
-
-// ON démare la session !
-session_start();
 
 // Initialisation de la customPDO
 define('PDO', new InitPDO());

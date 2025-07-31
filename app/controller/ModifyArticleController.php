@@ -8,8 +8,17 @@ require_once __DIR__ . '/../model/ReadArticle.php';
 
 require_once __DIR__ . '/../utils/utils.php';
 
+require_once __DIR__ . '/../config/htmlpurifier.php';
+
 class ModifyArticleController
 {
+    private HtmlPurifierConfig $purifier;
+
+    public function __construct()
+    {
+        $this->purifier = new HTMLPurifierConfig();
+    }
+
     public function handleModifyArticle()
     {
         // On vérifie que l'utilisateur est connecté
@@ -57,8 +66,9 @@ class ModifyArticleController
 
             $description = htmlspecialchars(trim($_POST['description'] ?? ''));
 
-            $allowedTags = '<p><br><strong><em><ul><ol><li><blockquote><a><h2><h3>';
-            $content = trim(strip_tags($_POST['content'] ?? '', $allowedTags));
+            $content = $_POST['content'] ?? '';
+
+            $content = $this->purifier->purify($content);
 
             if (!$title || !$content) {
                 addNotification("error", "Titre ou contenu invalide !");
