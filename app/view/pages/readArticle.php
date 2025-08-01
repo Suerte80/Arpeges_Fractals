@@ -13,6 +13,8 @@
 <?php include(__DIR__ . '/../layout/footer_view.php'); ?>
 
 <?php include(__DIR__ . '/../template/message_histo_view.php'); ?>
+
+<?php include(__DIR__ . '/../layout/spotify_player.php'); ?>
 </body>
 
 </html>
