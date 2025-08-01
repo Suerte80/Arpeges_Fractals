@@ -23,6 +23,7 @@
             </div>
         <?php else: ?>
             <a href="/login">Se connecter</a>
+            <a href="/signup">S'inscrire</a>
         <?php endif; ?>
 
         <a href="/articles">Articles</a>
