@@ -1,13 +1,23 @@
 *.zip
 *.pdf
 
+# IGnore les images uploadé par l'utilisateur
 public/uploads/*
 public/avatars/*
 public/articles/*
 
-vendor/*
-
+# Ignore le notes.md
 notes.md
+
+# Ignore les fichiers de configuration de l'environnement composer
+vendor/*
 composer.json
 composer.lock
+
+# Pour l'IDE PhpStorm
 .idea/
+
+# Ignore les fichier de node
+node_modules/
+package-lock.json
+package.json
