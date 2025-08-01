@@ -23,7 +23,7 @@ class ReadArticle
     public function retrieveArticle($id): array
     {
         $sql = '
-            SELECT articles.id article_id, parution_date, views, id_image_pres, title, description, content, users.id user_id, users.firstname, users.lastname
+            SELECT articles.id article_id, parution_date, views, id_image_pres, title, description, content, id_playlist_spotify, users.id user_id, users.firstname, users.lastname
             FROM articles
             JOIN users ON articles.created_by = users.id
             WHERE articles.id = :id
@@ -45,6 +45,7 @@ class ReadArticle
         $creatorFirstname = $req[0]['firstname'];
         $creatorLastname = $req[0]['lastname'];
         $userCanEdit = ($req[0]['user_id'] == $_SESSION['user-id'] || $_SESSION['user-role'] == 'admin');
+        $idPlaylistSpotify = $req[0]['id_playlist_spotify'] ?? '73gTNzJSyRHlrN1Xg3XgPy';
 
         return [
             'parution_date' => $parutionDate,
@@ -57,6 +58,7 @@ class ReadArticle
             'creator_lastname' => $creatorLastname,
             'user-can-edit' => $userCanEdit,
             'article-id' => $req[0]['article_id'],
+            'id-playlist-spotify' => $idPlaylistSpotify
         ];
     }
 

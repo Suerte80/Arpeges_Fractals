@@ -8,21 +8,21 @@ class ReadArticleController
 {
     public function handleReadArticle()
     {
-        if( $_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) ){
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
             $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-            if(!$id){
+            if (!$id) {
                 addNotification("error", "Identifiant d'article invalide !");
                 header('location: /');
                 exit();
             }
 
-            try{
+            try {
                 $model = new ReadArticle(PDO);
 
-                $resArticle = $model->retrieveArticle($_GET['id']);
+                $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+                if (is_numeric($id) && $id > 0)
+                    $resArticle = $model->retrieveArticle($id);
             } catch (Exception $e) {
-
-
                 switch ($e->getCode()) {
                     case 1:
                         addNotification("error", $e->getMessage());
@@ -38,7 +38,7 @@ class ReadArticleController
             }
 
             include(__DIR__ . '/../view/pages/readArticle.php');
-        } else{
+        } else {
             addNotification("error", "Article introuvable");
             header("Location: /");
         }
