@@ -45,4 +45,12 @@ class InitPdo
     {
         return $this->pdo->lastInsertId();
     }
+
+    /**
+     * Retourne la dernière requête exécutée. 
+     **/
+    public function getLastQuery(): string
+    {
+        return $this->pdo->queryString ?? '';
+    }
 }
