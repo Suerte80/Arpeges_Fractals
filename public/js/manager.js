@@ -102,7 +102,7 @@ function callbackModalManager(article, modalContainer, articleData) {
     }
 
     // C'est le bouton Lire sur les articles.
-    button.addEventListener("click", function () {
+    button.addEventListener("click", async function () {
         // Affiche le contenu de l'article dans la modal
         const modalTitle = modalContainer.querySelector(".modal-title");
         const modalContent = modalContainer.querySelector(".modal-content-text");
@@ -135,7 +135,12 @@ function callbackModalManager(article, modalContainer, articleData) {
             modalSpanStar.innerHTML = "&#9825;";
         }
         if (modalTitle) modalTitle.textContent = articleData.title;
-        if (modalContent) modalContent.innerHTML = getFirstParagraph(articleData.content); // TODO Ici je ne sais pas ???? C'esty protèger dans le backend mais???
+        // Ici on injecte dans modalContent le contenu du premier paragraphe de l'article.
+        // Le premier paragraphe est contenu dans blocks[0].data.text
+        const jsonParsed = JSON.parse(articleData.content);
+        if (jsonParsed && jsonParsed.blocks && jsonParsed.blocks.length > 0) // Vérifications
+            if (modalContent)
+                modalContent.innerHTML = jsonParsed.blocks[0].data.text;
 
         // On affiche la modal.
         removeClass(modalContainer, "hidden");

@@ -131,6 +131,15 @@ function addArticle(article, newSection, mostViewedSection, fullSection, callBac
 }
 
 /**
+ * Fonction pour convertir le JSON venant de EditorJS en HTML.
+ * @param {JSON} jsonContent Contenu en format JSON venant de EditorJS.
+ * @returns {String} Une string représentant le HTML.
+ */
+function convertJsonArticleToHtml(jsonContent) {
+    return window.getEditorHtml(JSON.parse(jsonContent));
+}
+
+/**
  * Permet de mettre a jour l'étoile qui représente si un article est en favoris ou non. Changement de dernière minute maintenant c'est un coeur pour l'UX.
  * @param {Number} articleId Numéro identifiant de l'article.
  * @param {Boolean} isActive Représente si l'étoile doit être afficher pleine ou non.

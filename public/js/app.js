@@ -149,14 +149,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     const editorJSWidget = document.querySelector('.editorjs');
     const editorBundle = window.editorJsBundle;
     const articleContent = document.getElementById("article-content");
-    if ((editorJSWidget && editorBundle) || articleContent) {
-        try {
-            console.log(editorBundle);
-            await import(editorBundle);
-            console.log('EditorJS chargé dynamiquement et exécuté !');
-        } catch (error) {
-            console.error("Erreur lors du chargement de l'éditeur :", error);
-        }
+    // Import des modules
+    try {
+        console.log(editorBundle);
+        await import(editorBundle);
+        console.log('EditorJS chargé dynamiquement et exécuté !');
+    } catch (error) {
+        console.error("Erreur lors du chargement de l'éditeur :", error);
     }
 
     const sendModificationArticleBtn = document.querySelector("#article-modify-btn");
