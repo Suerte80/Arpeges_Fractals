@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (editorWidget) {
 
         console.log('EditorJS is present on the page.');
-        await import(editorJsBundle);
 
         /*
          * On utilise l'import dynamique pour charger que lorsqu'on a l'éditeur dans la page !
