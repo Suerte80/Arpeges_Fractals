@@ -144,4 +144,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log('Click');
         });
     }
+
+    const editorJSWidget = document.querySelector('.editorjs');
+    const editorBundle = window.editorJsBundle;
+    if (editorJSWidget && editorBundle) {
+        try {
+            console.log(editorBundle);
+            await import(editorBundle);
+            console.log('EditorJS chargé dynamiquement et exécuté !');
+        } catch (error) {
+            console.error("Erreur lors du chargement de l'éditeur :", error);
+        }
+    }
 });

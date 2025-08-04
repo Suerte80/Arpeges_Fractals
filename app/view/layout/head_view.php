@@ -18,7 +18,10 @@
     <?php
     // Quand je charge dynamiquement le script je n'ai aucun affichage de EditorJS
     ?>
-    <script src="<?= $editorJsBundle ?>"></script>
+    <!-- <script src="<?= $editorJsBundle ?>"></script> -->
+    <script>
+        window.editorJsBundle = '<?= $editorJsBundle ?>';
+    </script>
 
     <script src="/js/utilities.js"></script>
     <script src="/js/manager.js"></script>
