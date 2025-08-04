@@ -148,7 +148,8 @@ document.addEventListener("DOMContentLoaded", async () => {
      */
     const editorJSWidget = document.querySelector('.editorjs');
     const editorBundle = window.editorJsBundle;
-    if (editorJSWidget && editorBundle) {
+    const articleContent = document.getElementById("article-content");
+    if ((editorJSWidget && editorBundle) || articleContent) {
         try {
             console.log(editorBundle);
             await import(editorBundle);
@@ -183,9 +184,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         });
     }
-});
 
-// Sert a convertir le format json en format html !
-// window.getEditorHtml(json).then(html => {
-//     console.log("Contenu de l'éditeur :", html);
-// });
+    if (articleContent) {
+        // On récupère le content dans une variable js ( celui de articleContent )
+        const jsonContent = articleContent.textContent;
+
+        // On le convertie en HTML
+        let htmlContent;
+        console.log(window.getEditorHtml);
+        htmlContent = await window.getEditorHtml(JSON.parse(jsonContent));
+
+        // On nétoie le contenu de articleContent
+        articleContent.innerHTML = window.purifyHTML(htmlContent);
+    }
+});

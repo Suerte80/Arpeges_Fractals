@@ -20,7 +20,7 @@
             <!--<figcaption class="article-caption">Figure 1 — L’univers visuel du math rock.</figcaption>-->
         </figure>
 
-        <section class="article-content">
+        <section id="article-content" class="article-content">
             <?= $resArticle['content'] ?>
         </section>
     </article>
