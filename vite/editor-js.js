@@ -1,3 +1,8 @@
+import edjsHTML from "editorjs-html"; // syntaxe ESModule
+
+const edjsParser = edjsHTML(); // tu peux placer ça en haut si tu veux réutiliser
+
+
 console.log('EditorJS bundle dynamique chargé !');
 const editorWidget = document.querySelector('.editorjs');
 
@@ -49,3 +54,13 @@ if (editorWidget) {
 
     console.log("EditorJS initialized successfully.");
 }
+
+export async function getEditorHtml(editorjs_clean_data) {
+    // editorjs_clean_data = JSON venant de EditorJS.save()
+    const htmlBlocks = edjsParser.parse(editorjs_clean_data); // Tableau
+    console.log(typeof htmlBlocks);
+    return htmlBlocks; // ou fais comme tu veux avec les blocs
+}
+
+// Expose la fonction si tu veux l'appeler depuis un script inline
+window.getEditorHtml = getEditorHtml;

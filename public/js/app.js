@@ -162,17 +162,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (sendModificationArticleBtn) {
         editor = window.editorJSInstance;
 
-        sendModificationArticleBtn.addEventListener("click", e => {
+        sendModificationArticleBtn.addEventListener("click", async e => {
             e.preventDefault();
 
             // Récupération du contenu de l'éditeur
             if (editor) {
-                editor.save().then((outputData) => {
-                    console.log('Article data: ', outputData);
-                }).catch((error) => {
-                    console.error('Erreur lors de la sauvegarde de l\'éditeur :', error);
-                });
+                try {
+                    let json = await editor.save();
+
+                    const textArea = document.querySelector("#article-content");
+
+                    // On convertit le JSON en string pour le mettre dans le textearea
+                    // TODO a changer vers un input classique.
+                    textArea.textContent = JSON.stringify(json);
+
+                    sendModificationArticleBtn.closest("form").submit(); // On soumet le formulaire
+                } catch (error) {
+                    console.error("Erreur lors de la récupération du contenu de l'éditeur :", error);
+                }
             }
         });
     }
 });
+
+// Sert a convertir le format json en format html !
+// window.getEditorHtml(json).then(html => {
+//     console.log("Contenu de l'éditeur :", html);
+// });
