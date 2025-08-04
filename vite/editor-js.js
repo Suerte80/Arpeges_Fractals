@@ -45,5 +45,7 @@ if (editorWidget) {
         }
     });
 
+    window.editorJSInstance = editor; // On stocke l'instance de l'éditeur dans une variable globale pour y accéder plus tard.
+
     console.log("EditorJS initialized successfully.");
 }

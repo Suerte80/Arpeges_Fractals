@@ -136,15 +136,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const modifyArticleBtn = document.querySelector("#modify-article-btn");
     if (modifyArticleBtn) {
-        modifyArticleBtn.addEventListener("click", e => {
+        modifyArticleBtn.addEventListener("submit", e => {
             e.preventDefault();
 
             window.location = '/modify-article?id=' + modifyArticleBtn.dataset.id;
-
-            console.log('Click');
         });
     }
 
+    /**
+     * Lazy loading du module EditorJS
+     */
     const editorJSWidget = document.querySelector('.editorjs');
     const editorBundle = window.editorJsBundle;
     if (editorJSWidget && editorBundle) {
@@ -155,5 +156,23 @@ document.addEventListener("DOMContentLoaded", async () => {
         } catch (error) {
             console.error("Erreur lors du chargement de l'éditeur :", error);
         }
+    }
+
+    const sendModificationArticleBtn = document.querySelector("#article-modify-btn");
+    if (sendModificationArticleBtn) {
+        editor = window.editorJSInstance;
+
+        sendModificationArticleBtn.addEventListener("click", e => {
+            e.preventDefault();
+
+            // Récupération du contenu de l'éditeur
+            if (editor) {
+                editor.save().then((outputData) => {
+                    console.log('Article data: ', outputData);
+                }).catch((error) => {
+                    console.error('Erreur lors de la sauvegarde de l\'éditeur :', error);
+                });
+            }
+        });
     }
 });

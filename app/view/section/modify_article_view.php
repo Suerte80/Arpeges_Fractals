@@ -40,7 +40,7 @@
             </section>
 
             <div class="article-actions">
-                <button type="submit" class="button-glow">Enregistrer les modifications</button>
+                <button id="article-modify-btn" type="submit" class="button-glow">Enregistrer les modifications</button>
                 <a href="/article?id=<?= $resArticle['article-id'] ?>" class="button-secondary">Annuler</a>
             </div>
     </form>
