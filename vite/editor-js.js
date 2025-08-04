@@ -1,10 +1,10 @@
+console.log('EditorJS bundle dynamique chargé !');
 document.addEventListener('DOMContentLoaded', async () => {
     const editorWidget = document.querySelector('.editorjs');
 
     if (editorWidget) {
 
-        // Ici on importe dynamiquement le fichier js editorJS
-        // Le nom a été donné grace au php dans le fichier head_view.php
+        console.log('EditorJS is present on the page.');
         await import(editorJsBundle);
 
         /*
@@ -46,5 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 table: Table,
             }
         });
+
+        console.log("EditorJS initialized successfully.");
     }
 });

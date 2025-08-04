@@ -23,3 +23,6 @@ package-lock.json
 package.json
 vite.config.js
 dist
+
+# Ignore les fichier vite qui se génére pour EditorJS
+public/assets/js/

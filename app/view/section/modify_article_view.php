@@ -36,7 +36,7 @@
                     <h3>Contenu</h3>
                 </label>
                 <!-- <textarea id="article-content" name="content" rows="20" class="article-textarea"><?= htmlspecialchars($resArticle['content']) ?></textarea> -->
-                <div id="editorjs"></div>
+                <div class="editorjs"></div>
             </section>
 
             <div class="article-actions">
