@@ -140,7 +140,7 @@ function callbackModalManager(article, modalContainer, articleData) {
         const jsonParsed = JSON.parse(articleData.content);
         if (jsonParsed && jsonParsed.blocks && jsonParsed.blocks.length > 0) // Vérifications
             if (modalContent)
-                modalContent.innerHTML = jsonParsed.blocks[0].data.text;
+                modalContent.textContent = jsonParsed.blocks[0].data.text;
 
         // On affiche la modal.
         removeClass(modalContainer, "hidden");
