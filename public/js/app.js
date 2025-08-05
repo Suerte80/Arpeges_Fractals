@@ -204,7 +204,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Ajout du chargement du contenu de l'article ( modify_article_view.php )
     const modifyArticleContent = document.querySelector("#modify-article-content");
     if (modifyArticleContent) {
-        debugger;
         // On récupère le contenu de l'article dans le textarea
         const rawArticleContent = modifyArticleContent.textContent;
 
