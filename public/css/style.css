@@ -1211,5 +1211,18 @@ input::file-selector-button {
 }
 
 /* =========================================================
+   Pour l'éditeur de texte
+   ========================================================= */
+.editorjs {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--background);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 102, 0, 0.2);
+}
+
+/* =========================================================
    FIN DU FICHIER STRUCTURÉ
    ========================================================= */
