@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", async () => {
      */
     const editorJSWidget = document.querySelector('.editorjs');
     const editorBundle = window.editorJsBundle;
-    const articleContent = document.getElementById("article-content");
+    const articleContent = document.getElementById("read-article-content");
     // Import des modules
     try {
         await import(editorBundle);
@@ -199,5 +199,21 @@ document.addEventListener("DOMContentLoaded", async () => {
             await window.EditorJSToolsReady;
             await window.newEditorJSInstance(editorJSWidget, JSON.parse(jsonContent ?? "{}"), true);
         }
+    }
+
+    // Ajout du chargement du contenu de l'article ( modify_article_view.php )
+    const modifyArticleContent = document.querySelector("#modify-article-content");
+    if (modifyArticleContent) {
+        debugger;
+        // On récupère le contenu de l'article dans le textarea
+        const rawArticleContent = modifyArticleContent.textContent;
+
+        // On parse le JSON pour l'envoyer à l'éditeur
+        const parsedContent = JSON.parse(rawArticleContent || "{}");
+
+        // On initialise l'éditeur avec le contenu de l'article
+        window.EditorJSToolsReady.then(() => {
+            window.newEditorJSInstance(document.querySelector('.editorjs'), parsedContent);
+        });
     }
 });

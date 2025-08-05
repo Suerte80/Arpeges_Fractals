@@ -35,7 +35,7 @@
                 <label for="article-content">
                     <h3>Contenu</h3>
                 </label>
-                <textarea id="article-content" name="content" rows="20" class="article-textarea" hidden><?= htmlspecialchars($resArticle['content']) ?></textarea>
+                <textarea id="modify-article-content" name="content" rows="20" class="article-textarea" hidden><?= htmlspecialchars($resArticle['content']) ?></textarea>
                 <div class="editorjs"></div>
             </section>
 
