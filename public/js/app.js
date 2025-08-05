@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const modifyArticleBtn = document.querySelector("#modify-article-btn");
     if (modifyArticleBtn) {
-        modifyArticleBtn.addEventListener("submit", e => {
+        modifyArticleBtn.addEventListener("click", e => {
             e.preventDefault();
 
             window.location = '/modify-article?id=' + modifyArticleBtn.dataset.id;
