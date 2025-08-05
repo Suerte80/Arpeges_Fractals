@@ -21,7 +21,8 @@
         </figure>
 
         <section id="article-content" class="article-content">
-            <?= $resArticle['content'] ?>
+            <div id="raw-article-content" hidden><?= $resArticle['content'] ?> </div>
+            <div class="editorjs"></div>
         </section>
     </article>
 </main>

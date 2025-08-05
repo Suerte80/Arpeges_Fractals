@@ -159,6 +159,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const sendModificationArticleBtn = document.querySelector("#article-modify-btn");
+    console.log("Bouton", sendModificationArticleBtn);
     if (sendModificationArticleBtn) {
         editor = window.editorJSInstance;
 
@@ -184,16 +185,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
+    // C'est la partie pour afficher le contenu de l'article dans full_article_view.php
     if (articleContent) {
         // On récupère le content dans une variable js ( celui de articleContent )
-        const jsonContent = articleContent.textContent;
+        const rawArticleContainer = document.getElementById("raw-article-content");
 
-        // On le convertie en HTML
-        let htmlContent;
-        console.log(window.getEditorHtml);
-        htmlContent = await window.getEditorHtml(JSON.parse(jsonContent));
+        if (rawArticleContainer) {
+            const jsonContent = rawArticleContainer.textContent;
+            console.log("Window", window.newEditorJSInstance);
 
-        // On nétoie le contenu de articleContent
-        articleContent.innerHTML = window.purifyHTML(htmlContent);
+            await window.EditorJSToolsReady;
+            await window.newEditorJSInstance(editorJSWidget, JSON.parse(jsonContent), true);
+        }
     }
 });
