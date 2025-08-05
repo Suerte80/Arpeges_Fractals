@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 try {
                     let json = await editor.save();
 
-                    const textArea = document.querySelector("#article-content");
+                    const textArea = document.querySelector("#modify-article-content");
 
                     // On convertit le JSON en string pour le mettre dans le textearea
                     // TODO a changer vers un input classique.
