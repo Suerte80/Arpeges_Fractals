@@ -245,7 +245,7 @@ function createEditorJSConfig(holder, data = {}, readOnly = false) {
     };
 
     // Ajouter l'outil image seulement s'il n'est pas en mode lecture seule
-    if (!readOnly && ImageTool) {
+    if (ImageTool) {
         config.tools.image = {
             class: ImageTool,
             config: {
