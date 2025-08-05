@@ -151,19 +151,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     const articleContent = document.getElementById("article-content");
     // Import des modules
     try {
-        console.log(editorBundle);
         await import(editorBundle);
         console.log('EditorJS chargé dynamiquement et exécuté !');
     } catch (error) {
         console.error("Erreur lors du chargement de l'éditeur :", error);
     }
 
-    const sendModificationArticleBtn = document.querySelector("#article-modify-btn");
-    console.log("Bouton", sendModificationArticleBtn);
+    const sendModificationArticleBtn = document.getElementById("article-modify-btn");
+    console.log("Bouton: ", sendModificationArticleBtn);
     if (sendModificationArticleBtn) {
         editor = window.editorJSInstance;
 
-        sendModificationArticleBtn.addEventListener("click", async e => {
+        sendModificationArticleBtn.addEventListener("submit", async e => {
             e.preventDefault();
 
             // Récupération du contenu de l'éditeur
@@ -178,6 +177,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     textArea.textContent = JSON.stringify(json);
 
                     sendModificationArticleBtn.closest("form").submit(); // On soumet le formulaire
+
+                    console.log(sendModificationArticleBtn.closest("form"));
                 } catch (error) {
                     console.error("Erreur lors de la récupération du contenu de l'éditeur :", error);
                 }
@@ -195,7 +196,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log("Window", window.newEditorJSInstance);
 
             await window.EditorJSToolsReady;
-            await window.newEditorJSInstance(editorJSWidget, JSON.parse(jsonContent), true);
+            await window.newEditorJSInstance(editorJSWidget, JSON.parse(jsonContent ?? "{}"), true);
         }
     }
 });

@@ -121,7 +121,7 @@ class ReadArticle
     {
         $sql = '
             INSERT INTO articles (parution_date, id_image_pres, title, description, content, created_by)
-            VALUES (NOW(), 1, "Titre de l\'article", "Description de l\'article", "Contenu de l\'article", :created_by)
+            VALUES (NOW(), 1, "Titre de l\'article", "Description de l\'article", "{}", :created_by)
         ';
 
         $this->pdo->executeQuery($sql, [
