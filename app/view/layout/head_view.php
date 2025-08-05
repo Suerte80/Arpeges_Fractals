@@ -8,11 +8,6 @@
     // On cherche le fichier JavaScript dans /asset/js
     $files = glob(__DIR__ . '/../../../public/assets/js/editor-js*.js');
     $editorJsBundle = !empty($files) ? '/assets/js/' . basename($files[0]) : '';
-
-    addNotification(
-        'error',
-        $editorJsBundle
-    );
     ?>
 
     <?php

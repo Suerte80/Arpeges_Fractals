@@ -106,12 +106,14 @@ class ReadArticle
         ';
 
         try {
-            $this->pdo->executeQuery($sql, [
+            $res = $this->pdo->executeQuery($sql, [
                 ':title' => $title,
                 ':description' => $description,
                 ':content' => $content,
                 ':id' => $id,
             ]);
+
+            error_log("caca boudin: " . $content);
         } catch (PDOException $e) {
             throw new Exception("Impossible de modifier l'article", 2);
         }

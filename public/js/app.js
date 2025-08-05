@@ -160,10 +160,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const sendModificationArticleBtn = document.getElementById("article-modify-btn");
     console.log("Bouton: ", sendModificationArticleBtn);
     if (sendModificationArticleBtn) {
-        editor = window.editorJSInstance;
 
-        sendModificationArticleBtn.addEventListener("submit", async e => {
+        sendModificationArticleBtn.addEventListener("click", async e => {
             e.preventDefault();
+
+            let editor = window.editorJSInstance;
 
             // Récupération du contenu de l'éditeur
             if (editor) {
@@ -176,9 +177,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     // TODO a changer vers un input classique.
                     textArea.textContent = JSON.stringify(json);
 
-                    sendModificationArticleBtn.closest("form").submit(); // On soumet le formulaire
+                    console.log("Contenu de l'éditeur récupéré :", json);
 
-                    console.log(sendModificationArticleBtn.closest("form"));
+                    sendModificationArticleBtn.closest("form").submit(); // On soumet le formulaire
                 } catch (error) {
                     console.error("Erreur lors de la récupération du contenu de l'éditeur :", error);
                 }
