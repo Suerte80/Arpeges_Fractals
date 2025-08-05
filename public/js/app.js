@@ -151,7 +151,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const articleContent = document.getElementById("read-article-content");
     // Import des modules
     try {
-        await import(editorBundle);
+        await import(window.editorJsBundle);
+        await window.EditorJSToolsReady;
         console.log('EditorJS chargé dynamiquement et exécuté !');
     } catch (error) {
         console.error("Erreur lors du chargement de l'éditeur :", error);
@@ -196,7 +197,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             const jsonContent = rawArticleContainer.textContent;
             console.log("Window", window.newEditorJSInstance);
 
-            await window.EditorJSToolsReady;
             await window.newEditorJSInstance(editorJSWidget, JSON.parse(jsonContent ?? "{}"), true);
         }
     }
