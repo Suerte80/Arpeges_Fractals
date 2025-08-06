@@ -215,4 +215,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             window.newEditorJSInstance(document.querySelector('.editorjs'), parsedContent);
         });
     }
+
+    const dropBtn = document.getElementById('dropdown-btn');
+    const dropContent = document.getElementById('dropdown-content');
+    console.log("Coucou le bouton !", dropBtn);
+    if (dropBtn) {
+        dropBtn.addEventListener("click", e => {
+            e.preventDefault();
+            dropContent.classList.toggle("hidden");
+            dropContent.focus();
+        });
+        document.addEventListener("click", e => {
+            if (!dropBtn.contains(e.target) && !dropContent.contains(e.target)) {
+                dropContent.classList.add("hidden");
+            }
+        });
+    }
 });
