@@ -50,8 +50,6 @@ $routes = [
 
     '/api/callback' => '../app/api/callback.php',
     '/api/token' => '../app/api/token.php',
-    '/api/track' => '../app/api/track.php',
-    '/api/playPlaylist' => '../app/api/playPlaylist.php',
 ];
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
