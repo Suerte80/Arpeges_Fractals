@@ -47,6 +47,9 @@ $routes = [
     '/api/get_articles' => '../app/api/get_articles.php',
     '/api/notifications' => '../app/api/notifications.php',
     '/api/upload' => '../app/api/upload.php',
+
+    '/api/callback' => '../app/api/callback.php',
+    '/api/token' => '../app/api/token.php',
 ];
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
