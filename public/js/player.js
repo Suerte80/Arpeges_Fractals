@@ -29,8 +29,30 @@ fetch('/api/token')
 
             player.connect();
 
-            document.getElementById('play').onclick = () => player.resume();
-            document.getElementById('pause').onclick = () => player.pause();
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const playBtn = document.getElementById('play-btn');
+            const pauseBtn = document.getElementById('pause-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const volumeRane = document.getElementById('volume');
+            var isPlaying = false;
+            
+            playPauseBtn.addEventListener('click', () => {
+                if(isPlaying){
+                    player.pause();
+                } else{
+                    player.resume();
+                }
+
+                playBtn.classList.toggle('hidden');
+                pauseBtn.classList.toggle('hidden');
+                isPlaying = !isPlaying;
+            });
+
+            prevBtn.onclick = () => player.previousTrack();
+            nextBtn.onclick = () => player.nextTrack();
+            volumeRane.oninput = (e) => player.setVolume(parseFloat(e.target.value));
+
         };
     })
     .catch(err => {
