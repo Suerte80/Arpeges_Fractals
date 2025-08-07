@@ -9,6 +9,7 @@ services:
       - mysql
     ports:
       - "8080:80"
+      - "8443:443"
     # Installe Composer et PHPMailer au build plutôt qu'à chaque run
     build:
       context: .
@@ -17,7 +18,6 @@ services:
       bash -c "echo 'log_errors=On' > /usr/local/etc/php/conf.d/docker-php-log.ini &&
                echo 'error_reporting=E_ALL' >> /usr/local/etc/php/conf.d/docker-php-log.ini && # Ajout du logs des erreurs dans php.
                docker-php-entrypoint apache2-foreground"
-      bash -c ""
 
   mysql:
     image: mysql:8.0

@@ -24,3 +24,17 @@ RUN composer require phpmailer/phpmailer
 # Configurer Apache
 RUN a2enmod rewrite
 COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+
+# Met à jour DocumentRoot
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/default-ssl.conf
+
+# Ajoute un bloc <Directory> juste après la ligne DocumentRoot
+RUN sed -i '/DocumentRoot \/var\/www\/html\/public/a <Directory /var/www/html/public>\n    Options Indexes FollowSymLinks\n    AllowOverride All\n    Require all granted\n</Directory>' /etc/apache2/sites-available/default-ssl.conf
+
+# Activation des certificats
+RUN a2enmod ssl && a2enmod socache_shmcb
+ADD certificats/mycert.crt /etc/ssl/certs/
+ADD certificats/mycert.key /etc/ssl/private/
+RUN sed -i '/SSLCertificateFile.*snakeoil\.pem/c\SSLCertificateFile \/etc\/ssl\/certs\/mycert.crt' /etc/apache2/sites-available/default-ssl.conf
+RUN sed -i '/SSLCertificateKeyFile.*snakeoil\.key/c\SSLCertificateKeyFile \/etc\/ssl\/private\/mycert.key' /etc/apache2/sites-available/default-ssl.conf
+RUN a2ensite default-ssl
