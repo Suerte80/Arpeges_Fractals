@@ -1,21 +1,67 @@
-<section id="hero-container">
+<section id="hero-container"
+    class="
+        flex items-center justify-center
+        h-screen
+        p-8
+        overflow-hidden
+        relative
 
-    <div class="math-girl-wrapper">
-        <img class="rotate90 math-girl girl-left" src="images/math_rock_girl.png"
-            alt="Image de la mascotte du site." width="400" height="519">
+        text-lg
+
+        before:content-['']
+        before:absolute before:top-0 before:left-0 before:w-full before:h-full
+        before:bg-[url('/images/fond_2.png')]
+        before:bg-cover before:bg-center
+        before:blur-[3px] before:brightness-[0.8] before:contrast-[1.2]
+        before:z-0
+        before:bg-fixed
+    ">
+
+    <div class="
+    math-girl
+    absolute left-0 top-1/2
+    -translate-y-1/2
+    translate-x-1/2
+    z-10
+    pointer-events-none select-none
+">
+        <img
+            class="
+                rotate-y-180
+            "
+            src="images/math_rock_girl.png"
+            alt="Image de la mascotte du site." width="160" height="200" class="max-w-xs" />
         <div class="particles-container"></div>
     </div>
 
-    <div id="central-hero">
+    <div id="central-hero"
+        class="
+        flex flex-col items-center justify-center
+        text-center
+        text-[var(--text)]
+        z-10
+        max-w-lg
+        mx-auto
+        space-y-4
+    ">
         <img id="logo" src="images/logo_164X194.png" alt="Image du logo">
         <h2>Arpèges Fractals</h2>
         <p>Explorations math rock: riffs angulaires, rythmes tordus et beauté géométrique du son.</p>
         <div id="arrow" aria-hidden="true" role="presentation">&#x2193;</div>
     </div>
 
-    <div class="math-girl-wrapper">
-        <img class="math-girl girl-right" src="images/math_rock_girl.png" alt="Image de la mascotte du site."
-            width="400" height="519">
+    <div class="
+        math-girl
+        absolute right-0 top-1/2
+        -translate-y-1/2
+        -translate-x-1/2
+        z-10
+        pointer-events-none select-none
+    ">
+        <img src="images/math_rock_girl.png"
+            alt="Image de la mascotte du site."
+            width="160" height="200"
+            class="max-w-xs" />
         <div class="particles-container"></div>
     </div>
 

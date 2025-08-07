@@ -7,7 +7,7 @@
         bg-[var(--primary)]
         grid grid-cols-1 grid-rows-2
         items-center justify-center
-        py-[5px] 
+        p-2
         z-[900] 
         text-[var(--text)]
         text-lg
@@ -18,12 +18,7 @@
         /* Pour le desktop */
     ">
     <div class="
-        flex items-center justify-center 
-        gap-4
-        text-xl
-
-        /* pour les tablette */
-        md:justify-start
+        flex flex-row items-center justify-start
     ">
         <a href="/" aria-label="Page d’accueil">
             <img src="/images/logo_40x40.png" alt="Logo du site" class="h-10 w-10" />

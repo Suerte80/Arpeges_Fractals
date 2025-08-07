@@ -140,7 +140,7 @@ body {
 /* =========================================================
    HERO SECTION (Haut de page)
    ========================================================= */
-#hero-container {
+/*#hero-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -163,9 +163,9 @@ body {
   filter: blur(3px) brightness(0.8) contrast(1.2);
   z-index: -1;
   background-attachment: fixed;
-}
+}*/
 
-.math-girl-wrapper {
+/*.math-girl-wrapper {
   position: relative;
   display: flex;
   justify-content: center;
@@ -334,7 +334,7 @@ body {
   font-size: 64pt;
   cursor: pointer;
   bottom: 55px;
-}
+}*/
 
 /* =========================================================
    PROFIL UTILISATEUR (Profile + Info)
