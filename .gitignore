@@ -19,9 +19,6 @@ composer.lock
 
 # Ignore les fichier de node
 node_modules/
-package-lock.json
-package.json
-vite.config.js
 dist
 
 # Ignore les fichier vite qui se génére pour EditorJS
