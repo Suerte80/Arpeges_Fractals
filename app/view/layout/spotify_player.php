@@ -1,4 +1,32 @@
 <div class="fixed bottom-0 left-0 w-full bg-gray-900 text-white shadow-lg z-50">
+    <p
+        class="
+            absolute
+            top-[-10px]
+            left-0
+            px-2
+            text-white
+            text-[10px]
+            z-10
+        ">0:00</p>
+    <input type="range" id="player-range" min="0" max="100" step="0.001"
+        class="
+            absolute
+            top-[-8px]
+            w-full
+            appearance-none
+        ">
+    <p
+        id="player-duration"
+        class="
+            absolute
+            top-[-10px]
+            px-2
+            right-0
+            text-white
+            text-[10px]
+        ">1:32</p>
+
     <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap sm:flex-nowrap">
 
         <!-- Infos du morceau -->
@@ -26,7 +54,7 @@
         <div class="flex items-center space-x-2 w-full sm:w-auto">
             <label for="volume" class="text-sm text-gray-400">🔊</label>
             <input id="volume" type="range" min="0" max="1" step="0.01" value="0.5"
-                class="accent-green-500 w-24" />
+                class="w-24" />
         </div>
 
     </div>

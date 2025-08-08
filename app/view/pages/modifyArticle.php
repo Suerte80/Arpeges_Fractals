@@ -3,7 +3,7 @@
 
 <?php include(__DIR__ . '/../layout/head_view.php'); ?>
 
-<body>
+<body class="font-sans bg-zinc-900">
     <?php include(__DIR__ . '/../layout/navbar_view.php'); ?>
 
     <?php include(__DIR__ . '/../section/modify_article_view.php'); ?>

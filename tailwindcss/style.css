@@ -28,6 +28,35 @@ body {
   /* pour éviter que le lecteur ne masque le contenu */
 }
 
+@layer components{
+  /* Pour le player */
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    @apply w-3.5;
+    @apply h-3.5;
+    @apply bg-blue-600;
+    @apply rounded-full;
+    margin-top: -2px;
+  }
+
+   input[type=range]::-moz-range-thumb{
+    -moz-appearance: none;
+    @apply w-3 h-3 bg-blue-600 rounded-full;
+  }
+
+   input[type=range]::-webkit-slider-runnable-track{
+    -webkit-appearance: none;
+    @apply w-2.5;
+    @apply h-2.5;
+    @apply bg-orange-400;
+  }
+
+   input[type=range]::-webkit-slider-runnable-track:hover{
+    -webkit-appearance: none;
+    transform: scaleY(1.4);
+  }
+}
+
 /* =========================================================
    NAVIGATION (NAVBAR & DROPDOWN)
    ========================================================= */

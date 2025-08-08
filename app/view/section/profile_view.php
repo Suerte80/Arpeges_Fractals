@@ -44,17 +44,26 @@
             </div>
 
             <?php
-            /* Construction de l'url de redirection vers les serveur d'authentifications de spotify */
             $client_id = 'f06f972b01fc4239b1579a55780eb3e0';
             $redirect_uri = 'https://local-docker:8443/api/callback';
-            $scope = 'streaming user-read-email user-read-private user-modify-playback-state';
+
+            $scope = implode(' ', [
+                'streaming',
+                'user-read-email',
+                'user-read-private',
+                'user-modify-playback-state',
+                'user-read-currently-playing', // ✅ nécessaire pour /currently-playing
+                'user-read-playback-state',    // ✅ nécessaire pour /me/player
+            ]);
 
             $url = 'https://accounts.spotify.com/authorize?' . http_build_query([
                 'client_id' => $client_id,
                 'response_type' => 'code',
                 'redirect_uri' => $redirect_uri,
                 'scope' => $scope,
-                'state' => bin2hex(random_bytes(8))
+                'state' => bin2hex(random_bytes(8)),
+                // Optionnel pour forcer la fenêtre de consentement et redemander les nouveaux scopes:
+                'show_dialog' => 'true'
             ]);
             ?>
 

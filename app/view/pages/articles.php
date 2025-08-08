@@ -3,8 +3,8 @@
 
 <?php include(__DIR__ . '/../layout/head_view.php'); ?>
 
-<body>
-    <?php 
+<body class="font-sans bg-zinc-900">
+    <?php
     include(__DIR__ . '/../layout/navbar_view.php');
 
     include(__DIR__ . '/../section/all_articles_view.php');

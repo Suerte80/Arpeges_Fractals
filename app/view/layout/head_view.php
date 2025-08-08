@@ -18,8 +18,6 @@
         window.editorJsBundle = '<?= $editorJsBundle ?>';
     </script>
 
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script src="/js/player.js"></script>
     <script src="/js/utilities.js"></script>
     <script src="/js/manager.js"></script>
     <script src="/js/app.js"></script>
