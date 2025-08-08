@@ -4,7 +4,7 @@ console.log('Chargement du SDK Spotify...');
 window.onSpotifyWebPlaybackSDKReady = async () => {
     try {
         // Récupération du token depuis ton backend
-        const { token } = await fetch('/api/token').then(res => res.json());
+        const { token, expires_at } = await fetch('/api/token').then(res => res.json());
         if (!token) throw new Error("Aucun token reçu du serveur");
 
         const player = new Spotify.Player({
@@ -41,6 +41,22 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
                     context_uri: 'spotify:playlist:37i9dQZF1DZ06evO3mYWcg'
                 })
             });*/
+
+            // On va rafraichir l'access_token 1 minute avant l'expiration pour évité que la musique ne coupe.
+            const expiresAtMinus1Min = expires_at - (new Date()).getTime() - 60;
+            console.log('Expires_at: ', expires_at);
+            if( expiresAtMinus1Min > 0 )
+                setTimeout(async () => {
+                    const res = await getAccessToken(); // J'attend que la fonction soit fini pour lancer le minuteurs de 50 minutes
+                    if(!res)
+                        return; // Erreur
+                    setInterval(
+                        getAccessToken(),
+                        50 * 60 * 1000
+                    );
+                }, expiresAtMinus1Min); // On lance un timeout dans expires_at - 1 minutes
+            else // Si l'access token doit être rafraichie avant 1 minutes.
+                getAccessToken();
 
             await retrieveMusicData();
         });
