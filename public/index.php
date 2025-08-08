@@ -52,6 +52,7 @@ $routes = [
     '/api/token' => '../app/api/token.php',
     '/api/track' => '../app/api/track.php',
     '/api/playPlaylist' => '../app/api/playPlaylist.php',
+    '/api/refreshToken' => '../app/api/refresh_token.php'
 ];
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

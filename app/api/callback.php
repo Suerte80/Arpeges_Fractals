@@ -32,6 +32,7 @@ if (!isset($data['access_token'])) die('Erreur token');
 
 $_SESSION['access_token'] = $data['access_token'];
 $_SESSION['refresh_token'] = $data['refresh_token'];
+$_SESSION['expires_at'] = time() + intval($data['expires_in']);
 
 addNotification("info", "Connexion réussis !");
 header('Location: /profile');

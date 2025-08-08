@@ -78,6 +78,10 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
 
         pauseBtn.classList.add('hidden'); // on commence avec Play affiché
 
+        /**
+         * Partie du code ou l'ont ajoute les Listeners au player !
+         */
+
         // on ajoute un event 
         player.addListener('player_state_changed', ({
             paused,
@@ -105,6 +109,12 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
                 track.innerText = current_track.name;
                 artist.innerText = current_track.artists.name;
             }
+        });
+
+        // Ici on gère le cas ou l'access token est invalide donc le refresh sur le backend !
+        player.addListener('authentication_error', () => {
+            const accessToken = getAccessToken();
+            player.setAccessToken(accessToken);
         });
 
         playPauseBtn.addEventListener('click', async () => {
@@ -154,6 +164,25 @@ async function retrieveMusicData() {
     }
 }
 
+// TODO A faire 
 async function sliderAnimation(){
 
+}
+
+async function getAccessToken(){
+    return await fetch('/api/refreshToken')
+    .then(data => data.json())
+    .then(data => () => {
+        // Si il y a une erreur de connexion ou autre on va a la page index.
+        if(data.error){
+            window.location = '/';
+            return null;
+        }
+
+        return data.access_token;
+    })
+    .catch(err => {
+        console.error("Erreur: ", err);
+        return null;
+    });
 }
