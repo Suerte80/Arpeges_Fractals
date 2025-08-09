@@ -6,10 +6,11 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
         // Récupération du token depuis ton backend
         const { token, expires_at } = await fetch('/api/token').then(res => res.json());
         if (!token) throw new Error("Aucun token reçu du serveur");
+        window.accessToken = token;
 
         const player = new Spotify.Player({
             name: 'Lecteur Custom',
-            getOAuthToken: cb => cb(token),
+            getOAuthToken: cb => cb(window.accessToken),
             volume: 0.5
         });
 
@@ -131,7 +132,7 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
         // Ici on gère le cas ou l'access token est invalide donc le refresh sur le backend !
         player.addListener('authentication_error', () => {
             const accessToken = getAccessToken();
-            player.setAccessToken(accessToken);
+            //player.setAccessToken(accessToken);
         });
 
         playPauseBtn.addEventListener('click', async () => {
@@ -229,6 +230,8 @@ async function getAccessToken(){
             return null;
         }
 
+        // On rafraichie l'access token
+        window.accessToken = data.accessToken;
         return data.access_token;
     })
     .catch(err => {
