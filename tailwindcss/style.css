@@ -55,6 +55,8 @@ body {
     -webkit-appearance: none;
     transform: scaleY(1.4);
   }
+
+  /* TODO Finir pour firefox */
 }
 
 /* =========================================================

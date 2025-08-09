@@ -31,7 +31,7 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
             });
 
             // Lancer la playlist
-            /*await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
+            await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': 'Bearer ' + token,
@@ -40,7 +40,7 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
                 body: JSON.stringify({
                     context_uri: 'spotify:playlist:37i9dQZF1DZ06evO3mYWcg'
                 })
-            });*/
+            });
 
             // On va rafraichir l'access_token 1 minute avant l'expiration pour évité que la musique ne coupe.
             const expiresAtMinus1Min = expires_at - (new Date()).getTime() - 60;
@@ -79,6 +79,7 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
         const nextBtn = document.getElementById('next-btn');
         const volumeRange = document.getElementById('volume');
         const slider = document.getElementById("player-range");
+        const playerPosition = document.getElementById('player-position');
         const playerDuration = document.getElementById('player-duration');
 
         // élément d'affichage Cover, titre, Nom artiste
@@ -150,15 +151,34 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
         };
 
         // Ajout de l'animation du slider.
-        setInterval((playerState, slider) => {
-            let state = playerState.isPlaying;
+        setInterval(async () => {
+            const state = await player.getCurrentState();
+            if (!state) return; // rien en cours
 
-            playerState.position += 1000;
+            const { paused, position, duration } = state;
 
-            if(!state){
-                slider.value = ((playerState.position) / playerState.duration) * 100;
+            playerState.isPlaying = !paused;
+            playerState.duration = duration;
+            playerState.position = position;
+
+            // mise a jour de la durée du morceau
+            const durationInSeconds = position / 1000;
+            const minutes = parseInt(durationInSeconds / 60);
+            const secondsRemaining = parseInt(durationInSeconds % 60);
+            playerPosition.textContent = minutes + ':' + ((secondsRemaining<10)?'0'+secondsRemaining:secondsRemaining);
+
+            if (playerState.isPlaying) {
+                const currentPositionMs = position;
+                const nextPositionMs = currentPositionMs + 1000;
+
+                const startPercent = (currentPositionMs / duration) * 100;
+                const endPercent = (nextPositionMs / duration) * 100;
+
+                requestAnimationFrame((t) => {
+                    sliderAnimation(t, slider, startPercent, endPercent, null, 1000);
+                });
             }
-        }, 1000, playerState, slider);
+        }, 1000);
 
         volumeRange.oninput = e => player.setVolume(parseFloat(e.target.value));
 
@@ -180,9 +200,23 @@ async function retrieveMusicData() {
     }
 }
 
-// TODO A faire 
-async function sliderAnimation(){
+function sliderAnimation(timestamp, slider, currentValue, targetValue, startTime, duration = 1000){
+    // Le slider se met a jours toutes les secondes.
+    if (!startTime) startTime = timestamp;
 
+    const elapsed = timestamp - startTime;
+    const progress = Math.min(elapsed / duration, 1); // SUP / INF > 1
+
+    // interpolation linéaire
+    slider.value = currentValue + (targetValue - currentValue) * progress;
+
+    //console.log(slider.value);
+
+    if (progress < 1) {
+        requestAnimationFrame((t) => {
+            sliderAnimation(t, slider, currentValue, targetValue, startTime, duration);
+        });
+    }
 }
 
 async function getAccessToken(){
