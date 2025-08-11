@@ -4,7 +4,7 @@ require_once __DIR__ . '/../utils/utils.php';
 
 $client_id = 'f06f972b01fc4239b1579a55780eb3e0';
 $client_secret = 'd5b4d2adaef24e6f8e89ef394e3afc47';
-$redirect_uri = 'https://local-docker:8443/api/callback';
+$redirect_uri = 'https://arpegesfractals.local/api/callback';
 
 if (!isset($_GET['code'])) die('Erreur : code manquant');
 

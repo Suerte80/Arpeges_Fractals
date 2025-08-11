@@ -13,7 +13,7 @@
         text-lg
 
         /* Pour la tablette */
-        md:grid-cols-2 md:grid-rows-1
+        md:grid-cols-2 md:grid-rows-1 
 
         /* Pour le desktop */
     ">

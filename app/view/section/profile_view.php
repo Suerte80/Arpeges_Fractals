@@ -45,7 +45,7 @@
 
             <?php
             $client_id = 'f06f972b01fc4239b1579a55780eb3e0';
-            $redirect_uri = 'https://local-docker:8443/api/callback';
+            $redirect_uri = 'https://arpegesfractals.local/api/callback';
 
             $scope = implode(' ', [
                 'streaming',

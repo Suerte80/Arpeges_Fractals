@@ -27,3 +27,9 @@ public/css/style.css
 
 # Ajouts des certificats ssl 
 certificats/
+
+# Ajout des fichier d'environements
+.env
+.tar.xz
+
+.vscode
