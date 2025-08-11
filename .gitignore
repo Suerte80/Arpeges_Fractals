@@ -33,3 +33,5 @@ certificats/
 .tar.xz
 
 .vscode
+
+public/assets

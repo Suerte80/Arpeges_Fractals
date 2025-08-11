@@ -19,7 +19,7 @@
 @font-face {
   font-family: 'Fira Code';
   src: url('/font/FiraCode-VariableFont_wght.ttf');
-}
+} 
 
 body {
   /* background-color: var(--background); */
@@ -28,36 +28,69 @@ body {
   /* pour éviter que le lecteur ne masque le contenu */
 }
 
-@layer components{
-  /* Pour le player */
-  input[type=range]::-webkit-slider-thumb{
+@layer components { 
+  input[type="range"] { 
     -webkit-appearance: none;
-    @apply w-3.5;
-    @apply h-3.5;
-    @apply bg-blue-600;
+    appearance: none;
+    @apply w-full cursor-pointer;
+    height: 10px;
+
+    /* Fond simulant le track pour WebKit */
     @apply rounded-full;
-    margin-top: -2px;
+    background: linear-gradient(
+      to right,
+      theme('colors.orange.400') 0%,
+      theme('colors.orange.400') 30%, /* valeur par défaut */
+      theme('colors.gray.800') 30%,
+      theme('colors.gray.800') 100%
+    );
+
+    /* TRACK */
+    &::-webkit-slider-runnable-track {
+      @apply h-2.5 rounded-full bg-transparent transition-transform duration-200;
+      transform-origin: center;
+    }
+    &::-moz-range-track {
+      @apply h-2.5 rounded-full bg-gray-800 border-none transition-transform duration-200;
+      transform-origin: center;
+    }
+    &::-moz-range-progress {
+      @apply h-2.5 rounded-full bg-orange-400 border-none;
+    }
+
+    /* THUMB */
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      @apply w-3.5 h-3.5 bg-blue-600 rounded-full border-none cursor-pointer;
+      margin-top: -2px;
+    }
+    &::-moz-range-thumb {
+      @apply w-3.5 h-3.5 bg-blue-600 rounded-full border-none cursor-pointer;
+    }
+
+    /* HOVER EFFECTS */
+    &:hover,
+    &:active {
+      transform: scaleY(1.4);
+      @apply transition-transform duration-200;
+    }
+    &:hover::-moz-range-track,
+    &:active::-moz-range-track {
+      transform: scaleY(1.4);
+    }
+    &:hover::-moz-range-progress,
+    &:active::-moz-range-progress {
+      transform: scaleY(1.4);
+    }
   }
 
-   input[type=range]::-moz-range-thumb{
-    -moz-appearance: none;
-    @apply w-3 h-3 bg-blue-600 rounded-full;
+  /* Supprime le fond WebKit */
+  @supports (-moz-appearance: none) {
+    input[type="range"] {
+      background: transparent !important;
+    }
   }
-
-   input[type=range]::-webkit-slider-runnable-track{
-    -webkit-appearance: none;
-    @apply w-2.5;
-    @apply h-2.5;
-    @apply bg-orange-400;
-  }
-
-   input[type=range]::-webkit-slider-runnable-track:hover{
-    -webkit-appearance: none;
-    transform: scaleY(1.4);
-  }
-
-  /* TODO Finir pour firefox */
-}
+} 
 
 /* =========================================================
    NAVIGATION (NAVBAR & DROPDOWN)
