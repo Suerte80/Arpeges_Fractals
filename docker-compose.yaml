@@ -23,11 +23,16 @@ services:
     image: node:20-alpine
     container_name: node
     working_dir: /app
-    command: sh -c "npm install && npm run watch"
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - "30000:30000"
+      - "3001:3001"
     volumes:
       - ./:/app
     networks:
       - web
+    depends_on:
+      - caddy
 
   mysql:
     image: mysql:8.0
@@ -65,7 +70,6 @@ services:
     image: caddy:2
     depends_on:
       - php
-      - node
       - mailhog
     ports:
       - "80:80"
