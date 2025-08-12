@@ -30,9 +30,13 @@ $data = json_decode($token_response, true);
 
 if (!isset($data['access_token'])) die('Erreur token');
 
+$_SESSION['user-is-connected-spotify'] = true;
 $_SESSION['access_token'] = $data['access_token'];
 $_SESSION['refresh_token'] = $data['refresh_token'];
 $_SESSION['expires_at'] = time() + intval($data['expires_in']);
 
+if (isset($_GET['state']))
+    $state = $_GET['state'];
+
 addNotification("info", "Connexion réussis !");
-header('Location: /profile');
+header("Location: $state");

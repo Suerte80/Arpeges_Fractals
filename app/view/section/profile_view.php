@@ -43,32 +43,6 @@
                 <button class="edit-btn" data-target="email">✎</button>
             </div>
 
-            <?php
-            $client_id = 'f06f972b01fc4239b1579a55780eb3e0';
-            $redirect_uri = 'https://arpegesfractals.local/api/callback';
-
-            $scope = implode(' ', [
-                'streaming',
-                'user-read-email',
-                'user-read-private',
-                'user-modify-playback-state',
-                'user-read-currently-playing', // ✅ nécessaire pour /currently-playing
-                'user-read-playback-state',    // ✅ nécessaire pour /me/player
-            ]);
-
-            $url = 'https://accounts.spotify.com/authorize?' . http_build_query([
-                'client_id' => $client_id,
-                'response_type' => 'code',
-                'redirect_uri' => $redirect_uri,
-                'scope' => $scope,
-                'state' => bin2hex(random_bytes(8)),
-                // Optionnel pour forcer la fenêtre de consentement et redemander les nouveaux scopes:
-                'show_dialog' => 'true'
-            ]);
-            ?>
-
-            <a href="<?= $url ?>">Se Connecter avec spotify</a>
-
             <div class=" profile-field centered">
                 <input type="submit" value="Modifier son profile" name="submit-change-profile" id="submit-change-profile" class="button-glow">
             </div>
