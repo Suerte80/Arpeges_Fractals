@@ -10,7 +10,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         editor: path.resolve(__dirname, 'js/editor-js.js'),
-        styles: path.resolve(__dirname, 'css/style.css'),
+        js: path.resolve(__dirname, 'js/glide.js'),
+        styles: path.resolve(__dirname, 'css/style.css')
       },
       output: {
         entryFileNames: 'js/[name].js',
@@ -26,4 +27,14 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      // Alias pour faciliter les imports
+      '@': path.resolve(__dirname),
+    }
+  },
+  optimizeDeps: {
+    // Force l'inclusion de Glide.js dans les dépendances optimisées
+    include: ['@glidejs/glide']
+  }
 });

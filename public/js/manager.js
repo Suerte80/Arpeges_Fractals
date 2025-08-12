@@ -290,12 +290,8 @@ function handleLoadArticle(
                     callbackModalManager(htmlArticle, modalContainer, article);
                 });
 
-                // merci claude
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        handleNewArticleSlider();
-                    });
-                });
+                console.log("Init glide !");
+                window.initGlide();
 
             }).catch(error => {
                 console.error("Erreur lors du chargement des articles :", error);

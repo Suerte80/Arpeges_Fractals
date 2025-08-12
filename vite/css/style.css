@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "@glidejs/glide/dist/css/glide.core.min.css";
+@import "@glidejs/glide/dist/css/glide.theme.min.css";
 
 /* =========================================================
    RESET & ROOT VARIABLES
@@ -27,6 +29,8 @@ body {
   padding-bottom: 80px;
   /* pour éviter que le lecteur ne masque le contenu */
 }
+
+
 
 @layer components { 
   input[type="range"] { 
@@ -75,7 +79,7 @@ body {
       @apply transition-transform duration-200;
     }
     &:hover::-moz-range-track,
-    &:active::-moz-range-track {
+    &:active::-moz-range-track { 
       transform: scaleY(1.4);
     }
     &:hover::-moz-range-progress,
@@ -90,6 +94,12 @@ body {
       background: transparent !important;
     }
   }
+
+  .glide { @apply w-full; }
+  .glide__track { overflow: hidden; } /* s’assure que rien ne déborde */
+  .glide__slides { display: flex; align-items: stretch; }
+  .glide__slide { width: 100%; }      /* chaque slide occupe toute la vue */
+  .glide__slide > * { height: 100%; } /* si tu mets une .article dedans, elle remplit la slide */
 } 
 
 /* =========================================================

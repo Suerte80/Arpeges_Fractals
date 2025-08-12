@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const fullArticlescontainer = document.getElementById("full-articles");
-    const newArticlesContainer = document.querySelector("#latest-articles .slider-track");
+    const newArticlesContainer = document.querySelector("#articles");
     const mostViewedArticlesContainer = document.querySelector("#most-viewed-articles .articles");
     const modalContainer = document.getElementById("modal");
     const modalContainerStar = document.querySelector("#modal .favorite-star");

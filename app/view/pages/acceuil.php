@@ -20,6 +20,8 @@
 
     <?php include(__DIR__ . '/../template/new_article_view.php'); ?>
 
+    <script type="module" src="assets/js/js.js"></script>
+
 </body>
 
 </html>
