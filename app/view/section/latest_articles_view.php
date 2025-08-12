@@ -1,11 +1,5 @@
 <section id="latest-articles" aria-label="Articles récents">
     <h2>Derniers Articles</h2>
-    <!-- <div class="articles-wrapper">
-        <button type="button" class="slider-btn prev">&#10094;</button>
-        <div class="articles slider-track">
-        </div>
-        <button type="button" class="slider-btn next">&#10095;</button>
-    </div> -->
 
     <div class="glide">
         <div class="glide__track" data-glide-el="track">
@@ -14,9 +8,9 @@
         </div>
 
         <!-- Boutons de navigation -->
-        <div class="glide__arrows" data-glide-el="controls">
-            <button data-glide-dir="<">Prev</button>
-            <button data-glide-dir=">">Next</button>
+        <div class="glide__arrows inset-0 flex items-center justify-between px-4" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left bg-white/70 rounded-full p-2 shadow" data-glide-dir="<">&lt;</button>
+            <button class="glide__arrow glide__arrow--right bg-white/70 rounded-full p-2 shadow" data-glide-dir=">">&gt;</button>
         </div>
     </div>
 
