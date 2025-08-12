@@ -1,6 +1,14 @@
+/* Import de tailwindcss et de son plugin */
 @import "tailwindcss";
+/* @plugin "@tailwindcss/forms"; */
+
 @import "@glidejs/glide/dist/css/glide.core.min.css";
 @import "@glidejs/glide/dist/css/glide.theme.min.css";
+
+/* Preline */
+@import "preline/variants.css";
+
+@source "../../node_modules/preline/dist/*.js";
 
 /* =========================================================
    RESET & ROOT VARIABLES
@@ -12,7 +20,7 @@
   --accent2: #FF6600;
   --background: #0D0D0D;
   --text: #fff;
-  --text-on-dark: #FFFFFF;
+  --text-on-dark: #FFFFFF; 
   --border-card: #FF6600;
   --highlight: #FFD700;
   --nonselected: #919a73;
@@ -500,10 +508,6 @@ body {
   color: var(--text);
 }
 
-.hidden {
-  display: none;
-}
-
 .edit-btn {
   background: none;
   border: none;
@@ -824,7 +828,11 @@ input::file-selector-button {
   transition: opacity 0.3s ease;
 }
 
-.modal.hidden {
+.is-hidden {
+  display: none;
+}
+
+.modal.id-hidden {
   display: none;
 }
 

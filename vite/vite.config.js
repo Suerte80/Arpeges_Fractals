@@ -11,6 +11,7 @@ export default defineConfig({
       input: {
         editor: path.resolve(__dirname, 'js/editor-js.js'),
         js: path.resolve(__dirname, 'js/glide.js'),
+        imp: path.resolve(__dirname, 'js/import.js'),
         styles: path.resolve(__dirname, 'css/style.css')
       },
       output: {
@@ -36,5 +37,5 @@ export default defineConfig({
   optimizeDeps: {
     // Force l'inclusion de Glide.js dans les dépendances optimisées
     include: ['@glidejs/glide']
-  }
+  },
 });

@@ -1,5 +1,6 @@
 *.zip
 *.pdf
+*.tar.xz
 
 # IGnore les images uploadé par l'utilisateur
 public/uploads/*

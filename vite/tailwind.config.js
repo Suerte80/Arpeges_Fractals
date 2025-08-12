@@ -6,5 +6,7 @@ module.exports = {
     './**/*.{html,js,ts,jsx,tsx}',
   ],
   theme: { extend: {} },
-  plugins: []
+  plugins: [
+    require('preline/plugin'),
+  ]
 };

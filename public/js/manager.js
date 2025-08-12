@@ -143,7 +143,7 @@ function callbackModalManager(article, modalContainer, articleData) {
                 modalContent.textContent = jsonParsed.blocks[0].data.text;
 
         // On affiche la modal.
-        removeClass(modalContainer, "hidden");
+        removeClass(modalContainer, "is-hidden");
         handleScrollCapability();
 
         const focusable = modalContainer.querySelector("button, [tabindex='0'], a, input, textarea");
@@ -154,7 +154,7 @@ function callbackModalManager(article, modalContainer, articleData) {
 
     modalContainer.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
-            addClass(modalContainer, "hidden");
+            addClass(modalContainer, "is-hidden");
             handleScrollCapability();
         }
     });
@@ -195,13 +195,13 @@ function callBackHistoryOnClick(modalHisto) {
     }
 
     // On ouvre la modal
-    removeClass(modalHisto, "hidden");
+    removeClass(modalHisto, "is-hidden");
 
     // On récupére le bouton
     const closeModalButton = modalHisto.querySelector("#close-modal");
     // On ajoute le callback sur le click du bouton
     closeModalButton.addEventListener("click", () => {
-        addClass(modalHisto, "hidden");
+        addClass(modalHisto, "is-hidden");
     });
 }
 

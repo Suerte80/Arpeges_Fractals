@@ -1,4 +1,4 @@
-<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+<div id="modal" class="modal is-hidden" role="dialog" aria-modal="true">
     <div class="modal-inner">
         <div>
             <button id="close-modal" class="close-button" type="button"
