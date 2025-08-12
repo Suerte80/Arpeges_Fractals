@@ -27,7 +27,9 @@
 ">
         <img
             class="
+                hidden md:block
                 rotate-y-180
+                md:visible
             "
             src="images/math_rock_girl.png"
             alt="Image de la mascotte du site." width="160" height="200" class="max-w-xs" />
@@ -51,6 +53,7 @@
     </div>
 
     <div class="
+        hidden md:block
         math-girl
         absolute right-0 top-1/2
         -translate-y-1/2

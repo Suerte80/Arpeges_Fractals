@@ -24,7 +24,7 @@ dist
 
 # Ignore les fichier vite qui se génére pour EditorJS
 public/assets/js/
-public/css/style.css
+public/assets/css
 
 # Ajouts des certificats ssl 
 certificats/
