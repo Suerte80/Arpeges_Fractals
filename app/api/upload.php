@@ -31,6 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // On envoie la notification et la réponse JSON
                 addNotification("info", "Upload de l'image fait !");
                 header('Content-Type: application/json');
+
+                // Mise a jour du chemin de l'image de profile 
+                $_SESSION['user-profil-image'] = $ret['filename'];
+
                 echo json_encode([
                     'success' => true,
                     'message' => "Upload de l'image fait !",

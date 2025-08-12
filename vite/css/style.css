@@ -508,27 +508,6 @@ body {
   color: var(--text);
 }
 
-.edit-btn {
-  background: none;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  color: var(--accent1);
-  transition: color 0.3s;
-}
-
-.edit-btn:hover {
-  color: var(--secondary);
-}
-
-.edit-img-btn {
-  position: absolute;
-  right: -20px;
-  bottom: -20px;
-  font-size: 48px;
-  z-index: 100;
-}
-
 /* =========================================================
    ARTICLES & SLIDER
    ========================================================= */

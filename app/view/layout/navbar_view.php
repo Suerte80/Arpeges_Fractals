@@ -41,7 +41,7 @@
                      hover:bg-white/15 text-white focus:outline-hidden transition"
                         aria-haspopup="menu" aria-expanded="false" aria-label="Profil">
                         <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
-                            <img src="<?= $_SESSION['user-profil-image'] ?>" alt="Image de profil">
+                            <img id="navbar-image-profil" class="rounded-full" src="<?= $_SESSION['user-profil-image'] ?>" alt="Image de profil">
                         </span>
                         <span class="text-sm"><?= $_SESSION['user-username'] ?? 'undefined' ?></span>
                         <svg class="size-4 opacity-80 hs-dropdown-open:rotate-180 transition-transform"

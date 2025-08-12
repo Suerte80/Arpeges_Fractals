@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // TODO Refactorisé ce code
     // On récupère tous les boutons avec la classe .edit-btn
-    document.querySelectorAll(".edit-btn").forEach(button => {
+    document.querySelectorAll("#edit-btn").forEach(button => {
         button.addEventListener("click", e => {
             e.preventDefault();
 
@@ -118,6 +118,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             if (data.success) {
                                 // TODO Il faut que le serveur envoie la nom de fichier.
                                 document.querySelector('#image-profile').src = data.filename;
+                                document.querySelector('#navbar-image-profil').src = data.filename;
                             }
 
                             updateNotification();

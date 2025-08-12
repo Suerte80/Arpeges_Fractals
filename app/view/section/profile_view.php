@@ -10,7 +10,18 @@
 
     <div class="math-girl-wrapper" style="margin: 2rem 0;">
         <img id="image-profile" src="<?= ImageManager::PUBLIC_STORAGE_AVATAR . $userInfo['image_filepath'] ?>" alt="<?= $userInfo['image_alt'] ?>" class="math-girl" style="max-width: 200px; border-radius: 50%;">
-        <button class="edit-btn edit-img-btn" data-target="image">✎</button>
+        <button id="edit-btn" class="
+            z-100
+            bg-none
+            relative
+            border-none
+            text-[48px]
+            text-[var(--accent1)]
+            hover:text-[var(--secondary)]
+            transition-colors
+            right-0
+            bottom-[-50px]
+        " data-target="image">✎</button>
     </div>
 
     <div class="profile-info">
