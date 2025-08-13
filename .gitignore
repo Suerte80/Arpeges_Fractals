@@ -36,3 +36,4 @@ certificats/
 .vscode
 
 public/assets
+public/assets/css/styles.css
