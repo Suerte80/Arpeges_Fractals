@@ -23,8 +23,8 @@ node_modules/
 dist
 
 # Ignore les fichier vite qui se génére pour EditorJS
-public/assets/js/
-public/assets/css/styles.css
+public/assets/js/*
+public/assets/css/*
 
 # Ajouts des certificats ssl 
 certificats/
