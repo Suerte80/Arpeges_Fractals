@@ -148,13 +148,14 @@ document.addEventListener("DOMContentLoaded", async () => {
      * Lazy loading du module EditorJS
      */
     const editorJSWidget = document.querySelector('.editorjs');
-    const editorBundle = window.editorJsBundle;
     const articleContent = document.getElementById("read-article-content");
     // Import des modules
     try {
-        await import(window.editorJsBundle);
-        await window.EditorJSToolsReady;
-        console.log('EditorJS chargé dynamiquement et exécuté !');
+        if(window.editorJsBundle){
+            await import(window.editorJsBundle);
+            await window.EditorJSToolsReady;
+            console.log('EditorJS chargé dynamiquement et exécuté !');
+        }
     } catch (error) {
         console.error("Erreur lors du chargement de l'éditeur :", error);
     }
